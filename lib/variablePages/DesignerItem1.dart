@@ -1,0 +1,82 @@
+import 'package:flutter/material.dart';
+
+class DesignerItem1 extends StatelessWidget {
+  final Widget picture;
+  final String title;
+  final Function navigate;
+  const DesignerItem1(this.picture, this.title, this.navigate, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: MediaQuery.of(context).size.width / 2 - 30,
+        height: 240,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: Colors.white,
+            boxShadow: [
+              const BoxShadow(
+                  color: Colors.white, offset: Offset(-5, -5), blurRadius: 15),
+              BoxShadow(
+                  color: Colors.grey.shade300,
+                  offset: const Offset(-5, -5),
+                  blurRadius: 15),
+            ]),
+        child: ElevatedButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.white),
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
+              shadowColor: MaterialStateProperty.all(Colors.grey.shade300)
+          
+              ),
+              
+          onPressed: () {
+            navigate();
+          },
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(5),
+                child: SizedBox(height: 120, child: picture),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 0),
+                child: SizedBox(
+                  width: double.infinity,
+                    height: 60,
+                    child: Center(
+                        child: Text(
+                      title,
+                      style: const TextStyle(
+                          fontFamily: "Laxout",
+                          fontSize: 18,
+                          height: 1,
+                          color: Colors.black),
+                    ))),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Container(
+                  width: double.infinity,
+                  height: 35,
+                  decoration: BoxDecoration(
+                      color: const Color.fromRGBO(176, 224, 230, 1.0),
+                      borderRadius: BorderRadius.circular(25)),
+                  child: const Center(
+                      child: Text(
+                    "Starten",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Laxout",
+                        fontSize: 15),
+                  )),
+                ),
+              )
+            ],
+          ),
+        ));
+  }
+}

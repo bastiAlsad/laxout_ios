@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1056037211276",
+    "project_id": "laxout-41f08",
+    "storage_bucket": "laxout-41f08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056037211276:android:7ac468e394aed4b926ffa9",
+        "android_client_info": {
+          "package_name": "com.appprojekt123.laxout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056037211276-o1cvdmmmqf0vet3i397srl60u21fe764.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfQH775wuj0JKFrGYo-N0mUEoM8y0UQOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056037211276-o1cvdmmmqf0vet3i397srl60u21fe764.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

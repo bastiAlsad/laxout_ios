@@ -1,0 +1,108 @@
+Allgemeine Geschäftsbedingungen (AGB)
+Inhalt: 
+
+Einleitung 
+§ 1 Anwendungsbereich 
+§ 2 Nutzungsbedingungen 
+§ 3 Leistungsumfang 
+§ 4 Haftrechtliche Aspekte 
+§ 5 Lizenzen und Gewerbliche Schutzrechte 
+§ 6 Verantwortung fremder Inhalte 
+§ 7 Nutzer 
+§ 8 Qualität und Mängel an der App 
+§ 9 Datenschutz 
+§ 10 Coupons  
+§ 11 Anpassung der AGBs  
+§ 12 Weitere Bestimmungen  
+Einführung: 
+
+Im Folgenden wird Laxout, vertreten durch Bastian Friedrich als “Anbieter” bezeichnet und bietet ein Softwareprodukt zur Bekämpfung von Rückenschmerzen an, welches in diesem Text als “App” bezeichnet wird. Nutzer werden unter dem Namen “User”, “Nutzer” oder “Benutzer” angesprochen.  Allgemeine Geschäftsbedingungen wird häufig mit “AGBS” abgekürzt. “LaxCoins” oder “Coins” bezeichnet die virtuelle Währung unseres Belohnungssytems. 
+
+  
+
+ 1§ Anwendungsbereich
+
+1a. Der Dienstleister erbringt sämtliche Leistungen im Zusammenhang mit der App ausschließlich gemäß diesen Allgemeinen Geschäftsbedingungen. 
+1b. Diese AGB haben keine Auswirkungen auf Fragen, die sich im Zusammenhang mit Dienstleistungen von Dritten ergeben, einschließlich des Zugangs zum Internet. 
+1c. Die Beziehungen im Hinblick auf die Leistungen im jeweiligen App Store, in dem die App heruntergeladen wurde, bleiben unberührt. Die Bedingungen für den Download, die Zahlungskonditionen und die damit verbundenen Kosten für den Download unterliegen den AGB des jeweiligen App Stores.
+ 2§ Nutzungsbedingungen
+
+2a. Der Benutzer der App muss sowohl den AGBs als auch den Nutzungsbedingungen zugestimmt haben, bevor dieser berechtigt ist, die App zu nutzen. Hierfür treffen wir geeignete Maßnahmen in unserer Software. 
+2b. Beim Benutzen der App, handelt der Nutzer auf eigene Gefahr. 
+2c. Der Nutzer darf keine Software, Maßnahmen oder Mechanismen in Verbindung mit der App einsetzen, die die Funktionen der App stören oder verändern könnten. Ebenso ist es untersagt, Handlungen durchzuführen, die die technischen Kapazitäten des Anbieters unverhältnismäßig belasten könnten. Es ist dem Nutzer insbesondere nicht gestattet, Inhalte, die vom Anbieter generiert wurden, zu blockieren, zu überschreiben oder zu verändern, es sei denn, dies wurde ausdrücklich und schriftlich vom Anbieter genehmigt. 
+2d. Eine illegale Nutzung, Verwendung, Anwendung etc. Ist in jedem Falle untersagt. 
+2e. Der Nutzer darf keine Anwendungen von Drittanbietern, sei es in Form von Software oder Hardware, ausführen, verwenden oder anwenden, die dazu dienen, die Funktionalität der App zu beeinträchtigen oder zu manipulieren. 
+2f. Die Software ist lediglich für den Gebrauch des einzelnen abgesehen. Eine Verwendung zu kommerziellen Zwecken, eine Anwendung als Mitarbeiter- App oder andere Varianten der Nutzung, die nicht denen eines einzelnen Users, der die App für sich nutzt, um Rückenschmerzen zu bekämpfen, ist nur unter vertraglicher Einigung mit dem Laxout- Team gestattet und andernfalls strengstens untersagt. 
+2g. Der Nutzer muss sich bei jeder Nutzung der App an alle geltenden Gesetze halten. Er darf insbesondere keine Inhalte verbreiten, die pornografisch, rassistisch, sexistisch, beleidigend, gewaltverherrlichend, kriegsverherrlichend oder anderweitig illegal sind. Darüber hinaus ist es dem Nutzer untersagt, kommerzielle Werbung für Produkte oder Programme von Dritten zu betreiben. Er verpflichtet sich, keine geschützten Begriffe, Namen, Bilder, Videos, Musikstücke, Spiele oder andere Materialien, ohne die erforderliche Genehmigung zu verwenden. 
+2h. Der Nutzer erklärt sich damit einverstanden, dass die App aufzeichnet, an welchen Tagen er die App nutzt. Außerdem ist er damit einverstanden, dass sein Physiotherapeut die Daten einsehen kann.  
+2i. Des weiteren ist der Nutzer damit einverstanden, dass sein Physiotherapeut sieht, wie oft er sich in die App eingeloggt hat und wie viele Coins er verdient hat. Genauere Informationen finden sie in unsere Datenschutzerklärung unter “Welche Daten werden von uns gespeichert und verarbeitet” Abschnitt 3d).  
+2j. Der Nutzer darf einen gültigen Praxiscode nur bei seinem Physiotherapeuten bekommen. Er darf diesen Code nicht weitergeben. 
+2k. Als Physiotherapeut darf man bei der Erstellung neuer Patienten im Dashboard nur anonymisierte und nicht für dritte zuordenbare Benutzernamen wählen. Nur der Physio sollte mit dem Benutzernamen seinen jeweiligen Patienten identifizieren können. Aus Datenschutzrechtlichen Gründen sieht Laxout sich gezwungen, nicht anonymisierte Benutzernamen wie z.B. Max (Vorname) Mustermann (Nachname) zu löschen. Weiteres lesen sie bitte in unserer Datenschutzerklärung. 
+ 3§ Leistungsumfang
+
+3a. Der Anbieter ermöglicht den Benutzern im Rahmen der verfügbaren technischen und betrieblichen Kapazitäten die Nutzung der App. 
+3b. Die App wird über Online-Shops bereitgestellt, in denen sie heruntergeladen werden kann, wie zum Beispiel den Apple App Store oder den Google Play Store. 
+3c. Die Verantwortung liegt beim Benutzer, sein Endgerät in einem Zustand zu halten oder zu versetzen, der die Nutzung der App ermöglicht. Dies beinhaltet die Bereitstellung eines geeigneten Internetzugangs und die Erfüllung der minimalen Systemanforderungen für die App. Es kann erforderlich sein, dass der Benutzer eine vom Anbieter bereitgestellte Software lokal speichert, um die App zu nutzen. Der Anbieter bietet keinen Support für die Konfiguration und Installation dieser Software. 
+3d. Der Anbieter überträgt den Benutzern kein Eigentum an der Software, sondern gewährt lediglich ein Nutzungsrecht. 
+3e. Die App kann regelmäßig aktualisiert, modifiziert und weiterentwickelt werden, um den Benutzern ein umfassendes Nutzungserlebnis zu bieten. Das Nutzungsrecht gilt immer nur für die jeweils aktuelle Version der App. Der Anbieter behält sich das Recht vor, den Betrieb der App oder einzelner App-Funktionen ganz oder teilweise jederzeit ohne Angabe von Gründen einzuschränken, zu ändern oder einzustellen. 
+3f. Der Anbieter hat das Recht, den Zugang zu den Leistungen einzuschränken, wenn dies aus Gründen der Sicherheit des Netzbetriebs, der Aufrechterhaltung der Netzintegrität, insbesondere zur Vermeidung schwerwiegender Störungen des Netzes, der Software oder gespeicherter Daten erforderlich ist. 
+ 
+
+ 4§ Haftrechtliche Aspekte
+
+4a. Der Anbieter haftet in keinem erdenklichen Falle für körperliche, geistliche oder materielle Schäden. Sollten diese trotz Überprüfung unserer Rücken- Inhalte Auftreten, berufen wir uns auf §2 Unterpunkt 2b.  
+4b. Die oben genannten Haftungsausschlüsse und -beschränkungen gelten auch für die Haftung der Angestellten, Arbeitnehmer, Mitarbeiter, Vertreter und Erfüllungsgehilfen des Anbieters. Dies schließt insbesondere die persönliche Haftung der Anteilseigner, Mitarbeiter, Vertreter, Organe und deren Mitglieder ein. 
+4c. Jegliche Haftung des Anbieters ist ausgeschlossen. Dies gilt für alle Ansprüche im Zusammenhang mit Verletzungen vertraglicher Pflichten sowie für Ansprüche aus unerlaubten Handlungen. 
+ 
+
+ 5§ Lizenzen und Gewerbliche Schutzrechte
+
+5a.Die App- Inhalte sind ausschließlich im Besitz des Anbieters oder seiner jeweiligen Lizenzgeber und unterliegen deren exklusiven Urheberrechten und gewerblichen Schutzrechten. Jede nicht genehmigte Verbreitung, Vervielfältigung, Nutzung oder sonstige Verletzung dieser Rechte kann zivil- und/oder strafrechtliche Konsequenzen nach sich ziehen und wird entsprechend verfolgt.
+ 6§ Verantwortung fremder Inhalte
+
+6a. Wenn auf der Plattform Links zu anderen von Dritten betriebenen Seiten bereitgestellt werden, ist der Anbieter nicht für den Inhalt dieser verlinkten Seiten verantwortlich. Der Anbieter überwacht diese Seiten nicht und distanziert sich ausdrücklich von ihren Inhalten. Die Verantwortung für die Inhalte dieser Seiten liegt bei den jeweiligen Betreibern der Webseiten. 
+6b. Zudem stehen die Inhalte in unserem “Lax-Shop” unter der Verantwortlichkeit des jeweiligen Anbieters. 
+ 7§ Nutzer
+
+7a. Zur Nutzung der App sind Jugendliche ab dem 12. Lebensjahr berechtigt, sofern sie die Zustimmung ihrer Eltern eingeholt haben. 
+7b. Menschen mit schwerwiegenden Skeletterkrankungen, deren Rückenschmerzen nicht durch falsche Haltung oder ein Mangel an Bewegung auftritt, wird geraten, vor dem Gebrauch der App einen Arzt aufzusuchen, um eine Verschlimmerung der Erkrankung auszuschließen. Unsere App wurde für eine Verbesserung von chronischen Rückenschmerzen, die durch Stress, Bewegungsmangel oder Fehlhaltungen entstehen entwickelt und ist kein zertifiziertes Medizinprodukt. Aus diesem Grund übernehmen wir in keinem Fall Verantwortung, sollte beim Benutzen unserer kostenlosen App ein Schaden oder eine Verschlimmerung der Schmerzen stattfinden. Hierbei berufen wir uns auf §4 unserer AGBs. 
+ 
+
+ 8§ Qualität und Mängel an der App
+
+8a. Auch wenn wir unsere App und die dazugehörigen Inhalte von Fachleuten aus dem Bereich Rückenschmerzen überprüfen haben lassen, können Software und auch menschlich bedingte Fehler auftreten. Der Nutzer erklärt sich beim Akzeptieren der AGBs bereit, über diese Fehler, die leider nicht immer vermieden werden können, hinwegzusehen und uns freiwilligen Antriebs über die Mängel zu informieren. Wir möchten eine einzigartige Benutzererfahrung gewährleisten und benötigen hierfür Feedback, um Fehler zu identifizieren und zu verbessern. 
+8b. Der Anbieter gewährt den Benutzern Zugang zur App in ihrer aktuellen Version. Die Benutzer haben keinen Anspruch darauf, dass ein bestimmter Zustand oder Funktionsumfang der App oder der Zusatzleistungen aufrechterhalten oder herbeigeführt wird. Die Benutzer sollten sich bewusst sein, dass die App und die Zusatzleistungen, wie jede Software, niemals vollkommen fehlerfrei sein können. Die App wird nur dann als mangelhaft betrachtet, wenn ihre Nutzung erheblich und dauerhaft beeinträchtigt ist. 
+8c. Der Anbieter hat keine Kontrolle über Fehler, die durch äußere Einwirkungen, Fehler in der Bedienung durch die Benutzer, unvorhersehbare Ereignisse oder Änderungen oder Manipulationen, die nicht vom Anbieter vorgenommen wurden, entstehen. 
+8d. Garantien im rechtlichen Sinne werden nicht gewährt. 
+ 
+
+ 9§ Datenschutz
+
+9a.Der Anbieter bekräftigt sein ausdrückliches Engagement für den Schutz der Privatsphäre der Benutzer und wird bei der Verarbeitung ihrer Daten die geltenden Datenschutzbestimmungen strikt einhalten. Detaillierte Informationen hierzu finden sich in der Datenschutzerklärung des Anbieters.
+9b. Aufgrund datenschutzrechtlicher Aspekte ist es ihnen untersagt, beim Angeben eines “Usernamens”, nach welchem sie beim erstmaligen Öffnen unserer App gefragt werden, ihren Vollständigen Vor- und Nachnamen anzugeben. Bitte verwenden sie einen Namen, den nur ihr Physiotherapeut zuordnen kann. Sollten sie dennoch ihren vollständigen Namen angeben, werden wir ihren Account zum Schutz ihrer persönlichen Daten löschen.  
+ 10§ Coupons 
+
+10a. Die Couponcodes, die als Belohnung erhältlich sind dürfen nicht mit Freunden geteilt werden.  
+10b. Ausnutzen von Softwarefehlern, um schneller an Couponcodes zu kommen ist verboten und die Fehler müssen sofort gemeldet werden. 
+10c. Wir übernehmen keine Verantwortung, falls Couponcodes verfallen oder LaxCoins aufgrund eines Softwarefehlers nicht auf das User- Konto gutgeschrieben werden oder sie fälschlicher Weise von dem User- Konto gelöscht werden. Selbstverständlich können sie sich in einem solchen Fall an unsere dennis@den.si Supportadresse wenden und erhalten ihre Coins zurück. Eine Rückerstattung von gekauften oder verfallen Couponcodes hingegen ist ausgeschlossen und wird nicht von unserem Supportteam durchgeführt. 
+10d. Es gelten zusätzlich die AGBs der im Shop verlinkten Partner für die Couponcodes. Die Überwachung deren Einhaltung liegt jedoch beim Bereitsteller des Coupon Codes. 
+10e. Laxout ist lediglich die Vermittlungsplattform für Coupons. Bei Vertragsstreitigkeiten oder Kaufschwierigkeiten bei einem unserer Partner kann und wird Laxout nicht haften bzw. Eingreifen. Sollte es zu solch einem Vorfall kommen, informieren sie uns bitte unter info@laxoutapp.com. 
+ 
+
+ 11§ Anpassung der AGBs 
+
+11a. Der Anbieter behält sich das Recht vor, diese Geschäftsbedingungen in Zukunft zu ändern oder zu erweitern, wenn dies notwendig erscheint und die Benutzer dabei nicht unangemessen benachteiligt werden. Gründe für solche Änderungen können insbesondere gesetzliche Anpassungen, Veränderungen im Leistungsumfang der App und/oder Zusatzleistungen oder neue Gerichtsentscheidungen sein. 
+11b. Es wird empfohlen, dass die Benutzer regelmäßig über den aktuellen Stand der Geschäftsbedingungen informiert bleiben. 
+ 
+
+ 12§ Weitere Bestimmungen
+
+12a. Falls einzelne Bestimmungen dieser Allgemeinen Geschäftsbedingungen unwirksam sind oder werden, hat dies keinen Einfluss auf die Wirksamkeit der übrigen Bestimmungen. 
+12b. Die Europäische Kommission bietet eine Plattform für die außergerichtliche Online-Streitbeilegung (OS-Plattform) an, die unter https://ec.europa.eu/odr zugänglich ist. Der Anbieter ist weder bereit noch verpflichtet, an einem Streitbeilegungsverfahren (einschließlich Online-Streitbeilegung oder alternativer Streitbeilegung) vor einer Verbraucherschlichtungsstelle teilzunehmen. 
+12c. Für Verträge, die auf der Grundlage dieser AGB abgeschlossen werden, und alle damit verbundenen Ansprüche gilt ausschließlich das Recht der Bundesrepublik Deutschland, wobei die Bestimmungen des einheitlichen UN-Kaufrechts ausgeschlossen sind.
+12d. In einem Streitfall gilt die deutsche Ausführung dieser AGBs
+12e. Letze Aktualisierung: 21.10.23 
+
+ 
+
+ 

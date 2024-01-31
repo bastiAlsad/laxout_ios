@@ -1,0 +1,717 @@
+Datenschutzerklärung  
+
+  
+
+  
+
+Einführung:  
+
+Dies ist die Datenschutzerklärung von Laxout. Wir legen großen Wert auf die Einhaltung datenschutzrechtlicher Vorgaben und möchten sicherstellen, dass Sie genau darüber informiert sind, wie wir mit Ihren persönlichen Daten umgehen und wer darauf Zugriff hat. Ihre Privatsphäre ist uns wichtig.  
+
+Wir bitten Sie daher herzlich, sich die Zeit zu nehmen und diese Erklärung gründlich zu lesen. In dieser Datenschutzerklärung informieren wir Sie ausführlich über die Art, den Umfang, den Zweck, die Dauer und die Rechtsgrundlage der Verarbeitung der personenbezogenen Daten. Wir möchten darauf hinweisen, dass wir allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung entscheiden.  
+
+Die Verarbeitung von personenbezogenen Daten erfolgt ausschließlich unter folgenden Bedingungen: Durch Ihre ausdrückliche Einwilligung (gemäß § 25 Abs. 1 TTDSG oder Art. 6 Abs. 1 Buchst. a DSGVO), zur Erfüllung eines Vertrags, dessen Vertragspartei Sie sind oder auf Ihre Anfrage hin zur Durchführung vorvertraglicher Maßnahmen (Art. 6 Abs. 1 Buchst. b DSGVO), zur Erfüllung einer rechtlichen Verpflichtung (Art. 6 Abs. 1 Buchst. c DSGVO), oder wenn die Verarbeitung zur Wahrung unserer berechtigten Interessen oder der berechtigten Interessen Dritter erforderlich ist. Dies erfolgt jedoch nur dann, wenn Ihre Interessen oder grundlegenden Rechte und Freiheiten, die den Schutz personenbezogener Daten erfordern, nicht überwiegen (Art. 6 Abs. 1 Buchst. f DSGVO). 
+
+  
+
+Inhalt:  
+
+-Einführung  
+   Kontaktinformationen des Verantwortlichen  
+   Begriffserklärungen  
+   Geltungsbereich  
+ 
+
+-Welche Daten werden von uns gespeichert?  
+   User Uid  
+   Token 
+   LaxCoins  
+   Gekaufte Coupons und Couponcodes  
+   Usernname  
+   Übersprungene Übungen 
+   Schmerzlevel 
+   Leistungsindex 
+   Individuelle Workouts 
+   Eigene Workouts 
+   Logins 
+   Letzter Login 
+   Erstelldatum User 
+   An welchen Tagen Workouts erledigt wurden 
+   Letzter Behandlungstermin 
+   Anweisung für den Patienten 
+ 
+
+-Worüber werden die Daten gespeichert/ verarbeitet? 
+   Hive (lokal auf Ihrem Gerät) 
+   Backend (auf unseren Servern)  
+ 
+
+-Dauer der Datenspeicherung 
+ 
+
+-Zweck der Verarbeitung 
+ 
+
+-Dashboard 
+   Externe Links 
+   Anmeldeprozess durch die App 
+   Plugins 
+ 
+
+-Datenerhebung durch Google  
+   Google Analytics für mobile Apps  
+   Download der App 
+ 
+
+-Zugriffsrechte der Software 
+   Speicher  
+   Internetzugang 
+   Zugriff auf die Vibrationsfunktion/Haptik  
+ 
+
+-Datenverarbeitung bei Benutzung des Supports 
+   Verarbeitung Bei Der Ausübung Ihrer Rechte 
+   Verarbeitung bei Kontaktaufnahme 
+ 
+
+-Weitergabe der Daten an Dritte 
+ 
+
+-Internetauftritt 
+   Internetauftritt auf Instagramm  
+   Internettauftritt auf LinkedIn  
+ 
+
+-Website  
+   Allgemeine Informationen 
+   Hoster 
+   Wie erfassen wir Ihre Daten auf der Website 
+   Wofür nutzern wir Ihre Daten auf der Website  
+   Rechtsgrundlage der Datenverabeitung auf dieser Website 
+   Empfänger der personenbezogenen Daten 
+   Cookies 
+   SSL-TSL Verschlüsselung 
+   Google Fonts 
+ 
+-Ihre Rechte: 
+   Recht auf Auskunft (Artikel 15 DSGVO)  
+   Recht auf Berichtigung (Artikel 16 DSGVO)  
+   Recht auf Löschung (Artikel 17 DSGVO)  
+   Recht auf Einschränkung der Verarbeitung (Artikel 18 DSGVO)  
+   Recht auf Datenübertragbarkeit (Artikel 20 DSGVO)  
+   Widerspruchsrecht (Artikel 21 DSGVO)  
+   Beschwerderecht bei einer Aufsichtsbehörde  
+ 
+
+-Nachträgliche Bearbeitung der Datenschutzerklärung  
+   Änderung der Datenschutzerklärung  
+   Letze Aktualisierung und geltende Sprache im Zweifelsfall  
+  
+
+ 
+
+ 
+
+Kontaktinformationen des Verantwortlichen:  
+
+Verantwortlich für die Verarbeitung von personenbezogenen Daten im Sinne der DSGVO ist:  
+
+Bastian Friedrich   
+
+Brünnsteinstraße 49   
+
+85435 Erding   
+
+Germany  
+
+Email: info@laxoutapp.com 
+
+  
+
+  
+
+Begriffserklärungen:  
+
+Die Begriffe „DSGVO“ und „Datenschutz-Grundverordnung“ beziehen sich auf die Verordnung (EU) 2016/679.  
+
+In diesem Datenschutzhinweis verwenden wir die Begriffsdefinitionen gemäß Art. 4 DSGVO, die Sie unter diesem Link (https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679#d1e1393-1-1) einsehen können. Wir bitten Sie, diesen und andere Links aus diesem Datenschutzhinweis nur dann anzuklicken, wenn Sie mit dem Öffnen externer Seiten von Dritten und den entsprechenden Datenschutzerklärungen einverstanden sind.  
+
+Die nachfolgenden zwei Begriffsdefinitionen aus der DSGVO werden in diesem Datenschutzhinweis besonders oft verwendet, weshalb wir Ihnen diese speziell vermitteln möchten:  
+
+  
+
+„Personenbezogene Daten“: Jede Information, die sich auf eine identifizierte oder identifizierbare natürliche Person (nachfolgend „betroffene Person“) bezieht. Als identifizierbar wird eine natürliche Person angesehen, die direkt oder indirekt, insbesondere mittels Zuordnung zu einer Kennung wie einem Namen, zu einer Kennnummer, zu Standortdaten, zu einer Online-Kennung oder zu einem oder mehreren besonderen Merkmalen, die Ausdruck der physischen, physiologischen, genetischen, psychischen, wirtschaftlichen, kulturellen oder sozialen Identität dieser natürlichen Person sind, identifiziert werden kann.  
+
+  
+
+‘Verarbeitung’: Jeder Vorgang oder jede Vorgangsreihe im Zusammenhang mit personenbezogenen Daten, ob mit oder ohne Hilfe automatisierter Verfahren. Dazu gehören das Erheben, das Erfassen, die Organisation, das Ordnen, die Speicherung, die Anpassung oder Veränderung, das Auslesen, das Abfragen, die Verwendung, die Offenlegung durch Übermittlung, Verbreitung oder eine andere Form der Bereitstellung, der Abgleich oder die Verknüpfung, die Einschränkung, das Löschen oder die Vernichtung.  
+
+Die Bezeichnungen ‘Laxout’, ‘wir’ und ‘unsere’ in diesem Datenschutzhinweis beziehen sich auf den Verantwortlichen für die Datenverarbeitung im Sinne der DSGVO, wie unter den Kontaktinformationen des Verantwortlichen definiert.  
+
+Der Begriff ‘App’ bezieht sich auf die von Laxout entwickelte, verbreitete und betriebene mobile Applikation (Software) ‘Laxout’.  
+
+  
+
+Die Bergriffe “Website” bzw. Internetauftritt beziehen sich auf unsere Internetseite   
+
+  
+
+Geltungsbereich:  
+
+  
+
+Diese Datenschutzerklärung gilt für unsere mobile Handy- App, das Dashboard und für unsere Website.  
+
+ 
+
+  
+
+Welche Daten werden von uns gespeichert und verarbeitet?  
+
+Dieser Abschnitt erläutert die Arten von Daten, die von der Software „Laxout“ erfasst, gespeichert und verarbeitet werden, sowie die Zwecke und Methoden dieser Verarbeitung.  
+
+Die Einhaltung der geltenden Datenschutzgesetze und -vorschriften ist für uns von höchster Bedeutung, und wir setzen uns dafür ein, die Privatsphäre und die Daten unserer Nutzer zu schützen.  
+
+  
+
+1. User UID – Eine Anonymisierte Benutzerkennung
+Mit dem Begriff der “User-UID” ist eine zufällig generierte Zeichenfolge für die Identifizierung durch unseren Server gemeint. Bei der Erstellung eines Benutzeraccounts durch einen Therapeuten/BGM wird diese Zeichenkette erzeugt und dem Benutzernamen des Patienten zugeordnet. Diese User-UID wird lokal auf ihrem Gerät und auf unserem Server gespeichert.  
+
+ 
+
+Token
+Diese Software nutzt zudem eine Token-Authentifizierung, um Daten vor Dritten zu schützen. Token sind ähnlich wie User-Uids und werden ebenfalls auf ihrem Gerät und unseren Servern gespeichert. Aus sicherheitstechnischen Gründen können wir Ihnen jedoch keine näheren Informationen hierzu geben. 
+
+ 
+
+LaxCoins
+Durch abgeschlossene “Tests” und “Physio Workouts” haben Benutzer die Möglichkeit, sogenannte “LaxCoins” zu sammeln. Hierbei handelt es sich um eine virtuelle Währung, mit der man sich Gutscheincodes für unseren Shop kaufen kann. Die Anzahl dieser Coins wird im Zusammenhang mit dem Benutzerkonto auf unseren Servern gespeichert. 
+
+ 
+
+Gekaufte Coupons und Couponcodes:
+ Benutzer haben die Möglichkeit, Coupons innerhalb der Anwendung zu erwerben. Die gekauften Coupons sowie die zugehörigen Couponcodes werden in Verbindung mit einer eindeutigen Coupon-ID und dem Benutzerkonto auf unserem Server gespeichert.  
+
+ 
+
+Username:
+Bei der Erstellung von Benutzerkontos durch einen Physiotherapeuten/BGM muss ein Benutzername angegeben werden, welcher auf unserem Server gespeichert wird und der Identifizierung von Benutzerkonten dient. Zum Schutz der Privatsphäre weißen wir Benutzer unserer Software an, diesen Benutzernamen auf einer anonymen Basis zu wählen. Das bedeutet, dass nur der Therapeut/BGM in der Lage ist seine Patienten zu identifizieren. Wir empfehlen das Format: Vorname + Anfangsbuchstabe des Nachnamens. In unseren Allgemeinen Geschäftsbedingungen §9a finden Sie nähere Informationen hierzu.   
+
+ 
+
+Übersprungene Übungen
+Die App zeichnet Benutzerverhalten auf, zu welchem auch übersprungene Übungen zählen. Zudem wird aufgezeichnet, wie lange ein Benutzer eine Übung ausführt. Nur die ID der übersprungenen Übung wird in Zusammenhang mit dem Benutzerkonto auf unserem Server gespeichert. 
+
+ 
+
+Schmerzlevel
+In der “Test” Funktion unserer App werden Benutzer gefragt, wie stark ihre Schmerzen gerade sind. Die Erfassung dieses Wertes erfolgt anonym und es wird nur das Datum der Angabe auf unserem Server gespeichert. 
+
+ 
+
+Leistungsindex
+In der “Test” Funktion unserer App können User zudem ihre Leistung messen. Hierbei werden alle Kräftigungsübungen aus dem individuellen Workout extrahiert und es wird aufgezeichnet, wie lange bzw. Wie oft man eine Übung schafft. Diese Werte werden jedoch nach Berechnung des Leistungsindexes wieder gelöscht und nur der Leistungsindex ((Wert Übung1+ Wert Übung 2 …. Wert Übung X): Anzahl Übungen) an unseren Server übermittelt. Der Leistungsindex ist personenbezogen und es wird der zugehörige Benutzer und das Datum gespeichert. 
+
+ 
+
+Individuelle Workouts
+Der Physiotherapeut/BGM kann ihnen ein individuelles Workout aus verschiedenen Übungen zusammenstellen. Die jeweiligen IDs der Übungen werden in Zusammenhang mit dem Benutzerkonto des Patienten auf unseren Servern und lokal auf dem Gerät des Nutzers gespeichert. 
+
+ 
+
+Eigene Workouts
+In der App haben Patienten die Möglichkeit, sich ein eigenes Workout aus ihren Lieblingsübungen zusammenzustellen. Diese Workouts werden lokal auf dem Gerät des Nutzers gespeichert und es findet keine Übermittlung an den Server statt. Bitte beachten Sie als Patient, dass die Erstellung von eigenen Workouts, sowie die Benutzung unserer Software auf eigene Gefahr erfolgt (Laxout AGBs §2 2b).  
+
+ 
+
+Logins
+Die App trackt das Öffnen von Laxout und speichert einen Wert an monatlichen Logins anonym in einen monatlichen Zeitraum auf unseren Servern. Es gibt jedoch auch eine andere Art von Logins, welche personenbezogen sind: 
+
+ 
+
+Letzter Login
+Zusätzlich zu der Anzahl von gesamten monatlichen Logins (11. Logins) speichern wir das letzte Login Datum von Benutzern der Laxout App auf unseren Servern. Dieses Datum ist personenbezogen und wird bei jedem neuen Login in die App überschrieben.  
+
+ 
+
+Datum der Usererstellung
+Erstellt der Physiotherapeut einen Neuen Benutzer, zeichnet die Software das Datum von diesem Ereignis in Zusammenhang mit dem Benutzerkonto auf unseren Servern auf. 
+
+ 
+
+An welchen Tagen Workouts erledigt wurden
+Die App speichert das Datum und die Art des Workouts auf unseren Servern, wenn ein Benutzer ein Workout abgeschlossen hat. Dies geschieht im Zusammenhang mit dem Benutzerkonto des Patienten. 
+
+ 
+
+Letzter Behandlungstermin
+Durch manuelle Eingabe des Physiotherapeuten/BGM wird ein Datum auf unseren Servern gespeichert, welches bei der Eingabe des Therapeuten als “Letzter Behandlungstermin” in Zusammenhang mit dem Patientenkonto gespeichert wird 
+
+ 
+
+Anweisung für den Patienten
+Des weiteren wird die Anweisung für den Patienten in Zusammenhang mit dem Patientenkonto auf unseren Servern gespeichert. 
+
+ 
+
+ Worüber werden die Daten gespeichert/ verarbeitet? 
+
+Wir verwenden das Flutter Plugin Hive, um die Speicherung von Daten auf dem Gerät des Patienten zu ermöglichen und eine effiziente lokale Datenspeicherung in unserer Flutter-Anwendung zu gewährleisten. Hive ist eine schnelle, sichere und benutzerfreundliche  
+
+Datenbanklösung, die es unserer Anwendung ermöglicht, Daten lokal auf dem Smartphone zu speichern, ohne auf eine externe Datenbank oder einen externen Server zugreifen zu müssen. Nur der Benutzer selbst hat Zugriff aus diese Daten und wir haben keine Möglichkeit auf diese Daten zuzugreifen, wodurch auch keine Weitergabe an Dritte in diesem Fall erflogt. 
+
+ 
+
+Neben Hive verwenden wir eine MySQL-Datenbank, um bestimmte Informationen im Zusammenhang mit unserem Dienst zu speichern. In diesem Abschnitt der Datenschutzerklärung möchten wir Sie darüber informieren, wie wir diese Daten speichern und schützen. 
+
+Zugriff auf die Daten  
+
+Der Zugriff auf die in der MySQL-Datenbank gespeicherten Daten ist auf autorisiertes Personal beschränkt, das zur Geheimhaltung der Informationen verpflichtet ist. Wir geben Ihre Daten nicht an Dritte weiter, es sei denn, dies ist gesetzlich vorgeschrieben oder zur Bereitstellung unserer Dienstleistungen erforderlich. 
+
+Serverstandort und Schutz der Daten  
+
+Unsere MySQL-Datenbank, die die oben genannten Daten speichert, befindet sich auf sicheren Servern mit physischen und technischen Sicherheitsmaßnahmen, um die Daten vor unbefugtem Zugriff, Verlust oder Missbrauch zu schützen. Die Server, auf denen die Datenbank gehostet wird, befindet sich in Irland uns werden von PythonAnywhere LLP bereitgestellt . Wir ergreifen angemessene Maßnahmen, um sicherzustellen, dass der Datenschutz gemäß den geltenden Datenschutzgesetzen und -vorschriften gewahrt bleibt.  
+
+  
+
+Hier finden Sie nährere Informationen zu unserem Hostinganbieter Pythonanywhere : 
+
+PythonAnywhere LLP  
+
+5 The Green, 
+Richmond TW9 1PL 
+United Kingdom 
+
+support@pythonanywhere.com 
+
+Link zur Datenschutzerklärung von Pythonanywhere: 
+
+https://eu.pythonanywhere.com/terms_v2/ 
+
+ 
+
+Dauer der Datenspeicherung 
+
+Sofern sich aus den nachfolgenden Erläuterungen keine abweichenden Bestimmungen ergeben, erfolgt die Datenspeicherung nur für den Zeitraum, der zur Erreichung des Verarbeitungszwecks oder zur Erfüllung unserer vertraglichen oder gesetzlichen Verpflichtungen erforderlich ist. Gesetzliche Aufbewahrungspflichten können insbesondere aus handels- oder steuerrechtlichen Vorschriften resultieren. Nach Ablauf des Kalenderjahres, in dem die Daten erfasst wurden, werden personenbezogene Daten in unseren Buchhaltungsunterlagen für einen Zeitraum von zehn Jahren aufbewahrt. Informationen, die in Handelsbriefen und Verträgen enthalten sind, werden für sechs Jahre aufbewahrt. Des Weiteren behalten wir uns vor, Daten im Zusammenhang mit nachweispflichtigen Einwilligungen sowie im Fall von Reklamationen und Forderungsansprüchen für die Dauer der gesetzlichen Verjährungsfristen zu speichern. Falls die Verarbeitung auf Grundlage deiner Einwilligung erfolgt, erfolgt die Löschung der Daten, sobald du der Verarbeitung zu diesem Zweck widersprichst. Entscheiden Sie sich als Physiotheraupeut/BGM dazu einen Benutzer zu löschen, oder der Benutzer tut dies selbst, können Sie alle mit dem Benutzer Zusammenhängende Daten unwiederruflich über das Dashboadrd löschen. Weigert Sich ihr Physiotherapeut/BGM dies zu tun, da nur er Zugriff auf das Dashboard hat, können Sie unseren Support kontaktieren und wir löschen ihre Daten manuell. Nährere Informationen zu ihren Rechten finden Sie am Ende dieser Datenschutzerklärung. 
+
+Wenn Sie weitere Fragen zur Speicherung Ihrer Daten haben oder Informationen zu deren Löschung benötigen, kontaktieren Sie uns bitte unter info@laxoutapp.com 
+
+ 
+
+Zweck der Datenspeicherung und -verarbeitung  
+
+Wir speichern und verarbeiten Benutzerdaten ausschließlich zum Zweck der Bereitstellung unseres Dienstes, der Laxout-Software. Gemäß den Bestimmungen der Datenschutz-Grundverordnung (DSGVO) erfolgt die Datenerhebung und -verarbeitung ausschließlich auf Grundlage der Erforderlichkeit für die Erfüllung des Dienstleistungsvertrags (Art. 6 Abs. 1 Buchst. b DSGVO). Die gespeicherten Benutzerdaten dienen somit ausschließlich dem Zweck, unseren Dienst ordnungsgemäß bereitzustellen und die Nutzererfahrung zu optimieren. 
+
+ 
+
+Dashboard 
+
+ 
+
+Externe Links und Anmeldeprozess
+ Auf unserem Dashboard ermöglichen wir Nutzern den Anmeldeprozess durch das Scannen eines QR-Codes, der sie zur Anmeldeseite führt und den Zugangscode bereitstellt. Bitte beachten Sie, dass während dieses Prozesses externe Links zum Google Play Store existieren können, die für den Download unserer App relevant sind. Es sei darauf hingewiesen, dass wir keine Haftung für externe Links oder deren Inhalte übernehmen. 
+
+Beim Erhalten des Zugangscodes wird ausschließlich der Zugangscode in die Zwischenablage des Benutzerkontos kopiert. Diese Vorgehensweise dient allein dem Zweck, einen reibungslosen Anmeldevorgang zu gewährleisten. Jegliche Verarbeitung von Informationen erfolgt unter strenger Beachtung der Datenschutzbestimmungen, um die Sicherheit und Vertraulichkeit der Benutzerdaten zu gewährleisten. 
+
+ 
+
+Plugins
+In unserer Anwendung nutzen wir verschiedene Plugins wie crispy forms, Bootstrap Icons, Font Awesome und Chart.js, um die Funktionalität und das Design zu verbessern. 
+
+  
+
+Es ist wichtig zu beachten, dass bei der Nutzung dieser Plugins möglicherweise IP-Adressen des Benutzers an Server in Drittländer übermittelt werden können. Diese Übermittlung bezieht sich ausschließlich auf die IP-Adressen von Physiotherapeuten und Betrieblichem Gesundheitsmanagement (BGM) und nicht auf die IP-Adressen der Patienten. Für weiterführende Informationen über die Datenverarbeitung im Zusammenhang mit den genannten Plugins empfehlen wir die Überprüfung der Datenschutzrichtlinien der entsprechenden Anbieter. 
+
+ 
+
+Datenerhebung durch Google 
+
+ 
+
+Dieser Abschnitt der Datenschutzerklärung informiert Sie darüber, wie Google  Daten erfasst und verwendet, wenn Sie unsere mobile App nutzen. Wir möchten Sie zudem darauf hinweisen, dass diese Erhebung der anonymisierten Daten durch Google außerhalb unserers Einflussbereiches liegt.  
+
+  
+
+Google Analytics für Mobile Apps
+ 
+
+Google Analytics für Mobile Apps ist ein Analysetool von Google, das Informationen über die Nutzung unserer App sammelt. Dies ermöglicht es uns, die Leistung und Benutzerfreundlichkeit unserer App zu verbessern. Hier sind einige wichtige Punkte zur Nutzung von Google Analytics für Mobile Apps:  
+
+  
+
+Art der erfassten Daten:  
+
+Anzahl der App-Installationen  
+Anzahl der Bildschirmaufrufe  
+Verweildauer auf bestimmten Seiten  
+Gerätemodelle und Betriebssystemversionen  
+Aggregierte und anonymisierte IP-Adressen (durch „Anonymize IP“ Funktion)  
+ 
+
+Zweck der Datenerfassung:  
+
+Die erfassten Daten dienen der Verbesserung der App-Nutzungserfahrung und der Stabilität der Plattform. Wir verwenden diese Informationen, um Fehler zu identifizieren, die Leistung der App zu überwachen und Anpassungen vorzunehmen, um die App Ihren Bedürfnissen anzupassen.  
+
+  
+
+Standort der Datenverarbeitung:  
+
+Google kann diese Daten auf Servern in den USA verarbeiten. Die IP-Adressen werden jedoch vor der Übertragung gekürzt und anonymisiert, um die Identifizierung von Benutzern zu verhindern.  
+
+  
+
+Weitere Informationen:  
+
+Weitere Informationen zu Google Analytics finden Sie in den Datenschutzbestimmungen von Google (https://policies.google.com/privacy?hl=de&gl=de). 
+
+ 
+
+Beim Downloaden der App:  
+
+  
+
+Beim Herunterladen und Installieren unserer App erhebt der Betreiber der Plattform, über die Sie die jeweilige App beziehen (beispielsweise Apple, Inc. für den App Store und Google Ireland Limited für den Google Play Store), für den Download erforderliche personenbezogene Daten. Zu diesen Daten gehören insbesondere Ihr Name, Ihre E-Mail-Adresse sowie Ihre Postleitzahl, Zeitpunkt des Downloads, die IP- Adresse und die individuelle Gerätekennziffer Ihres Endgeräts (sogenannte IMEI), sowie gegebenenfalls Ihre Zahlungsinformationen. Diese Erhebung und Verarbeitung Ihrer personenbezogenen Daten erfolgt grundsätzlich allein durch den jeweiligen Plattformbetreiber ohne unsere Beteiligung an der Datenverarbeitung oder Einflussmöglichkeiten hierauf. Insoweit gelten die Datenschutzbestimmungen des Betreibers der Plattform, die auf der betreffenden Plattform einsehbar sind. Nur soweit es für den Download und die Bereitstellung unserer App nötig ist, erhalten und verarbeiten wir diese vom Plattform-Betreiber erhobenen personenbezogenen Daten. Sofern wir personenbezogene Daten im Rahmen der Installation verarbeiten, erfolgt dies auf der Grundlage des Vertrages über den Bezug und die Nutzung der App, den Sie beim Download und der Installation der App mit uns abgeschlossen haben, gemäß Art. 6 Abs. 1 lit. b) DSGVO.  
+
+  
+
+Zugriffsrechte der Software 
+
+ 
+
+Speicher:
+Die App benötigt Zugriff auf den Speicher Ihres Handys, um bestimmte Daten und Inhalte zu speichern und darauf zuzugreifen. Dies beinhaltet beispielsweise das Speichern von Benutzerdaten, Einstellungen und ggf. heruntergeladenen Inhalten. Der Zugriff auf den Speicher ermöglicht es Ihnen, die App effizient zu nutzen und persönliche Daten oder Einstellungen beizubehalten. 
+
+Zugriff auf die Internetverbindung:
+Die App erfordert Zugriff auf die Internetverbindung Ihres Geräts, um Daten mit unseren Servern und anderen Online-Ressourcen zu synchronisieren. Dies ermöglicht es Ihnen, aktuelle Informationen abzurufen, Inhalte zu aktualisieren und mit anderen Benutzern oder Diensten zu interagieren. Der Internetzugriff ist notwendig, um die volle Funktionalität der App sicherzustellen.  
+
+  
+
+Zugriff auf die Vibrationsfunktion/Haptik
+Um für eine bessere Userexpirience zu sorgen, lässt die App ihr Handy nach dem Abschließen eines Workouts für einen kurzen Zeitraum vibrieren. Hierfür ergreifen wir Zugriff auf die Vibrationsfunktion ihres Smartphones. 
+
+ 
+
+Verarbeitung Bei Der Ausübung Deiner Rechte 
+
+ 
+
+Wenn Sie von Ihren Rechten gemäß den Artikeln 15 bis 22 der Datenschutz-Grundverordnung (DSGVO) Gebrauch machen, erfolgt die Verarbeitung der übermittelten personenbezogenen Daten zum Zweck der Umsetzung dieser Rechte durch uns sowie zur Dokumentation dieses Prozesses. Die gespeicherten Daten, die zu Informationszwecken und zur Vorbereitung auf die Auskunftserteilung dienen, werden ausschließlich für diesen speziellen Zweck sowie für Datenschutzkontrollen verarbeitet. Darüber hinaus wird die Verarbeitung gemäß Artikel 18 DSGVO eingeschränkt. 
+
+  
+
+Diese Verarbeitungen basieren auf der Rechtsgrundlage des Artikel 6 Absatz 1 Buchstabe c DSGVO in Verbindung mit den Artikeln 15 bis 22 DSGVO sowie § 34 Absatz 2 Bundesdatenschutzgesetz (BDSG). 
+
+ 
+
+ 
+
+Verarbeitung bei Kontaktaufnahme 
+
+ 
+
+Bei einer freiwilligen Kontaktaufnahme mit uns per E-Mail werden nur die Informationen erfasst, die Sie uns mitteilen oder in Ihrer Nachricht bereitstellen. Dies kann umfassen:  
+
+Ihre E-Mail-Adresse  
+Ihre IP Adresse 
+ 
+
+Die im Zusammenhang mit Ihrer Kontaktaufnahme anfallenden Daten werden von uns gelöscht oder der Personenbezug wird endgültig anonymisiert, sobald die Speicherung nicht mehr erforderlich ist. Dies kann der Fall sein, wenn Ihr Anliegen bearbeitet wurde und keine weiteren Informationen benötigt werden. In einigen Fällen können gesetzliche Aufbewahrungspflichten die Dauer der Speicherung beeinflussen, aber wir werden Ihre Daten nur so lange wie nötig aufbewahren. 
+
+ 
+
+Weitergabe der Daten an Dritte 
+
+ 
+
+Unsere Datenverarbeitungen kann die Übermittlung bestimmter personenbezogener Daten in Drittländer, also Länder, in denen  
+
+die Datenschutz-Grundverordnung (DSGVO) nicht gilt, nicht ausschließen. Eine solche Übermittlung erfolgt rechtmäßig, wenn die Europäische Kommission festgestellt hat, dass in einem solchen Drittland ein angemessenes Datenschutzniveau gewährleistet ist. Ein solcher Angemessenheitsbeschluss gilt für bestimmte Länder, die unter folgendem Link aufgeführt sind: [https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/adequacy-decisions_en](https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/adequacy-decisions_en). 
+
+  
+
+Für Datenübermittlungen in die USA gilt der Angemessenheitsbeschluss für Unternehmen, die unter dem Privacy Framework zertifiziert und auf der Liste [https://www.dataprivacyframework.gov/s/participant-search](https://www.dataprivacyframework.gov/s/participant-search) aufgeführt sind. Falls kein Angemessenheitsbeschluss der Europäischen Kommission vorliegt, erfolgt die Übermittlung personenbezogener Daten in ein Drittland nur unter Vorhandensein geeigneter Garantien gemäß Artikel 46 der DSGVO oder wenn eine der Voraussetzungen des Artikel 49 der DSGVO erfüllt ist. 
+
+  
+
+  
+
+Sofern Sie der Übermittlung personenbezogener Daten in Drittstaaten durch die Einverständniserklärung zu dieser Datenschutzerklärung zustimmen, erfolgt dies auf der Rechtsgrundlage des Artikel 49 Absatz 1 Buchstabe a der DSGVO. Im Normalfall bleiben ihre personenbezogenen Daten jedoch in Ländern, in denen die Vorraussetzungen der DSGVO gewährleistet sind. 
+
+ 
+
+   
+
+Internetauftritt auf Instagramm:  
+
+  
+
+Zur Bewerbung unserer Produkte und Leistungen sowie zur Kommunikation mit Interessenten oder Kunden betreiben wir eine Firmenpräsenz auf der Plattform Instagram.  
+
+ 
+
+Verantwortlichkeit und Kontakt zum Datenschutzbeauftragten:  
+
+Für unsere Firmenpräsenz auf Instagram sind wir gemeinsam mit der Facebook Ireland Ltd., 4 Grand Canal Square, Grand Canal Harbour, Dublin 2 Ireland, verantwortlich. Bei Fragen oder Anliegen bezüglich des Datenschutzes auf Instagram können Sie den Datenschutzbeauftragten der Plattform kontaktieren: https://www.facebook.com/help/contact/540977946302970  
+
+Die gemeinsame Verantwortlichkeit haben wir in einer Vereinbarung bezüglich der jeweiligen Verpflichtungen im Sinne der DSGVO geregelt. Diese Vereinbarung, aus der sich die gegenseitigen Verpflichtungen ergeben, ist unter dem folgenden Link abrufbar:  
+
+https://www.facebook.com/legal/terms/page_controller_addendum  
+
+  
+
+Vereinbarung zur gemeinsamen Verantwortlichkeit:  
+
+Die gemeinsame Verantwortlichkeit für die Verarbeitung personenbezogener Daten auf Instagram wurde in einer Vereinbarung festgelegt, die unsere jeweiligen Verpflichtungen gemäß der Datenschutz-Grundverordnung (DSGVO) regelt. 
+
+  
+
+Rechtsgrundlage für die Verarbeitung:  
+
+Die Verarbeitung personenbezogener Daten auf Instagram erfolgt auf der Grundlage von Artikel 6 Absatz 1 Buchstabe f) der DSGVO. Unser berechtigtes Interesse besteht in der Analyse, Kommunikation sowie der Vermarktung unserer Produkte und Dienstleistungen über diese Plattform.  
+
+Alternativ kann die Rechtsgrundlage auch eine Einwilligung des Nutzers gemäß Artikel 6 Absatz 1 Buchstabe a) der DSGVO gegenüber dem Plattformbetreiber sein. Die Einwilligung des Nutzers kann gemäß Artikel 7 Absatz 3 der DSGVO jederzeit gegenüber dem Plattformbetreiber für die Zukunft widerrufen werden.  
+
+  
+
+Datenverarbeitung durch Instagram:  
+
+Beim Aufruf unserer Instagram-Firmenpräsenz werden von der Facebook Ireland Ltd. als Betreiberin der Plattform in der EU Daten des Nutzers verarbeitet. Dazu gehören persönliche Informationen, IP-Adressen und andere relevante Daten.  
+
+Diese Daten dienen statistischen Zwecken zur Analyse der Nutzung unserer Instagram-Firmenpräsenz. Die Facebook Ireland Ltd. verwendet diese Daten für Marktforschung, Werbung und zur Erstellung von Nutzerprofilen. Anhand dieser Profile können Nutzer innerhalb und außerhalb von Instagram zielgerichtet beworben werden. Wenn der Nutzer zum Zeitpunkt des Aufrufs in seinem Instagram-Account eingeloggt ist, kann die Facebook Ireland Ltd. die Daten mit dem jeweiligen Nutzerkonto verknüpfen. 
+
+  
+
+Internettauftritt auf LinkedIn   
+
+  
+
+Vereinbarung zur gemeinsamen Verantwortlichkeit auf LinkedIn: 
+
+  
+
+Die Regelungen zur gemeinsamen Verantwortlichkeit für die Verarbeitung personenbezogener Daten auf LinkedIn sind in einer Vereinbarung festgehalten, die unsere jeweiligen Verpflichtungen gemäß der Datenschutz-Grundverordnung (DSGVO) regelt. 
+
+  
+
+Rechtsgrundlage für die Verarbeitung: 
+
+  
+
+Die Verarbeitung personenbezogener Daten auf LinkedIn erfolgt auf Grundlage von Artikel 6 Absatz 1 Buchstabe f) der DSGVO. Unser berechtigtes Interesse besteht in der Analyse, Kommunikation sowie der Vermarktung unserer Produkte und Dienstleistungen über diese Plattform. 
+
+  
+
+Alternativ kann die Rechtsgrundlage auch eine Einwilligung des Nutzers gemäß Artikel 6 Absatz 1 Buchstabe a) der DSGVO gegenüber dem Plattformbetreiber sein. Die Einwilligung des Nutzers kann gemäß Artikel 7 Absatz 3 der DSGVO jederzeit gegenüber dem Plattformbetreiber für die Zukunft widerrufen werden. 
+
+  
+
+Datenverarbeitung durch LinkedIn: 
+
+  
+
+Beim Besuch unserer LinkedIn-Unternehmenspräsenz werden von der LinkedIn Ireland Unlimited Company als Betreiberin der Plattform in der EU Daten des Nutzers verarbeitet. Hierzu zählen persönliche Informationen, IP-Adressen und andere relevante Daten. 
+
+  
+
+Diese Daten dienen statistischen Zwecken zur Analyse der Nutzung unserer LinkedIn-Unternehmenspräsenz. LinkedIn verwendet diese Daten für Marktforschung, Werbung und zur Erstellung von Nutzerprofilen. Anhand dieser Profile können Nutzer innerhalb und außerhalb von LinkedIn gezielt beworben werden. Wenn der Nutzer zum Zeitpunkt des Besuchs in seinem LinkedIn-Account eingeloggt ist, kann LinkedIn die Daten mit dem jeweiligen Nutzerkonto verknüpfen. 
+
+  
+
+Diese Vereinbarung gilt als Grundlage für die transparente und rechtskonforme Verarbeitung personenbezogener Daten auf LinkedIn. 
+
+Weitere ausführliche Informationen zum Datenschutz von LinkedIn finden Sie unter folgendem Link: https://www.linkedin.com/legal/privacy-policy  
+
+  
+
+  
+
+ 
+
+Website: Allgemeine Informationen  
+
+  
+
+Um unser Produkt zu bewerben, als auch um das Konzept, sowie die App für potenzielle Partner zu erklären haben wir eine eigene Website.   
+
+Aus technischen Gründen, insbesondere zur Gewährleistung eines sicheren und stabilen Internetauftritts, erfolgt eine automatische Übermittlung von Daten durch Ihren Internet-Browser an uns. Diese Daten, auch als Server-Logfiles bezeichnet, umfassen unter anderem den Typ und die Version Ihres Internetbrowsers, das Betriebssystem, die Website, von der aus Sie auf unseren Internetauftritt gewechselt haben (Referrer URL), die Website(s) unseres Internetauftritts, die Sie besuchen, sowie Datum und Uhrzeit des jeweiligen Zugriffs. Ebenso erheben wir die IP-Adresse des Internetanschlusses, von dem aus der Nutzung unseres Internetauftritts erfolgt.  
+
+Die erhobenen Daten werden vorübergehend gespeichert, jedoch nicht gemeinsam mit anderen Daten von Ihnen.  
+
+Diese Speicherung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Verbesserung, Stabilität, Funktionalität und Sicherheit unseres Internetauftritts.  
+
+Unser Hosting Anbieter speichert die Daten für einen Zeitraum von ca. 8 Wochen. Dannach werden diese anonymen Daten gelöscht, sofern keine Aufbewahrung zu beweiszwecken erforderlich ist.  
+
+ 
+
+Hoster 
+
+ 
+
+Unser Internetauftritt wird bei einem externen Dienstleister (Hoster) gehostet. Die personenbezogenen Daten, die im Rahmen dieser Nutzung erfasst werden, werden auf den Servern des Hosters gespeichert.  
+
+Der Einsatz des Hosters erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b) DSGVO) sowie im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f) DSGVO).  
+
+Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei kann es sich v.a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln. Der Einsatz des Hosters erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO). Unser Hoster wird Ihre Daten nur insoweit verarbeiten, wie dies zur Erfüllung seiner Leistungspflichten erforderlich ist und unsere Weisungen in Bezug auf diese Daten befolgen. Wir setzen folgenden Hoster ein:  
+Siteground Spain S.L.  
+Calle Prim 19  
+28004 Madrid, Spain.   
+
+  
+
+  
+
+Wie erfassen wir Ihre Daten auf der Website? 
+
+Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen, beispielsweise durch das Ausfüllen eines Kontaktformulars. Andererseits werden bestimmte Daten automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Hierbei handelt es sich vor allem um technische Daten wie Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs. Die Erfassung dieser Daten erfolgt automatisch, sobald Sie unsere Website betreten. 
+
+  
+
+Wofür nutzen wir Ihre Daten auf der Website? 
+
+Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden. 
+
+      
+
+Rechtsgrundlagen der Datenverarbeitung auf dieser Website 
+
+Sofern Sie in die Datenverarbeitung eingewilligt haben, erfolgt diese auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO bzw. Art. 9 Abs. 2 lit. a DSGVO. Im Falle einer ausdrücklichen Einwilligung in die Übertragung personenbezogener Daten in Drittstaaten erfolgt die Datenverarbeitung außerdem auf Grundlage von Art. 49 Abs. 1 lit. a DSGVO. 
+
+  
+
+Sind Ihre Daten zur Vertragserfüllung oder zur Durchführung vorvertraglicher Maßnahmen erforderlich, erfolgt die Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO. Weiterhin können wir Ihre Daten auf Grundlage unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f DSGVO verarbeiten. Details zu den jeweiligen Rechtsgrundlagen finden Sie in den folgenden Absätzen dieser Datenschutzerklärung. 
+
+  
+
+Empfänger von personenbezogenen Daten 
+
+Wir arbeiten mit verschiedenen externen Stellen zusammen, wobei teilweise eine Übermittlung von personenbezogenen Daten erforderlich ist. Daten werden nur dann weitergegeben, wenn dies gesetzlich vorgeschrieben ist, wir ein berechtigtes Interesse daran haben oder dies im Rahmen einer Vertragserfüllung notwendig ist. 
+
+  
+
+Für die Zusammenarbeit mit Auftragsverarbeitern schließen wir entsprechende Verträge zur Auftragsverarbeitung, um die Einhaltung der DSGVO sicherzustellen. 
+
+ 
+
+Cookies 
+
+  
+
+Unsere Website verwendet sogenannte „Cookies“. Dabei handelt es sich um kleine Textdateien, die auf Ihrem Endgerät gespeichert werden und keine Schäden verursachen. Cookies können entweder für die Dauer einer Sitzung gespeichert werden (Session-Cookies) oder dauerhaft auf Ihrem Endgerät verbleiben (permanente Cookies). Session-Cookies werden automatisch gelöscht, wenn Sie Ihren Besuch beenden, während permanente Cookies auf Ihrem Endgerät gespeichert bleiben, bis Sie sie selbst löschen oder Ihr Webbrowser sie automatisch entfernt. 
+
+  
+
+Unter Umständen können auch Cookies von Drittunternehmen auf Ihrem Endgerät gespeichert werden, wenn Sie unsere Website besuchen (Third-Party-Cookies). Diese ermöglichen entweder uns oder Ihnen die Nutzung bestimmter Dienstleistungen des Drittunternehmens, beispielsweise Cookies zur Abwicklung von Zahlungsdienstleistungen. 
+
+  
+
+Cookies erfüllen verschiedene Funktionen. Viele Cookies sind technisch notwendig, da bestimmte Funktionen der Website ohne sie nicht ordnungsgemäß funktionieren würden, wie beispielsweise die Warenkorbfunktion oder die Anzeige von Videos. Andere Cookies dienen dazu, das Nutzerverhalten zu analysieren oder Werbung anzuzeigen. 
+
+  
+
+Cookies, die zur Durchführung des elektronischen Kommunikationsvorgangs, zur Bereitstellung bestimmter von Ihnen gewünschter Funktionen (z.B., Warenkorbfunktion) oder zur Optimierung der Website (z.B., Cookies zur Messung des Webpublikums) erforderlich sind (notwendige Cookies), werden auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO gespeichert, sofern keine andere Rechtsgrundlage angegeben wird. Der Websitebetreiber hat ein berechtigtes Interesse an der Speicherung von notwendigen Cookies zur technisch fehlerfreien und optimierten Bereitstellung seiner Dienste. Sofern eine Einwilligung zur Speicherung von Cookies und vergleichbaren Wiedererkennungstechnologien abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage dieser Einwilligung (Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TTDSG); die Einwilligung ist jederzeit widerrufbar. 
+
+  
+
+Sie können Ihren Browser so konfigurieren, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben, die Annahme von Cookies für bestimmte Fälle oder generell ausschließen sowie das automatische Löschen der Cookies beim Schließen des Browsers aktivieren. Beachten Sie jedoch, dass bei der Deaktivierung von Cookies die Funktionalität dieser Website möglicherweise eingeschränkt wird. 
+
+  
+
+Sofern Cookies von Drittunternehmen oder zu Analysezwecken eingesetzt werden, informieren wir Sie hierüber im Rahmen dieser Datenschutzerklärung gesondert und holen gegebenenfalls Ihre Einwilligung ein. 
+
+   
+
+SSL- bzw. TLS-Verschlüsselung  
+
+  
+
+Diese Seite nutzt aus Sicherheitsgründen und zum Schutz  
+der Übertragung vertraulicher Inhalte, wie zum Beispiel Bestellungen oder Anfragen, die Sie an uns als  
+Seitenbetreiber senden, eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen  
+Sie daran, dass die Adresszeile des Browsers von „http://“ auf „https://“ wechselt und  
+an dem Schloss-Symbol in Ihrer Browserzeile.  
+
+Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist,  
+können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.  
+
+  
+
+Google Fonts  
+
+  
+
+Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so  
+genannte Google Fonts, die von Google bereitgestellt werden. Die Google Fonts sind nicht lokal installiert. Daher findet eine  
+Verbindung zu den Servern von Google dabei statt, wodurch ihre IP-Adresse auch auf den Servern von Google gespeichert werden kann.  
+
+Weitere Informationen zu Google Fonts finden  
+Sie unter https://developers.google.com/fonts/faq und in der Datenschutzerklärung von Google: https://policies.google.com/privacy?hl=de.  
+
+   
+
+  
+
+Rechte der betroffenen Person:  
+
+  
+
+Ihre Datenschutzrechte nach der DSGVO  
+
+Die Datenschutz-Grundverordnung (DSGVO) gewährt Ihnen als betroffene Person spezifische Rechte, die insbesondere, aber nicht ausschließlich, aus den Artikeln 15 bis 18, 20, 21 und 77 der DSGVO resultieren. Wenn Sie Ihre Rechte geltend machen möchten, können Sie sich jederzeit über die oben genannten Kontaktdaten an uns wenden.  
+
+ 
+
+Recht auf Auskunft (Artikel 15 DSGVO): Sie haben das Recht zu erfahren, ob personenbezogene Daten, die Sie betreffen, verarbeitet werden. Ist das der Fall, haben Sie ein Recht auf Auskunft über diese Daten und die in Artikel 15 DSGVO detailliert aufgeführten Informationen. Bitte präzisieren Sie in Ihrer Anfrage Ihr Anliegen, um uns die Bereitstellung der erforderlichen Informationen zu erleichtern.  
+ 
+
+Recht auf Berichtigung (Artikel 16 DSGVO): Sie haben das Recht, unverzüglich die Berichtigung unrichtiger personenbezogener Daten zu verlangen und gegebenenfalls die Vervollständigung unvollständiger personenbezogener Daten.  
+ 
+
+Recht auf Löschung (Artikel 17 DSGVO): Sie haben das Recht zu verlangen, dass Ihre personenbezogenen Daten unverzüglich gelöscht werden, sofern einer der in Artikel 17 DSGVO im Detail aufgeführten Gründe zutrifft, zum Beispiel wenn die Daten nicht mehr für die verfolgten Zwecke benötigt werden.  
+  
+
+Recht auf Einschränkung der Verarbeitung (Artikel 18 DSGVO):   
+Sie haben das Recht, die Einschränkung der  
+Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Hierzu können Sie sich jederzeit an uns wenden.  
+Das Recht auf Einschränkung der Verarbeitung besteht in folgenden Fällen:  
+Wenn Sie die  
+Richtigkeit Ihrer bei uns gespeicherten personenbezogenen Daten bestreiten, benötigen wir in der Regel Zeit,  
+um dies zu überprüfen. Für die Dauer der Prüfung haben Sie das Recht, die  
+Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.  
+Wenn die  
+Verarbeitung Ihrer personenbezogenen Daten unrechtmäßig geschah/geschieht, können Sie statt  
+der Löschung die Einschränkung der Datenverarbeitung verlangen.  
+Wenn wir Ihre  
+personenbezogenen Daten nicht mehr benötigen, Sie sie jedoch zur Ausübung, Verteidigung oder  
+Geltendmachung von Rechtsansprüchen benötigen, haben Sie das Recht, statt der Löschung die  
+Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.  
+Wenn Sie einen  
+Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss eine Abwägung zwischen Ihren und unseren  
+Interessen vorgenommen werden. Solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das  
+Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.  
+Wenn Sie die Verarbeitung Ihrer personenbezogenen Daten eingeschränkt haben, dürfen diese  
+Daten – von ihrer Speicherung abgesehen – nur mit Ihrer Einwilligung oder zur Geltendmachung,  
+Ausübung oder Verteidigung von Rechtsansprüchen oder zum Schutz der Rechte einer anderen  
+natürlichen oder juristischen Person oder aus Gründen eines wichtigen öffentlichen Interesses der  
+Europäischen Union oder eines Mitgliedstaats verarbeitet werden.   
+  
+
+Recht auf Datenübertragbarkeit (Artikel 20 DSGVO): In bestimmten Fällen, wie in Artikel 20 DSGVO näher beschrieben, haben Sie das Recht, Ihre personenbezogenen Daten in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten oder deren Übermittlung an Dritte zu verlangen.  
+ 
+
+Widerspruchsrecht (Artikel 21 DSGVO): Wenn Daten auf Grundlage von Artikel 6 Absatz 1 Buchstabe f) DSGVO (Datenverarbeitung zur Wahrung berechtigter Interessen) erhoben werden, steht Ihnen das Recht zu, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Widerspruch einzulegen.  
+ 
+
+Beschwerderecht bei einer Aufsichtsbehörde: Gemäß Artikel 77 DSGVO haben Sie das Recht, sich bei einer Aufsichtsbehörde zu beschweren, wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer Daten gegen Datenschutzbestimmungen verstößt.  
+  
+
+Nachträgliche Bearbeitung der Datenschutzerklärung:  
+
+Wir behalten uns das Recht vor, diese Datenschutzerklärung jederzeit zu ändern oder anzupassen. Die Änderungen werden wirksam, sobald sie auf dieser Seite veröffentlicht sind. Wir empfehlen Ihnen daher, diese Seite regelmäßig zu überprüfen, um über etwaige Änderungen auf dem Laufenden zu bleiben.  
+
+ 
+
+Letzte Aktualisierung: 27.12.2023  
+
+ 
+
+Diese Datenschutzerklärung wurde zuletzt am 07.09.2023 aktualisiert. Im Zweifelsfall gilt die deutsche Version dieser Datenschutzerklärung. Übersetzte Versionen dieser Erklärung, die möglicherweise mithilfe von Übersetzungssoftware erstellt wurden, haben keine rechtliche Gültigkeit. Danke für das Lesen dieser Datenschutzerklärung. 
