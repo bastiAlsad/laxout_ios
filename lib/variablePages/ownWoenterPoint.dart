@@ -62,7 +62,7 @@ class _OwnWorkoutEnterPointState extends State<OwnWorkoutEnterPoint> {
                       onTap: () => Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const MyBottomNavigationBar()),
+                              builder: (context) => const MyBottomNavigationBar(startindex: 0,)),
                           (route) => false),
                       child: Container(
                         width: 100,
@@ -169,7 +169,7 @@ class _OwnWorkoutEnterPointState extends State<OwnWorkoutEnterPoint> {
                 _heatmap.putDaysinMap(days);
               }
             });
-          },
+          }, exerciseListLength: list.length, currentIndex: currentIndex,
         ),
       ),
     );

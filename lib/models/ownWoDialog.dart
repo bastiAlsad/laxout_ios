@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:new_projekt/models/constans.dart';
+import 'package:new_projekt/models/textfield.dart';
 import 'package:new_projekt/navigation/Bottom_Navigation_Bar.dart';
 
 import '../services/hive_communication.dart';
@@ -77,9 +79,10 @@ class _ownWoDialogState extends State<ownWoDialog> {
     Navigator.of(context).pop();
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-          builder: (context) => const MyBottomNavigationBar(index: 2)),
+          builder: (context) => const MyBottomNavigationBar(startindex: 2)),
     );
   }
+  TextEditingController _controller = TextEditingController();
 
   final _myBox = Hive.box("Workout_Map");
   bool added = false;
@@ -94,7 +97,7 @@ class _ownWoDialogState extends State<ownWoDialog> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colors.white),
-          backgroundColor: const Color.fromRGBO(176, 224, 230, 1.0),
+          backgroundColor: Colors.white,
           bottomOpacity: 0.0,
           elevation: 0.0,
           toolbarHeight: 70,
@@ -104,7 +107,7 @@ class _ownWoDialogState extends State<ownWoDialog> {
             style: TextStyle(
               fontSize: 25.0,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Colors.black,
             ),
             textAlign: TextAlign.center,
           ),
@@ -115,30 +118,20 @@ class _ownWoDialogState extends State<ownWoDialog> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Padding(
-                padding: const EdgeInsets.only(
-                top: 5,  left: 20, right: 20),
-                child: TextFormField(
-                  onChanged: (value) {
-                    setState(() {
-                      nameWorkout = value;
-                    });
-                  },
-                  textInputAction: TextInputAction.done,
-                  style: const TextStyle(color: Colors.black),
-                  cursorColor: const Color.fromRGBO(176, 224, 230, 1.0),
-                  decoration: const InputDecoration(
-                    fillColor: Colors.black,
-                    focusColor: Color.fromRGBO(176, 224, 230, 1.0),
-                    hoverColor: Colors.black,
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(width: 1, color: Colors.black)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 2,
-                            color: Color.fromRGBO(176, 224, 230, 1.0))),
-                    labelText: 'Name des Workouts',
-                    labelStyle: TextStyle(color: Colors.black),
-                  ),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Appcolors.primary, width: 4),
+                    borderRadius: BorderRadius.circular(24)),
+                child: Center(
+                  child: MyTextField(
+                      controller: _controller,
+                      text: "Bitte Namen eingeben",
+                      obscureText: false,
+                      fontSize: 14),
+                ),
                 ),
               ),
               Padding(
@@ -220,7 +213,7 @@ class _ownWoDialogState extends State<ownWoDialog> {
                     InkWell(
                     
                       onTap: () {
-                        addWorkout(nameWorkout);
+                        addWorkout(_controller.text);
                         for (int i = 0; i < _hive.uebungList.length; i++) {
                           _hive.uebungList[i].added = false;
                         }

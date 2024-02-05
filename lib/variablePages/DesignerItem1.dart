@@ -8,31 +8,24 @@ class DesignerItem1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: MediaQuery.of(context).size.width / 2 - 30,
-        height: 240,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            color: Colors.white,
-            boxShadow: [
-              const BoxShadow(
-                  color: Colors.white, offset: Offset(-5, -5), blurRadius: 15),
-              BoxShadow(
-                  color: Colors.grey.shade300,
-                  offset: const Offset(-5, -5),
-                  blurRadius: 15),
-            ]),
-        child: ElevatedButton(
-          style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.white),
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
-              shadowColor: MaterialStateProperty.all(Colors.grey.shade300)
-          
-              ),
-              
-          onPressed: () {
-            navigate();
-          },
+    return InkWell(
+      onTap: (){
+         navigate();
+      },
+      child: Container(
+          width: MediaQuery.of(context).size.width / 2 - 30,
+          height: 240,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: Colors.white,
+              boxShadow: [
+                const BoxShadow(
+                    color: Colors.white, offset: Offset(-5, -5), blurRadius: 15),
+                BoxShadow(
+                    color: Colors.grey.shade300,
+                    offset: const Offset(-5, -5),
+                    blurRadius: 15),
+              ]),
           child: Column(
             children: [
               Padding(
@@ -58,7 +51,7 @@ class DesignerItem1 extends StatelessWidget {
                 height: 5,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Container(
                   width: double.infinity,
                   height: 35,
@@ -76,7 +69,7 @@ class DesignerItem1 extends StatelessWidget {
                 ),
               )
             ],
-          ),
-        ));
+          )),
+    );
   }
 }

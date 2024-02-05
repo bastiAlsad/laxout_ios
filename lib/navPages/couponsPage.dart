@@ -63,7 +63,7 @@ class _UsersCouponPageState extends State<UsersCouponPage> {
             onPressed: () => Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const MyBottomNavigationBar()),
+                    builder: (context) => const MyBottomNavigationBar(startindex: 3,)),
                 (route) => false),
             icon: const Icon(Icons.arrow_back)),
         iconTheme: const IconThemeData(color: Colors.black),

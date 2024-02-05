@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:new_projekt/extras/AGB.dart';
+import 'package:new_projekt/navPages/AppWrapper.dart';
+import 'package:new_projekt/services/hive_communication.dart';
 
 
 import '../extras/Datenschutz.dart';
@@ -15,6 +17,7 @@ class SideNavBar extends StatefulWidget {
 }
 
 class _SideNavBarState extends State<SideNavBar> {
+  final HiveDatabase _hive = HiveDatabase();
   bool showvisible = true;
   bool hidevisible = false;
   String textFromFile = "";
@@ -31,6 +34,7 @@ class _SideNavBarState extends State<SideNavBar> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.white,
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -52,7 +56,7 @@ class _SideNavBarState extends State<SideNavBar> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const MyBottomNavigationBar()));
+                      builder: (context) => const MyBottomNavigationBar(startindex: 0,)));
             },
           ),
           ListTile(
@@ -89,6 +93,18 @@ class _SideNavBarState extends State<SideNavBar> {
                       builder: (BuildContext context) => AGB(
                             textFromFile: textFromFile,
                           )),
+                  (route) => false);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout, color: Colors.black),
+            title: const Text('Logout'),
+            onTap: () {
+              _hive.removeUIDTOKEN();
+               Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Wrapper()),
                   (route) => false);
             },
           ),

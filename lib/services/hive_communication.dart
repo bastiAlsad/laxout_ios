@@ -2652,7 +2652,7 @@ class HiveDatabase {
 
 ////////////////////////////////////////////////////
   bool neverOpened() {
-    if (_hiveEverOpened.get("USERUID") == null) {
+    if (_hiveEverOpened.get("USERUID") == null||_hiveEverOpened.get("USERUID")=="") {
       return true;
     } else {
       return false;
@@ -2669,6 +2669,11 @@ class HiveDatabase {
     var hiveData = _hiveEverOpened.get('TOKEN');
     String token = hiveData ?? "";
     return token;
+  }
+
+  void removeUIDTOKEN(){
+    _hiveEverOpened.put("TOKEN", "");
+    _hiveEverOpened.put("USERUID", "");
   }
 
   void putUserUidinHive(String userUid) {

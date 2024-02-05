@@ -84,20 +84,25 @@ class LaxoutBackend {
 
       if (response.statusCode == 200) {
         final List<dynamic> exercisesJson = jsonDecode(response.body);
+      
         for (int i = 0; i < exercisesJson.length; i++) {
           finalList.add(LaxoutExercise(
               execution: exercisesJson[i]['execution'],
               name: exercisesJson[i]['name'],
               dauer: exercisesJson[i]['dauer'],
-              videoPath: exercisesJson[i]['videoPath'],
+              videoPath: exercisesJson[i]['onlineVideoPath'],
               looping: exercisesJson[i]['looping'],
               added: exercisesJson[i]['added'],
               instruction: exercisesJson[i]['instruction'],
               timer: exercisesJson[i]['timer'],
               required: exercisesJson[i]['required'],
               imagePath: exercisesJson[i]['imagePath'],
-              id: exercisesJson[i]['appId']));
+              id: exercisesJson[i]['id']));
+           
+             
+              
         }
+      
         return finalList;
       } else {
         return [];
@@ -106,6 +111,54 @@ class LaxoutBackend {
       return [];
     }
   }
+
+  Future<List<LaxoutExercise>> returnLaxoutExercisesTest() async {
+    String token = _hiveDatabase.getToken();
+    String apiUrl =
+        "https://dashboardlaxout.eu.pythonanywhere.com/uebungen_laxout";  
+    String userUid = _hiveDatabase.getUserUid();
+    List<LaxoutExercise> finalList = [];
+
+    try {
+      final http.Response response = await http.get(
+        Uri.parse(apiUrl),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'token $token',
+          'User-Uid': '${Uri.encodeFull(userUid)}',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final List<dynamic> exercisesJson = jsonDecode(response.body);
+        
+        for (int i = 0; i < exercisesJson.length; i++) {
+          finalList.add(LaxoutExercise(
+              execution: exercisesJson[i]['execution'],
+              name: exercisesJson[i]['name'],
+              dauer: exercisesJson[i]['dauer'],
+              videoPath: exercisesJson[i]['onlineVideoPath'],
+              looping: exercisesJson[i]['looping'],
+              added: exercisesJson[i]['added'],
+              instruction: exercisesJson[i]['instruction'],
+              timer: exercisesJson[i]['timer'],
+              required: exercisesJson[i]['required'],
+              imagePath: exercisesJson[i]['imagePath'],
+              id: exercisesJson[i]['appId']));
+              
+             
+              
+        }
+        
+        return finalList;
+      } else {
+        return [];
+      }
+    } catch (e) {
+      return [];
+    }
+  }
+
 
   Future<bool> postLeistungsIndex(int amount) async {
     final Map<String, int> data = {"index": amount};
@@ -342,9 +395,31 @@ class LaxoutBackend {
     }
     return false;
   }
+Future<String?> returnInstruction() async {
+  String apiUrl = 'https://dashboardlaxout.eu.pythonanywhere.com/instructionget/';
+  String token = _hiveDatabase.getToken();
+  String userUid = _hiveDatabase.getUserUid();
 
-  Future<String?> returnInstruction() async {
-    String apiUrl = 'https://dashboardlaxout.eu.pythonanywhere.com/instructionget/';
+  final http.Response response = await http.get(Uri.parse(apiUrl), headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'token $token',
+    'User-Uid': '${Uri.encodeFull(userUid)}'
+  });
+
+  if (response.statusCode == 200) {
+    // Dekodieren Sie die Antwort mit UTF-8
+   // Verwenden Sie utf8.decode für die korrekte Kodierung
+    String decodedResponse = utf8.decode(response.bodyBytes);
+    Map<String, dynamic> decodedData = jsonDecode(decodedResponse);
+    String instruction = decodedData['instruction'];
+    return instruction;
+  }
+
+  return null;
+}
+
+   Future<int?> returnProgressWeek() async {
+    String apiUrl = 'https://dashboardlaxout.eu.pythonanywhere.com/progressweekget/';
     String token = _hiveDatabase.getToken();
     String userUid = _hiveDatabase.getUserUid();
     final http.Response response = await http.get(Uri.parse(apiUrl), headers: {
@@ -355,9 +430,10 @@ class LaxoutBackend {
 
     if (response.statusCode == 200) {
       Map<String, dynamic> decodedData = jsonDecode(response.body);
-      String instruction = decodedData['instruction'];
-      return instruction;
+      int week = decodedData['week'];
+      return week;
     }
+    print("ERROR");
     return null;
   }
 }

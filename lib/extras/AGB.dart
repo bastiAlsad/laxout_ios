@@ -4,7 +4,7 @@ import 'package:new_projekt/models/constans.dart';
 import 'package:new_projekt/navPages/EnterAcess.dart';
 import 'package:new_projekt/navigation/Bottom_Navigation_Bar.dart';
 
-import '../navigation/Side_Nav_Bar.dart';
+
 
 // ignore: must_be_immutable
 class AGB extends StatefulWidget {
@@ -62,7 +62,7 @@ class _AGBState extends State<AGB> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (BuildContext context) =>
-                                        const MyBottomNavigationBar()),
+                                        const MyBottomNavigationBar(startindex: 0,)),
                                 (route) => false)
                             : Navigator.pushAndRemoveUntil(
                                 context,

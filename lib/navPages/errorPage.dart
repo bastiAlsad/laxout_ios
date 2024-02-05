@@ -33,7 +33,7 @@ class _ErrorPageState extends State<ErrorPage> {
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  const MyBottomNavigationBar()),
+                                  const MyBottomNavigationBar(startindex: 0,)),
                           (route) => false);
                     },
                     child: Container(

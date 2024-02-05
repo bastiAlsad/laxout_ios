@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:new_projekt/models/constans.dart';
 import 'package:new_projekt/services/basti_backend.dart';
-import 'package:new_projekt/variablePages/tests/TestEnterpoint.dart';
 
 class UmfragePage extends StatefulWidget {
-  const UmfragePage({super.key});
+  final Widget toDelegate;
+  const UmfragePage({super.key, required this.toDelegate});
 
   @override
   State<UmfragePage> createState() => _UmfragePageState();
@@ -24,7 +24,7 @@ class _UmfragePageState extends State<UmfragePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Appcolors.primary,
+        backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
         title: const Text(
@@ -33,7 +33,7 @@ class _UmfragePageState extends State<UmfragePage> {
             fontFamily: "Laxout",
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
       ),
@@ -56,7 +56,7 @@ class _UmfragePageState extends State<UmfragePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                     const Text(
-                    "Wie schlimm sind ihre Rückenschmerzen gerade von 1-10?",
+                    "Wie schlimm sind Ihre Schmerzen gerade von 1-10?",
                     style: TextStyle(
                       fontFamily: "Laxout",
                       fontSize: 20.0,
@@ -101,7 +101,7 @@ class _UmfragePageState extends State<UmfragePage> {
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  const TestsEnterPoint()),
+                                  widget.toDelegate),
                           (route) => false);
                     } 
                   },

@@ -60,7 +60,7 @@ class _EnterAcessState extends State<EnterAcess> {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => const MyBottomNavigationBar()),
+              builder: (BuildContext context) => const MyBottomNavigationBar(startindex: 0,)),
           (route) => false);
     } else {}
   }

@@ -4,7 +4,8 @@ import 'package:new_projekt/heatmap/hive.dart';
 import 'package:new_projekt/navigation/Bottom_Navigation_Bar.dart';
 import 'package:new_projekt/services/basti_backend.dart';
 import 'package:new_projekt/services/hive_communication.dart';
-import 'package:new_projekt/variablePages/Uebung.dart';
+import 'package:new_projekt/variablePages/static_uebung/StaicUebung.dart';
+
 
 class UebungHomeEnterPoint extends StatefulWidget {
   final int index;
@@ -67,7 +68,7 @@ class _UebungHomeEnterPointState extends State<UebungHomeEnterPoint> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  const MyBottomNavigationBar()),
+                                  const MyBottomNavigationBar(startindex: 0,)),
                           (route) => false),
                       child: Container(
                         height: 40,
@@ -116,7 +117,7 @@ class _UebungHomeEnterPointState extends State<UebungHomeEnterPoint> {
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: Uebung(
+        child: StaticUebung(
           timer: true,
           looping: list[currentIndex].looping,
           ausfuehrung: list[currentIndex].execution,
@@ -155,7 +156,8 @@ class _UebungHomeEnterPointState extends State<UebungHomeEnterPoint> {
                 }
               }
             });
-          },
+          }, exerciseListLength: list.length,
+          currentIndex: currentIndex,
         ),
       ),
     );

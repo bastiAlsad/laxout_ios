@@ -19,8 +19,18 @@ void main() async {
       "Credits"); // Saves all Lists for every Own created Workout (for the Navigation)
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    const MaterialApp(
-      home: Wrapper(), // ändern Wrapper(),
+    MaterialApp(
+      home: const Wrapper(), // ändern Wrapper(),
+      theme: ThemeData(
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(fontFamily: 'Laxout'),
+          bodyMedium: TextStyle(fontFamily: 'Laxout'),
+          displayLarge: TextStyle(fontFamily: 'Laxout'),
+          labelLarge: TextStyle(fontFamily: 'Laxout'),
+          labelMedium: TextStyle(fontFamily: 'Laxout'),
+          labelSmall: TextStyle(fontFamily: 'Laxout'),
+        ),
+      ),
     ),
   );
 }

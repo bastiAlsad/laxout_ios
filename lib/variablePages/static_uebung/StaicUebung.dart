@@ -3,18 +3,16 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:video_player/video_player.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
 import 'package:new_projekt/models/constans.dart';
 import 'package:new_projekt/navigation/Bottom_Navigation_Bar.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:video_player/video_player.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:new_projekt/navigation/Side_Nav_Bar.dart';
 import 'package:new_projekt/services/hive_communication.dart';
 
 // ignore: must_be_immutable
-class Uebung extends StatefulWidget {
+class StaticUebung extends StatefulWidget {
   final int exerciseListLength;
   final int currentIndex;
   final String ausfuehrung;
@@ -22,35 +20,35 @@ class Uebung extends StatefulWidget {
   final VoidCallback onForwardPressed;
   final VoidCallback onBackwardPressed;
   final int dauer;
-  final String? videoPath;
+  String videoPath;
   final bool looping;
   final bool timer;
 
-  const Uebung({
+  StaticUebung({
     Key? key,
-    required this.exerciseListLength,
-    required this.currentIndex,
     required this.ausfuehrung,
     required this.nameUebung,
     required this.onForwardPressed,
     required this.onBackwardPressed,
     required this.dauer,
-    required this.videoPath,
+    this.videoPath = "",
     required this.looping,
-    required this.timer,
+    required this.timer, required this.exerciseListLength, required this.currentIndex,
   }) : super(key: key);
 
   @override
-  State<Uebung> createState() => _UebungState();
+  State<StaticUebung> createState() => _StaticUebungState();
 }
 
-class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
+class _StaticUebungState extends State<StaticUebung> with SingleTickerProviderStateMixin {
   final HiveDatabase _hiveCredit = HiveDatabase();
   int actualControlltime = 0;
-
+  late Key _videoKey; // Neuer Key für das LoopingVideo
   @override
   void initState() {
-    actualControlltime = widget.dauer;
+    _videoKey = UniqueKey();
+     actualControlltime = widget
+              .dauer;
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 200),
@@ -59,6 +57,15 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
     timeleft = widget.dauer;
     toPercent = widget.dauer;
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant StaticUebung oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.videoPath != oldWidget.videoPath) {
+      _videoKey =
+          UniqueKey(); // Aktualisierung des Keys, wenn sich der Video-Pfad ändert
+    }
   }
 
   int timeleft = 10;
@@ -104,12 +111,7 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return OrientationBuilder(builder: (context, orientation) {
-      if(orientation == Orientation.landscape){
-        return VideoWidget(looping: widget.looping, videoData: widget.videoPath!);
-      }
-      else{
-        return Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
@@ -126,7 +128,7 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 2.5,
+            height: MediaQuery.of(context).size.height / 2.1,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20),
@@ -134,11 +136,17 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
               ),
             ),
             child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20)),
-                child: VideoWidget(
-                    looping: widget.looping, videoData: widget.videoPath ?? "Error",)),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+              child: VideoWidget(
+                key:
+                    _videoKey, // Verwendung des eindeutigen Keys für das LoopingVideo
+                videoData: widget.videoPath,
+                looping: widget.looping,
+              ),
+            ),
           ),
           Expanded(
             child: Align(
@@ -150,31 +158,6 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "Fortschritt:",
-                                style: TextStyle(
-                                    fontSize: 14, fontFamily: "Laxout"),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10, bottom: 30, top: 5, right: 10),
-                            child: LinearProgressIndicator(
-                              backgroundColor: Colors.grey.shade100,
-                              color: Appcolors.primary,
-                              borderRadius: BorderRadius.circular(20),
-                             
-                              value: widget.currentIndex /
-                                  widget.exerciseListLength,
-                              semanticsLabel: 'Linear progress indicator',
-                              minHeight: 20,
-                            ),
-                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -387,42 +370,15 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
                     : Column(
                         children: [
                           const Expanded(child: SizedBox()),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "Fortschritt:",
-                                style: TextStyle(
-                                    fontSize: 14, fontFamily: "Laxout"),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10, bottom: 30, top: 5, right: 10),
-                            child: LinearProgressIndicator(
-                              backgroundColor: Colors.grey.shade100,
-                              color: Appcolors.primary,
-                              borderRadius: BorderRadius.circular(20),
-                             
-                              value: widget.currentIndex /
-                                  widget.exerciseListLength,
-                              semanticsLabel: 'Linear progress indicator',
-                              minHeight: 20,
-                            ),
-                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              
                               IconButton(
                                   onPressed: widget.onBackwardPressed,
                                   icon: const Icon(Icons.arrow_back_ios,
                                       size: 40)),
                               Text(
-                                "${widget.dauer.toString()}X",
+                                widget.dauer.toString(),
                                 style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 45,
@@ -436,19 +392,7 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
                                   )),
                             ],
                           ),
-                           Expanded(child: SizedBox(child: IconButton(
-                                    onPressed: () {
-                                      _hiveCredit
-                                          .addControllTime(actualControlltime);
-                                      _hiveCredit.addGenerallControllTime(
-                                          actualControlltime);
-                                      widget.onForwardPressed();
-                                    },
-                                    icon: Icon(
-                                      Icons.done,
-                                      color: Appcolors.primary,
-                                      size: 45,
-                                    )),)),
+                          const Expanded(child: SizedBox()),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 30),
                             child: Row(
@@ -482,7 +426,20 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
                                     size: 25,
                                   ),
                                 ),
-                                SizedBox(),
+                                IconButton(
+                                    onPressed: () {
+                                      _hiveCredit
+                                          .addControllTime(actualControlltime);
+                                      _hiveCredit.addGenerallControllTime(
+                                          actualControlltime);
+                                      widget.onForwardPressed();
+                                      
+                                    },
+                                    icon: Icon(
+                                      Icons.done,
+                                      color: Appcolors.primary,
+                                      size: 45,
+                                    )),
                                 IconButton(
                                   onPressed: () {
                                     Navigator.pushAndRemoveUntil(
@@ -505,115 +462,157 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
               ),
             ),
           )
+
+          
         ],
       ),
       drawer: const SideNavBar(),
     );
-      }
-    });
   }
 }
 
 class VideoWidget extends StatefulWidget {
   final bool looping;
-  final String videoData;
+  // ignore: prefer_typing_uninitialized_variables
+  final videoData;
 
   const VideoWidget(
-      {super.key, required this.looping, required this.videoData});
+      {required Key key, required this.looping, required this.videoData})
+      : super(key: key);
 
   @override
-  State<VideoWidget> createState() => _VideoWidgetState();
+  VideoWidgetState createState() => VideoWidgetState();
 }
 
-class _VideoWidgetState extends State<VideoWidget> {
-  late YoutubePlayerController _controller;
+class VideoWidgetState extends State<VideoWidget> {
+  late VideoPlayerController _controller;
+  bool _isPlaying = false;
 
-  void listener() {
-    if (_controller.value.playerState == PlayerState.ended) {
-      // Das Video wurde beendet. Hier kannst du Aktionen ausführen.
-      // Zum Beispiel das Video auf den Anfang setzen und pausieren:
-      if (_controller.value.position != const Duration(seconds: 0)) {
-        _controller.seekTo(const Duration(seconds: 0));
-        widget.looping == true ? _controller.play(): _controller.pause();
-      }
-    } else if (_controller.value.playerState == PlayerState.playing) {
-      // Das Video wird abgespielt. Hier kannst du Aktionen ausführen, wenn es abgespielt wird.
-    } else if (_controller.value.playerState == PlayerState.paused) {
-      // Das Video wurde pausiert. Hier kannst du Aktionen ausführen, wenn es pausiert ist.
-    }
-  }
-  bool showError = true;
-  bool playVisible = false;
+  late Widget videoStatusAnimation;
+
   @override
   void initState() {
     super.initState();
-    String? videoId = YoutubePlayer.convertUrlToId(widget.videoData);
-    print("Video data ${widget.videoData}");
-    if (videoId != null) {
-      _controller = YoutubePlayerController(
-        initialVideoId: videoId,
-        flags: YoutubePlayerFlags(
-          autoPlay: true,
-          loop: widget.looping,
-          mute: true,
-          hideControls: false,
-        ),
+
+    videoStatusAnimation = Container();
+
+    _controller = VideoPlayerController.asset(widget.videoData)
+      ..addListener(() {
+        final bool isPlaying = _controller.value.isPlaying;
+        if (isPlaying != _isPlaying) {
+          setState(() {
+            _isPlaying = isPlaying;
+          });
+        }
+      })
+      ..initialize().then((_) {
+        Timer(const Duration(milliseconds: 0), () {
+          if (!mounted) return;
+
+          setState(() {});
+          _controller.play();
+        });
+      });
+
+    // Setzen Sie die Wiederholung des Videos basierend auf der "looping" Variable.
+    _controller.setLooping(widget.looping);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => AspectRatio(
+        aspectRatio: 16 / 9,
+        child: _controller.value.isInitialized ? videoPlayer() : Container(),
       );
 
-      _controller.addListener(listener);
-      showError = false;
-    } else {
-      showError = true;
-      print("Fehler beim Extrahieren der Video-ID");
-      print("Video Path ${widget.videoData}");
+  Widget videoPlayer() => Stack(
+        children: <Widget>[
+          video(),
+          Center(child: videoStatusAnimation),
+        ],
+      );
+
+  Widget video() => GestureDetector(
+        child: VideoPlayer(_controller),
+        onTap: () {
+          if (!_controller.value.isInitialized) {
+            return;
+          }
+          if (_controller.value.isPlaying) {
+            videoStatusAnimation =
+                const FadeAnimation(child: Icon(Icons.pause, size: 100.0));
+            _controller.pause();
+          } else {
+            videoStatusAnimation =
+                const FadeAnimation(child: Icon(Icons.play_arrow, size: 100.0));
+            _controller.play();
+          }
+        },
+      );
+}
+
+class FadeAnimation extends StatefulWidget {
+  const FadeAnimation(
+      {super.key, required this.child,
+      this.duration = const Duration(milliseconds: 1000)});
+
+  final Widget child;
+  final Duration duration;
+
+  @override
+  _FadeAnimationState createState() => _FadeAnimationState();
+}
+
+class _FadeAnimationState extends State<FadeAnimation>
+    with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    animationController =
+        AnimationController(duration: widget.duration, vsync: this);
+    animationController.addListener(() {
+      if (mounted) {
+        setState(() {});
+      }
+    });
+    animationController.forward(from: 0.0);
+  }
+
+  @override
+  void deactivate() {
+    animationController.stop();
+    super.deactivate();
+  }
+
+  @override
+  void didUpdateWidget(FadeAnimation oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.child != widget.child) {
+      animationController.forward(from: 0.0);
     }
   }
 
   @override
-  Widget build(BuildContext context) {
-    return showError == true ? SpinKitFadingFour(color: Appcolors.primary,):Stack(
-      alignment: Alignment.center,
-      children: [
-        YoutubePlayer(
-          aspectRatio: 4 / 3,
-          controller: _controller,
-          showVideoProgressIndicator: false,
-          onEnded: (metaData) {
-            _controller.pause();
-            widget.looping == false ?setState(() {
-              playVisible = true;
-            }):(){};
-          },
-
-          controlsTimeOut: Duration(
-              seconds: 4), // Zeit, bis die Bedienelemente ausgeblendet werden
-          onReady: () {
-            // Hier kannst du zusätzliche Anpassungen vornehmen, wenn das Video bereit ist.
-            _controller.play();
-          },
-        ),
-        Visibility(
-                visible: playVisible,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.repeat,
-                    size: 45,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      playVisible = false;
-                    });
-                    _controller.seekTo(Duration.zero);
-                    _controller.play();
-                  },
-                ),
-              ),
-      ],
-    );
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
   }
-}
 
+  @override
+  Widget build(BuildContext context) => animationController.isAnimating
+      ? Opacity(
+          opacity: 1.0 - animationController.value,
+          child: widget.child,
+        )
+      : Container();
+}
 
 class LoopingVideo extends StatefulWidget {
   final bool looping;

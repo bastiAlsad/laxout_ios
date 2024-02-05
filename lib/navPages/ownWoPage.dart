@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:new_projekt/heatmap/hive.dart';
 import 'package:new_projekt/models/ownWoDialog.dart';
+import 'package:new_projekt/models/ownWorkoutList.dart';
 import 'package:new_projekt/services/hive_communication.dart';
-import 'package:new_projekt/variablePages/ownWoenterPoint.dart';
+import 'package:new_projekt/variablePages/DesignerItem1.dart';
+import 'package:new_projekt/variablePages/uebungHomeenterpoint.dart';
 import '../navigation/Side_Nav_Bar.dart';
 
 
@@ -141,7 +143,7 @@ class _ownWorkoutPageState extends State<ownWorkoutPage> {
         toolbarHeight: 70,
         centerTitle: true,
         title: const Text(
-          "Eigene Workouts",
+          "Extra Workouts",
           style: TextStyle(
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
@@ -151,48 +153,400 @@ class _ownWorkoutPageState extends State<ownWorkoutPage> {
           textAlign: TextAlign.center,
         ),
       ),
-      body: Stack(
-        children: [
-          Positioned(
-            top: 0,
-            bottom: 0,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(30),
-                  topLeft: Radius.circular(30),
-                  bottomRight: Radius.circular(0),
-                  bottomLeft: Radius.circular(0),
-                ),
-                color: Color.fromRGBO(176, 224, 230, 1.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 20.0,
-                    offset: Offset(0, 0),
-                  ),
+      body: ListView(children: [
+        
+       
+        const SizedBox(
+            height: 30,
+          ),
+           Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  DesignerItem1(
+                      Image.asset("assets/images/Nacken_illustration.jpg"),
+                      "Nacken-\nschmerzen",
+                      () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => UebungHomeEnterPoint(
+                              controlltime: 150,
+                              index: 0,
+                              workouts: [
+                                UebungList(
+                                  added: false,
+                                  looping: true,
+                                  imagePath: "assets/images/Nacken.png",
+                                  execution:
+                                      "Stehe Hüftbreit und gehe leicht in die Knie. Die Arme hängen dabei nach unten, während deine Schultern eine Kreisbewegung machen. Wichtig ist das die Schultern erst so weit wie möglich nach oben gehen und dann langsam abgesenkt werden.",
+                                  name: "Schulterblattkreisen",
+                                  dauer: 30,
+                                  videoPath:
+                                      "assets/videos/schuterblattkreisen.mp4",
+                                  instruction: '',
+                                  id: 1,
+                                  timer: true,
+                                  required: '',
+                                ),
+                                UebungList(
+                                  added: false,
+                                  looping: true,
+                                  imagePath: "assets/images/Nacken.png",
+                                  execution:
+                                      "Wichtig ist dass du aufrecht an der Stuhlkante sitzt und deine Schultern hängen lässt. Führe die Übung bitte langsam aus.",
+                                  name: "Halbkreise Links",
+                                  dauer: 30,
+                                  videoPath:
+                                      "assets/videos/Halbkreisnackenlinks.mp4",
+                                  instruction: '',
+                                  id: 2,
+                                  timer: true,
+                                  required: 'Stuhl',
+                                ),
+                                UebungList(
+                                  added: false,
+                                  looping: true,
+                                  imagePath: "assets/images/Nacken.png",
+                                  execution:
+                                      "Wichtig ist dass du aufrecht an der Stuhlkante sitzt und deine Schultern hängen lässt. Führe die Übung bitte langsam aus.",
+                                  name: "Halbkreise Rechts",
+                                  dauer: 30,
+                                  videoPath:
+                                      "assets/videos/HalbkreisNackenrechts.mp4",
+                                  instruction: '',
+                                  id: 3,
+                                  timer: true,
+                                  required: 'Stuhl',
+                                ),
+                                UebungList(
+                                  added: false,
+                                  looping: false,
+                                  imagePath: "assets/images/Nacken.png",
+                                  execution:
+                                      "Gehe langsam in die Dehnung, halte sie und bewege deine Schultern nicht. Außerdem ist es gut, wenn du aufrecht sitzt. Bist du fertig mit der Übung, verlasse die Dehnung nicht zu schnell.",
+                                  name: "Dehnung Links Hinten",
+                                  dauer: 30,
+                                  videoPath:
+                                      "assets/videos/nackenLinksHinten.mp4",
+                                  instruction: '',
+                                  id: 4,
+                                  timer: true,
+                                  required: '',
+                                ),
+                                UebungList(
+                                  added: false,
+                                  looping: false,
+                                  imagePath: "assets/images/Nacken.png",
+                                  execution:
+                                      "Gehe langsam in die Dehnung, halte sie und bewege deine Schultern nicht. Außerdem ist es gut, wenn du aufrecht sitzt. Bist du fertig mit der Übung, verlasse die Dehnung nicht zu schnell.",
+                                  name: "Dehnung Rechts Hinten",
+                                  dauer: 30,
+                                  videoPath:
+                                      "assets/videos/nackenRechtsHinten.mp4",
+                                  instruction: '',
+                                  id: 5,
+                                  timer: true,
+                                  required: '',
+                                ),
+                              ],
+                              workoutId: 3,
+                            ),
+                          ))),
+                  DesignerItem1(
+                      Image.asset(
+                        'assets/images/mittlerer_Ruecken_illustartion.jpg',
+                      ),
+                      'Mittlerer \n Rücken',
+                      () => Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UebungHomeEnterPoint(
+                                    controlltime: 150,
+                                    index: 0,
+                                    workouts: [
+                                      UebungList(
+                                        added: false,
+                                        looping: true,
+                                        imagePath:
+                                            "assets/images/MittlererRuecken.png",
+                                        execution:
+                                            "Setze dich so an die Stuhlkante, dass deine Knie auseinander sind und du aufrecht sitzt. Bei der Drehnung darf sich dein Becken und dein Kopf nicht bewegen. Tipp nehme hierfür deine Hände, wie gezeigt vor die Brust.",
+                                        name: "Rotation Oberkörper",
+                                        dauer: 30,
+                                        videoPath:
+                                            "assets/videos/rotationMittlererR.mp4",
+                                        instruction: '',
+                                        id: 14,
+                                        timer: true,
+                                        required: 'Stuhl',
+                                      ),
+                                      UebungList(
+                                        added: false,
+                                        looping: false,
+                                        imagePath:
+                                            "assets/images/MittlererRuecken.png",
+                                        execution:
+                                            "Setze dich so an die Stuhlkante, dass deine Knie auseinander sind und du aufrecht sitzt. Neige dich nun mit ausgestrecktem Arm zur Seite und versuche tief zu atmen. Schau dabei auf den Boden, der gerade vor dir ist.",
+                                        name: "Seitliche Dehnung links",
+                                        dauer: 30,
+                                        videoPath:
+                                            "assets/videos/seitlicheDehnunglins.mp4",
+                                        instruction: '',
+                                        id: 15,
+                                        timer: true,
+                                        required: 'Stuhl',
+                                      ),
+                                      UebungList(
+                                        added: false,
+                                        looping: false,
+                                        imagePath:
+                                            "assets/images/MittlererRuecken.png",
+                                        execution:
+                                            "Setze dich so an die Stuhlkante, dass deine Knie auseinander sind und du aufrecht sitzt. Neige dich nun mit ausgestrecktem Arm zur Seite und versuche tief zu atmen. Schau dabei auf den Boden, der gerade vor dir ist.",
+                                        name: "Seitliche Dehnung rechts",
+                                        dauer: 30,
+                                        videoPath:
+                                            "assets/videos/seitlicheDehnungm.rechts.mp4",
+                                        instruction: '',
+                                        id: 16,
+                                        timer: true,
+                                        required: 'Stuhl',
+                                      ),
+                                      UebungList(
+                                        added: false,
+                                        looping: false,
+                                        imagePath:
+                                            "assets/images/MittlererRuecken.png",
+                                        execution:
+                                            "Lege dir für diese Übung am besten ein Kissen wie gezeigt unter. Dannach geht der ausgestreckte Arm zur anderen Seite, während du ihm nachschaust und dein Kopf sich mit ihm mitbewegt.",
+                                        name: "Brustwirbelsäule links",
+                                        dauer: 30,
+                                        videoPath:
+                                            "assets/videos/brustwirbelsauleLinks.mp4",
+                                        instruction: '',
+                                        id: 17,
+                                        timer: true,
+                                        required: 'Matte',
+                                      ),
+                                      UebungList(
+                                        added: false,
+                                        looping: false,
+                                        imagePath:
+                                            "assets/images/MittlererRuecken.png",
+                                        execution:
+                                            "Lege dir für diese Übung am besten ein Kissen wie gezeigt unter. Dannach geht der ausgestreckte Arm zur anderen Seite, während du ihm nachschaust und dein Kopf sich mit ihm mitbewegt.",
+                                        name: "Brustwirbelsäule rechts",
+                                        dauer: 30,
+                                        videoPath:
+                                            "assets/videos/brustwirbelsauleRechts.mp4",
+                                        instruction: '',
+                                        id: 18,
+                                        timer: true,
+                                        required: 'Kissen',
+                                      ),
+                                    ],
+                                    workoutId: 5,
+                                  )),
+                          (route) => false)),
                 ],
-              ),
-              child: Container(
-                margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                child: _hive.workouts.isEmpty
-                    ? Align(
-                      alignment: Alignment.topCenter,
-                        child: Container(
-                          height: MediaQuery.of(context).size.width / 1.4,
-                          width: MediaQuery.of(context).size.width / 1.4,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: Colors.white, image: const DecorationImage(image: AssetImage("assets/images/loadingScreen.png"))),       
-                          child: const Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text("Erstelle eigene Workouts",textAlign: TextAlign.center ,style: TextStyle(fontFamily: "Laxout",fontSize: 20),),
-                            ],
-                          ),                     
-                        ),
-                      )
-                    : GridView.builder(
+              )),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 40),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                DesignerItem1(
+                    Image.asset(
+                        'assets/images/Unterer_ruecken_illustration.png',
+                        height: 100.0,
+                        width: 100.0),
+                    'Unterer Rücken',
+                    () => Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UebungHomeEnterPoint(
+                                  controlltime: 120,
+                                  index: 0,
+                                  workouts: [
+                                    UebungList(
+                                      added: false,
+                                      looping: true,
+                                      imagePath:
+                                          "assets/images/UntererRuecken.png",
+                                      execution:
+                                          "Setze dich aufrecht an die Stuhlkante und beginne mit dem Becken zu kreisen. Der Oberkörper muss möglichst ruhig bleiben.",
+                                      name: "Bewegung Unterer Rücken",
+                                      dauer: 30,
+                                      videoPath:
+                                          "assets/videos/beckenschuakel.mp4",
+                                      instruction: '',
+                                      id: 10,
+                                      timer: true,
+                                      required: 'Stuhl',
+                                    ),
+                                    UebungList(
+                                      added: false,
+                                      looping: true,
+                                      imagePath:
+                                          "assets/images/UntererRuecken.png",
+                                      execution:
+                                          "Du schaust gerade nach oben zur Decke. Lege deine Beine langsam und abwechselnd links und rechts zur Seite ab. Dabei bewegt sich dein Oberkörper nicht.",
+                                      name: "Plumpsen",
+                                      dauer: 30,
+                                      videoPath:
+                                          "assets/videos/Plumpsenrechtslinks.mp4",
+                                      instruction: '',
+                                      id: 11,
+                                      timer: true,
+                                      required: 'Matte',
+                                    ),
+                                    UebungList(
+                                      added: false,
+                                      looping: false,
+                                      imagePath:
+                                          "assets/images/UntererRuecken.png",
+                                      execution:
+                                          "Du schaust gerade nach oben zur Decke. Dannach legst du deine Beine langsam zur Seite ab und hältst die Dehnung. Dabei bewegt sich dein Oberkörper nicht.",
+                                      name: "Dehnung Unterer Rücken r",
+                                      dauer: 30,
+                                      videoPath:
+                                          "assets/videos/untererRueckenrechts.mp4",
+                                      instruction: '',
+                                      id: 12,
+                                      timer: true,
+                                      required: 'Matte',
+                                    ),
+                                    UebungList(
+                                      added: false,
+                                      looping: false,
+                                      imagePath:
+                                          "assets/images/UntererRuecken.png",
+                                      execution:
+                                          "Du schaust gerade nach oben zur Decke. Dannach legst du deine Beine langsam zur Seite ab und hältst die Dehnung. Dabei bewegt sich dein Oberkörper nicht",
+                                      name: "Dehnung Unterer Rücken l",
+                                      dauer: 30,
+                                      videoPath:
+                                          "assets/videos/untererRueckenlinks.mp4",
+                                      instruction: '',
+                                      id: 13,
+                                      timer: true,
+                                      required: 'Matte',
+                                    ),
+                                  ],
+                                  workoutId: 6,
+                                )),
+                        (route) => false)),
+                const SizedBox(
+                  height: 40,
+                ),
+                DesignerItem1(
+                    Image.asset('assets/images/Schulter_illustartion.jpg',
+                        height: 100.0, width: 100.0),
+                    'Schultergürtel',
+                    () => Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UebungHomeEnterPoint(
+                                  controlltime: 120,
+                                  index: 0,
+                                  workouts: [
+                                    UebungList(
+                                      added: false,
+                                      looping: true,
+                                      imagePath: "assets/images/Nacken.png",
+                                      execution:
+                                          "Stehe Hüftbreit und gehe leicht in die Knie. Die Arme hängen dabei nach unten, während deine Schultern eine Kreisbewegung machen. Wichtig ist das die Schultern erst so weit wie möglich nach oben gehen und dann langsam abgesenkt werden.",
+                                      name: "Schulterblattkreisen",
+                                      dauer: 30,
+                                      videoPath:
+                                          "assets/videos/schuterblattkreisen.mp4",
+                                      instruction: '',
+                                      id: 1,
+                                      timer: true,
+                                      required: '',
+                                    ),
+                                    UebungList(
+                                      added: false,
+                                      looping: false,
+                                      imagePath: "assets/images/Schultern.png",
+                                      execution:
+                                          "Lege deine Hände im geschätzen 45 Grad Winkel wie gezeigt an die Wand. Dannach machst du einen Ausfallschritt und verlagerst dein Gewicht langsam nach vorne.",
+                                      name: "Schulterdehnung 45 Grad",
+                                      dauer: 30,
+                                      videoPath:
+                                          "assets/videos/schulterdehnung.mp4",
+                                      instruction: '',
+                                      id: 6,
+                                      timer: true,
+                                      required: 'Wandecke',
+                                    ),
+                                    UebungList(
+                                      added: false,
+                                      looping: false,
+                                      imagePath: "assets/images/Schultern.png",
+                                      execution:
+                                          "Lege deine Hände so hoch wie möglich an die Wand, wie als ob dich jemand nach oben zieht. Dannach machst du einen Ausfallschritt und verlagerst dein Gewicht langsam nach vorne.",
+                                      name: "Schulterdehnung 90 Grad ",
+                                      dauer: 30,
+                                      videoPath:
+                                          "assets/videos/schulterdehnungGerade.mp4",
+                                      instruction: '',
+                                      id: 7,
+                                      timer: true,
+                                      required: 'Wandecke',
+                                    ),
+                                    UebungList(
+                                      added: false,
+                                      looping: false,
+                                      imagePath: "assets/images/Schultern.png",
+                                      execution:
+                                          "Lasse deinen Nacken locker, wärend deine Hände sich auf Arschhöhre verschränken. Deine Schultern gehen nun hinten zusammen, während die Hände nach unten gezogen werden.",
+                                      name: "Aufrichten",
+                                      dauer: 30,
+                                      videoPath:
+                                          "assets/videos/aufrichtenoberkoerper.mp4",
+                                      instruction: '',
+                                      id: 8,
+                                      timer: true,
+                                      required: '',
+                                    ),
+                                    UebungList(
+                                      added: false,
+                                      looping: false,
+                                      imagePath: "assets/images/Schultern.png",
+                                      execution:
+                                          "Deine Hände sind auf Brusthöhe, während du dich nach vorne neigst, als ob jemand an deinen Unterarmen zieht. Stell dir vor du willst etwas vor dir umarmen.",
+                                      name: "Bagger",
+                                      dauer: 30,
+                                      videoPath: "assets/videos/bagger.mp4",
+                                      instruction: '',
+                                      id: 9,
+                                      timer: true,
+                                      required: '',
+                                    ),
+                                  ],
+                                  workoutId: 4,
+                                )),
+                        (route) => false)),
+              ],
+            ),
+          ),
+          
+          
+      ],),
+      drawer: const SideNavBar(),
+     
+                  
+    );
+  }
+}
+
+
+
+
+/*
+GridView.builder(
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2, // 2 Container in einer Zeile
                           // Verhältnis der Container-Breite zur Container-Höhe
@@ -263,69 +617,4 @@ class _ownWorkoutPageState extends State<ownWorkoutPage> {
                             ),
                           );
                         },
-                      ),
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 30,
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 150.0,
-              child: Container(
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 20.0,
-                      offset: Offset(0, 10),
-                    ),
-                  ],
-                ),
-                margin: const EdgeInsets.fromLTRB(40, 70, 40, 20),
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
-                        return Colors.white;
-                      },
-                    ),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                    ),
-                  ),
-                  onPressed: () {
-                    if (_hive.workouts.length < 4) {
-                      newWorkout();
-                    } else {
-                      userNotification();
-                    }
-                  },
-                  child: const Row(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Colors.black,
-                        size: 35,
-                      ),
-                      Expanded(
-                        child: Text(
-                          'Neues Workout',
-                          style: TextStyle(fontSize: 25, color: Colors.black),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-      drawer: const SideNavBar(),
-    );
-  }
-}
+                      ),*/

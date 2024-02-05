@@ -53,6 +53,6 @@ class _WrapperState extends State<Wrapper> {
 
   @override
   Widget build(BuildContext context) {
-    return registert ? const MyBottomNavigationBar() : const EnterAcess();
+    return registert ? const MyBottomNavigationBar(startindex: 0,) : const EnterAcess();
   }
 }
