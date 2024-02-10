@@ -3,13 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:new_projekt/models/constans.dart';
 
 class LineChartWidget extends StatefulWidget {
-  const LineChartWidget({super.key});
+  final List indexes;
+  const LineChartWidget({super.key, required this.indexes});
 
   @override
   State<LineChartWidget> createState() => _LineChartWidgetState();
 }
 
 class _LineChartWidgetState extends State<LineChartWidget> {
+  List<FlSpot> spots = [];
+  @override
+  void initState() {
+    int counter = 1;
+    spots.add(FlSpot(0, 0));
+    for(var i in widget.indexes){
+      spots.add(FlSpot(counter.toDouble(), i));
+      counter ++;
+    }
+    print(spots);
+    super.initState();
+  }
   bool showAvg = false;
   List<Color> gradientColors = [
     Colors.grey,
@@ -64,19 +77,11 @@ class _LineChartWidgetState extends State<LineChartWidget> {
       borderData: FlBorderData(
         show: false, // Setze show auf false, um den Rand zu entfernen
       ),
-      minX: 1,
-      minY: 1,
+      minX: 0,
+      minY: 0,
       lineBarsData: [
         LineChartBarData(
-          spots: const [
-            FlSpot(1, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
-            FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(11, 4),
-          ],
+          spots: spots,
           
           isCurved: true,
           barWidth: 5,

@@ -436,6 +436,26 @@ Future<String?> returnInstruction() async {
     print("ERROR");
     return null;
   }
+  
+  Future<List> returnUserIndexList() async {
+    String apiUrl = 'https://dashboardlaxout.eu.pythonanywhere.com/getindividualindexes/';
+    String token = _hiveDatabase.getToken();
+    String userUid = _hiveDatabase.getUserUid();
+    final http.Response response = await http.get(Uri.parse(apiUrl), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'token $token',
+      'User-Uid': '${Uri.encodeFull(userUid)}'
+    });
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> decodedData = jsonDecode(response.body);
+      List user_indexes = decodedData['user_pains'];
+      print("UserINDESFESFWEFS");
+      print(user_indexes);
+      return user_indexes;
+    }
+    return [];
+  }
 }
 
 class LaxoutUser {

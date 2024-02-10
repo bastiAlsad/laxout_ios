@@ -354,15 +354,9 @@ class _Homepage extends State<Homepage> {
                   ),
                   InkWell(
                     onTap: () {
-                      list.isNotEmpty
-                          ? showNeededStuff(
+                      showNeededStuff(
                               requiredTestStuff(),  const UmfragePage(toDelegate: TestsEnterPoint(),))
-                          : Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const ErrorPage()),
-                              (route) => false);
+                          ;
                     },
                     child: Container(
                         height: 30,
@@ -390,15 +384,9 @@ class _Homepage extends State<Homepage> {
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: InkWell(
               onTap: () {
-                 list.isNotEmpty
-                          ? showNeededStuff(
+                  showNeededStuff(
                               requiredTestStuff(),  const UmfragePage(toDelegate: PhysioEnterPoint(),))
-                          : Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const ErrorPage()),
-                              (route) => false);
+                         ;
               },
               child: Container(
                 height: 320,

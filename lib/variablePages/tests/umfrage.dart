@@ -56,7 +56,7 @@ class _UmfragePageState extends State<UmfragePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                     const Text(
-                    "Wie schlimm sind Ihre Schmerzen gerade von 1-10?",
+                    "Wie fühlen Sie sich gerade von 1-10?",
                     style: TextStyle(
                       fontFamily: "Laxout",
                       fontSize: 20.0,
