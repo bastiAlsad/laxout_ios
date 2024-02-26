@@ -60,20 +60,11 @@ class _EnterAcessState extends State<EnterAcess> {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => const MyBottomNavigationBar(startindex: 0,)),
+              builder: (BuildContext context) => const MyBottomNavigationBar(
+                    startindex: 0,
+                  )),
           (route) => false);
     } else {}
-  }
-
-  void _initialize() async {
-    bool check = await _bastiBackend.authenticateUser(_controller.text);
-    if (check == true) {
-      navigate();
-    } else {
-      setState(() {
-        authenticationError = true;
-      });
-    }
   }
 
   @override
@@ -83,7 +74,7 @@ class _EnterAcessState extends State<EnterAcess> {
           context: context,
           builder: ((context) {
             return AlertDialog(
-              title:  Text(
+              title: Text(
                 alert,
                 style: const TextStyle(fontFamily: "Laxout", fontSize: 14),
               ),
@@ -113,7 +104,15 @@ class _EnterAcessState extends State<EnterAcess> {
             );
           }));
     }
-    
+
+    void initialize(String code) async {
+      bool check = await _bastiBackend.authenticateUser(code);
+      if (check == true) {
+        navigate();
+      } else {
+        showErrorMessage("Bitte geben Sie einen korrekten Code ein oder nutzen Sie die App ohne Code.");
+      }
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -264,33 +263,53 @@ class _EnterAcessState extends State<EnterAcess> {
                     )
                   ],
                 ),
-                InkWell(
-                  onTap: () {
-                    if (checkboxValue == true) {
-                      _initialize();
-                      if(authenticationError){
-                        showErrorMessage("Bitte geben Sie einen korrekten Zugangscode an");
-                      }
-                    } else {
-                      showErrorMessage("Bitte Stimmen Sie den AGBs und dem Datenschutz zu.");
-                    }
-                  },
-                  child: Container(
-                    height: 60,
-                    width: 210,
-                    decoration: BoxDecoration(
-                        color: Appcolors.primary,
-                        borderRadius: BorderRadius.circular(14)),
-                    child: const Center(
-                      child: Text(
-                        "Loslegen",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: "Laxout",
-                            color: Colors.white),
+                //Production:3a3d824d-917e-47b7-a4e1-d4fa84429418
+                //Local:901f0603-f06f-4294-b2c6-da95dc9f25d4
+                Column(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        if (checkboxValue == true) {
+                          initialize(_controller.text);
+                        } else {
+                          showErrorMessage(
+                              "Bitte Stimmen Sie den AGBs und der Datenschutzerklärung zu.");
+                        }
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 210,
+                        decoration: BoxDecoration(
+                            color: Appcolors.primary,
+                            borderRadius: BorderRadius.circular(14)),
+                        child: const Center(
+                          child: Text(
+                            "Loslegen",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontFamily: "Laxout",
+                                color: Colors.white),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    TextButton(
+                        onPressed: () {
+                          if (checkboxValue == true) {
+                            initialize("3a3d824d-917e-47b7-a4e1-d4fa84429418");
+                          } else {
+                            showErrorMessage(
+                                "Bitte Stimmen Sie den AGBs und der Datenschutzerklärung zu.");
+                          }
+                        },
+                        child: Text(
+                          "App ohne Code nutzen",
+                          style: TextStyle(
+                              fontFamily: "Laxout",
+                              color: Colors.grey.shade400,
+                              fontSize: 13),
+                        ))
+                  ],
                 ),
               ],
             )

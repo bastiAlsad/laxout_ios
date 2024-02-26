@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:new_projekt/models/constans.dart';
 import 'package:new_projekt/navPages/couponsPage.dart';
 import 'package:new_projekt/navigation/Side_Nav_Bar.dart';
@@ -24,9 +25,8 @@ class _ShopPageState extends State<ShopPage> {
         });
         return true;
       }
-    // ignore: empty_catches
-    } catch (e) {
-    }
+      // ignore: empty_catches
+    } catch (e) {}
     isConnected = false;
     return false;
   }
@@ -39,8 +39,7 @@ class _ShopPageState extends State<ShopPage> {
 
   @override
   Widget build(BuildContext context) {
-    
-    return isConnected ? const InternetShopPage() : const NoInternetShopPage();
+    return const InternetShopPage();
   }
 }
 
@@ -52,7 +51,6 @@ class InternetShopPage extends StatefulWidget {
 }
 
 class _InternetShopPageState extends State<InternetShopPage> {
-
   final LaxoutBackend _laxoutBackend = LaxoutBackend();
 
   Stream<String?> _getLaxCoinsStream() async* {
@@ -63,9 +61,6 @@ class _InternetShopPageState extends State<InternetShopPage> {
   @override
   void initState() {
     clearCouponList();
-    getCouponList();
-    //getCouponsOfUserList();
-    //getCouponsOfUserList();
     super.initState();
   }
 
@@ -75,33 +70,9 @@ class _InternetShopPageState extends State<InternetShopPage> {
     });
   }
 
-  void getCouponList() async {
-    shopList = await _laxoutBackend.returnCoupons();
-  }
-
-  /*void getCouponsOfUserList() async {
-    clearCouponList();
-    usersCouponList =
-        await _backendFunktions.getCouponsFromUser(_hiveDatabase.getUserUid());
-    if (usersCouponList.length == 1) {
-      setState(() {
-        currentIndex = 0;
-      });
-    } else {
-      setState(() {
-        currentIndex = usersCouponList.length - 1;
-      });
-    }
-    print(usersCouponList.length.toString());
-    print(usersCouponList);
-  }
-*/
   List shopList = [];
   List usersCouponList = [];
   //int currentIndex = 0;
-
-   
-  
 
   @override
   Widget build(BuildContext context) {
@@ -140,6 +111,7 @@ class _InternetShopPageState extends State<InternetShopPage> {
             );
           }));
     }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -148,8 +120,28 @@ class _InternetShopPageState extends State<InternetShopPage> {
         bottomOpacity: 0.0,
         elevation: 0.0,
         toolbarHeight: 70,
-        leading: const Row(
-          children: [],
+       leading: IconButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                backgroundColor: Colors.white,
+                title: Column(
+                  children: [
+                    Text(
+                      "Was ist der Shop?",
+                      style: TextStyle(fontFamily: "Laxout", fontSize: 20),
+                    ),
+                    Text(
+                      "Im Shop können Sie Ihre LaxCoins gegen Prämien von unseren Partnern eintauschen. Sie erhalten die Coins, wenn Sie das Physio-Workout durchführen. Haben Sie ein odere mehrere Coupons gekauft, können Sie auf den blauen Button rechts unten drücken. Sie gelangen dann zu einer Ansicht, in der all Ihre Couponcodes aufgelistet werden. Drücken Sie dann auf den Code, um ihn in die Zwischenablage zu kopieren. Anschließend können Sie den Code auf der Website des Couponanbieters oder beim Anbieter persönlich einlösen.",
+                      style: TextStyle(fontFamily: "Laxout", fontSize: 13),
+                    )
+                  ],
+                ),
+              ),
+            );
+          },
+          icon: Icon(Icons.info),
         ),
         title: const Text(
           "LaxShop",
@@ -195,194 +187,202 @@ class _InternetShopPageState extends State<InternetShopPage> {
           ),
         ],
       ),
-      body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          child: Stack(
-            children: [
-              FutureBuilder(
-                future:_laxoutBackend.returnCoupons(), // Hier wird die asynchrone Funktion aufgerufen
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator(); // Zum Beispiel ein Ladekreis
-                  } else if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  } else {
-                    // Wenn die Daten erfolgreich geladen wurden, zeigen Sie die Liste an
-                    return ListView.builder(
-                        itemCount: shopList.length,
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: ((context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 30),
-                            child: Container(
-                              height: MediaQuery.of(context).size.height / 1.9,
-                              width: MediaQuery.of(context).size.width - 100,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    const BoxShadow(
-                                        color: Colors.white,
-                                        offset: Offset(5, 5),
-                                        blurRadius: 15),
-                                    BoxShadow(
-                                        color: Colors.grey.shade300,
-                                        offset: const Offset(-5, -5),
-                                        blurRadius: 15),
-                                  ]),
-                              child: Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+      body: FutureBuilder<List>(
+        future: _laxoutBackend.returnCoupons(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: Center(
+                child: SpinKitFadingFour(
+                  color: Appcolors.primary,
+                ),
+              ),
+            );
+          } else if (snapshot.hasError) {
+            return Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: Center(
+                child: SpinKitFadingFour(
+                  color: Appcolors.primary,
+                ),
+              ),
+            );
+          } else {
+            List shopList = snapshot.data ?? [];
+            return ListView.builder(
+              itemCount: shopList.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 30,
+                  ),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height / 1.9,
+                    width: MediaQuery.of(context).size.width - 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.white,
+                      boxShadow: [
+                        const BoxShadow(
+                          color: Colors.white,
+                          offset: Offset(5, 5),
+                          blurRadius: 15,
+                        ),
+                        BoxShadow(
+                          color: Colors.grey.shade300,
+                          offset: const Offset(-5, -5),
+                          blurRadius: 15,
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                height: 80,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                      shopList[index].couponImageUrl,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                shopList[index].couponName,
+                                style: const TextStyle(
+                                  fontFamily: "Laxout",
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            shopList[index].couponText,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.grey.shade400,
+                              fontSize: 13,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            shopList[index].couponOffer,
+                            style: const TextStyle(
+                              fontFamily: "Laxout",
+                              fontSize: 15,
+                              color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Container(
-                                          height: 80,
-                                          width: 80,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              image: DecorationImage(
-                                                  image: NetworkImage(
-                                                      shopList[index]
-                                                          .couponImageUrl))),
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(20),
+                                        image: const DecorationImage(
+                                          image: AssetImage(
+                                            "assets/images/laxCoin.png",
+                                          ),
                                         ),
-                                        Text(
-                                          shopList[index].couponName,
-                                          style: const TextStyle(
-                                              fontFamily: "Laxout",
-                                              fontSize: 18,
-                                              color: Colors.black),
-                                        )
-                                      ],
+                                      ),
                                     ),
                                     const SizedBox(
-                                      height: 10,
+                                      width: 5,
                                     ),
                                     Text(
-                                      shopList[index].couponText,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: Colors.grey.shade400,
-                                          fontSize: 13),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      shopList[index].couponOffer,
+                                      shopList[index].couponPrice.toString(),
                                       style: const TextStyle(
-                                          fontFamily: "Laxout",
-                                          fontSize: 15,
-                                          color: Colors.black),
+                                        fontFamily: "Laxout",
+                                        fontSize: 18,
+                                        color: Colors.black,
+                                      ),
                                     ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 20),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                height: 40,
-                                                width: 40,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                    image: const DecorationImage(
-                                                        image: AssetImage(
-                                                            "assets/images/laxCoin.png"))),
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                  shopList[index]
-                                                      .couponPrice
-                                                      .toString(),
-                                                  style: const TextStyle(
-                                                      fontFamily: "Laxout",
-                                                      fontSize: 18,
-                                                      color: Colors.black)),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 20),
-                                          child: InkWell(
-                                            // Button zum Kaufen des Coupons
-                                            onTap: () async{
-                                              bool response = await _laxoutBackend.buyCoupon(shopList[index].id);
-                                              if(response == false){
-                                                showErrorMessage();
-                                              }
-                                              else{
-                                                setState(() {
-                                                  
-                                                });
-                                              }
-                                            },
-                                            child: Container(
-                                              height: 40,
-                                              width: 140,
-                                              decoration: BoxDecoration(
-                                                  color: const Color.fromRGBO(
-                                                      176, 224, 230, 1.0),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          25)),
-                                              child: const Center(
-                                                  child: Text(
-                                                "Rabattcode kaufen",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              )),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    )
                                   ],
                                 ),
                               ),
-                            ),
-                          );
-                        }));
-                  }
-                },
-              ),
-              Positioned(
-                  bottom: 10,
-                  right: 10,
-                  child: FloatingActionButton(
-                    backgroundColor: const Color.fromRGBO(176, 224, 230, 1.0),
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const UsersCouponPage()),
-                          (route) => false);
-                    },
-                    child: const Icon(Icons.card_giftcard_outlined),
-                  ))
-            ],
-          )),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 20),
+                                child: InkWell(
+                                  onTap: () async {
+                                    bool response = await _laxoutBackend
+                                        .buyCoupon(shopList[index].id);
+                                    if (response == false) {
+                                      showErrorMessage();
+                                    } else {
+                                      setState(() {});
+                                    }
+                                  },
+                                  child: Container(
+                                    height: 40,
+                                    width: 140,
+                                    decoration: BoxDecoration(
+                                      color:
+                                          const Color.fromRGBO(176, 224, 230, 1.0),
+                                      borderRadius: BorderRadius.circular(25),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        "Rabattcode kaufen",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          }
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromRGBO(176, 224, 230, 1.0),
+        onPressed: () {
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const UsersCouponPage()),
+              (route) => false);
+        },
+        child: const Icon(Icons.card_giftcard_outlined),
+      ),
       drawer: const SideNavBar(),
     );
   }
@@ -417,3 +417,5 @@ class NoInternetShopPage extends StatelessWidget {
     );
   }
 }
+
+

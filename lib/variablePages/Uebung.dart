@@ -548,7 +548,7 @@ class _VideoWidgetState extends State<VideoWidget> {
   void initState() {
     super.initState();
     String? videoId = YoutubePlayer.convertUrlToId(widget.videoData);
-    print("Video data ${widget.videoData}");
+
     if (videoId != null) {
       _controller = YoutubePlayerController(
         initialVideoId: videoId,

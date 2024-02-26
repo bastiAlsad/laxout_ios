@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:new_projekt/chart/LineChart.dart';
 
 import 'package:new_projekt/heatmap/hive.dart';
+import 'package:new_projekt/models/constans.dart';
 import 'package:new_projekt/navigation/Side_Nav_Bar.dart';
+import 'package:new_projekt/services/basti_backend.dart';
 
 class Heatmap extends StatefulWidget {
   const Heatmap({
@@ -18,11 +21,14 @@ class _HeatmapState extends State<Heatmap> {
   Map<DateTime, int> datasetsWish = {};
   late DateTime startDateWish;
   final HiveHeatmap _heatmap = HiveHeatmap();
+  final LaxoutBackend _backend = LaxoutBackend();
+  List indexes = [];
 
   @override
   void initState() {
     datasetsWish = _heatmap.getDatasets();
     startDateWish = _heatmap.everOpened();
+
     super.initState();
   }
 
@@ -47,7 +53,42 @@ class _HeatmapState extends State<Heatmap> {
         ),
       ),
       body: ListView(
+        
         children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Ihre Aktivität:",
+                  style: TextStyle(
+                      fontFamily: "Laxout",
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+                IconButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            backgroundColor: Colors.white,
+                                title: Text(
+                                  "Was ist die Aktivität ?",
+                                  style: TextStyle(
+                                      fontFamily: "Laxout", fontSize: 20),
+                                ),
+                                actions: [
+                                  Text(
+                                      "Jedes mal, wenn Sie Ihr individuelles Physio Workout machen, zeigt dieser Kalender dieses Datum als türkises Feld an. Ein graues Feld bedeutet, dass Sie an diesem Tag nicht aktiv waren. Wischen Sie nach links oder rechts, um in der Zeit zurück oder nach Vorne zu gehen.",style: TextStyle(
+                                      fontFamily: "Laxout", fontSize: 13),)
+                                ],
+                              ));
+                    },
+                    icon: Icon(Icons.info))
+              ],
+            ),
+          ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15),
             child: HeatMap(
@@ -73,7 +114,53 @@ class _HeatmapState extends State<Heatmap> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-            child: LineChartWidget(),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Ihr Wohlbefinden:",
+                  style: TextStyle(
+                      fontFamily: "Laxout",
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+                IconButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            backgroundColor: Colors.white,
+                                title: Text(
+                                  "Was zeigt dieses Diagramm ?",
+                                  style: TextStyle(
+                                      fontFamily: "Laxout", fontSize: 20),
+                                ),
+                                actions: [
+                                  Text(
+                                      "Sie werden in der App immer mal wieder nach Ihrem Wohlbefinden, bzw. Ihren Schmerzen gefragt. Dieses Diagramm zeigt den durchschnittlichen Wert im wöchentlichen Intervall an: Die X-Achse steht für die Woche und die Y-Achse für den durchschnittlichen Wert, der sich aus Ihren Eingaben für jede Woche berechnet. Drücken Sie auf das Diagramm und schieben Sie ihren Finger gedrückt nach rechts oder links, um sich den genauen Wert einer Woche anzeigen zu lassen.",style: TextStyle(
+                                      fontFamily: "Laxout", fontSize: 13),)
+                                ],
+                              ));
+                    },
+                    icon: Icon(Icons.info))
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+            child: FutureBuilder(
+                future: _backend.returnUserIndexList(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return SpinKitFadingFour(
+                      color: Appcolors.primary,
+                    );
+                  }
+                  final data = snapshot.data ?? [];
+                  return LineChartWidget(
+                    indexes: data,
+                  );
+                }),
           )
         ],
       ),

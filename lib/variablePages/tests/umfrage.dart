@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:new_projekt/models/constans.dart';
 import 'package:new_projekt/services/basti_backend.dart';
+import 'package:new_projekt/services/hive_communication.dart';
 
 class UmfragePage extends StatefulWidget {
   final Widget toDelegate;
@@ -11,13 +12,18 @@ class UmfragePage extends StatefulWidget {
 }
 
 class _UmfragePageState extends State<UmfragePage> {
-  double valueUmfrage = 0.0;
+  double valueUmfrage = 1.0;
   bool ausgefuellt = false;
   final LaxoutBackend _laxoutBackend = LaxoutBackend();
- 
+  final HiveDatabase _hive = HiveDatabase();
+
 
   void _sendPainLevel()async{
     await _laxoutBackend.postPainLevel(valueUmfrage.round());
+  }
+
+  void _putUmfrageValue(){
+     _hive.putSuccesIndex(valueUmfrage.round());
   }
 
   @override
@@ -68,7 +74,7 @@ class _UmfragePageState extends State<UmfragePage> {
 
                   Row(
                     children: [
-                      const Text("0", style: TextStyle(fontSize: 15,fontFamily: "Laxout"),),
+                      const Text("1", style: TextStyle(fontSize: 15,fontFamily: "Laxout"),),
                       Expanded(
                         child: Slider(value: valueUmfrage, onChanged: ((value) {
                           setState(() {
@@ -78,7 +84,7 @@ class _UmfragePageState extends State<UmfragePage> {
                         inactiveColor: Appcolors.primary,
                         divisions: 10,
                         label: valueUmfrage.round().toString(),
-                        min: 0,
+                        min: 1,
                         max: 10,
                         secondaryTrackValue: valueUmfrage,
                         onChangeStart: (value) {
@@ -96,6 +102,7 @@ class _UmfragePageState extends State<UmfragePage> {
                   InkWell(
                   onTap: () {
                     if (ausgefuellt == true) {
+                      _putUmfrageValue();
                       _sendPainLevel();
                      Navigator.pushAndRemoveUntil(
                           context,

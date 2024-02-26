@@ -42,9 +42,9 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Icon(Icons.add_circle_outline),
-            selectedIcon: Icon(Icons.add_circle, color: Colors.white,),
-            label: 'Workouts',
+            icon: Icon(Icons.nature),
+            selectedIcon: Icon(Icons.nature, color: Colors.white,),
+            label: 'LaxBaum',
           ),
           NavigationDestination(
             icon: Icon(Icons.analytics_outlined),
@@ -60,7 +60,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
       ),
       body: <Widget>[
          const Homepage(),
-    const ownWorkoutPage(),
+    const LaxBaum(),
     const Heatmap(),
     const ShopPage()
       ][currentPageIndex],

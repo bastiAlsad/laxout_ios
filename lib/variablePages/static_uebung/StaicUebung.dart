@@ -158,6 +158,31 @@ class _StaticUebungState extends State<StaticUebung> with SingleTickerProviderSt
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Fortschritt:",
+                                style: TextStyle(
+                                    fontSize: 14, fontFamily: "Laxout"),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, bottom: 30, top: 5, right: 10),
+                            child: LinearProgressIndicator(
+                              backgroundColor: Colors.grey.shade100,
+                              color: Appcolors.primary,
+                              borderRadius: BorderRadius.circular(20),
+                             
+                              value: widget.currentIndex /
+                                  widget.exerciseListLength,
+                              semanticsLabel: 'Linear progress indicator',
+                              minHeight: 20,
+                            ),
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -369,6 +394,31 @@ class _StaticUebungState extends State<StaticUebung> with SingleTickerProviderSt
                       )
                     : Column(
                         children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Fortschritt:",
+                                style: TextStyle(
+                                    fontSize: 14, fontFamily: "Laxout"),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, bottom: 30, top: 5, right: 10),
+                            child: LinearProgressIndicator(
+                              backgroundColor: Colors.grey.shade100,
+                              color: Appcolors.primary,
+                              borderRadius: BorderRadius.circular(20),
+                             
+                              value: widget.currentIndex /
+                                  widget.exerciseListLength,
+                              semanticsLabel: 'Linear progress indicator',
+                              minHeight: 20,
+                            ),
+                          ),
                           const Expanded(child: SizedBox()),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -5,11 +5,11 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:new_projekt/heatmap/funktions.dart';
 import 'package:new_projekt/heatmap/hive.dart';
 import 'package:new_projekt/models/constans.dart';
-import 'package:new_projekt/navigation/Bottom_Navigation_Bar.dart';
 import 'package:new_projekt/services/basti_backend.dart';
 import 'package:new_projekt/services/hive_communication.dart';
 
 import 'package:new_projekt/variablePages/Uebung.dart';
+import 'package:new_projekt/variablePages/tests/Erfolgskontrolle.dart';
 import 'package:vibration/vibration.dart';
 
 class PhysioEnterPoint extends StatefulWidget {
@@ -75,7 +75,9 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
   void vibratePhone() async {
     bool? hasVibrator = await Vibration.hasVibrator();
     if (hasVibrator == true) {
-      Vibration.vibrate();
+      for(int i =0; i<3; i++){
+        Vibration.vibrate();
+      }
     } else {
       // Das Gerät unterstützt keine Vibration
     }
@@ -187,11 +189,11 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  const MyBottomNavigationBar(startindex: 0,)),
+                                   const SeeSuccesPage()),
                           (route) => false),
                       child: Container(
-                        width: 100,
-                        height: 30,
+                        width: 150,
+                        height: 50,
                         decoration: BoxDecoration(
                             color: const Color.fromRGBO(176, 224, 230, 1.0),
                             borderRadius: BorderRadius.circular(25)),
@@ -200,14 +202,11 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Home",
+                              "Weiter",
                               style: TextStyle(
-                                  color: Colors.white, fontFamily: "Laxout"),
+                                  color: Colors.white, fontFamily: "Laxout", fontSize: 20),
                             ),
-                            Icon(
-                              Icons.home,
-                              color: Colors.white,
-                            ),
+                            
                           ],
                         )),
                       ),
@@ -227,8 +226,7 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
   void initState() {
     isInternetConnected();
     if(isConnected == true){}
-    //  currentVideoPath = "https://youtu.be/fPNmJ5lgqwI";
-    
+    days = _heatmap.getDaysList();
     super.initState();
   }
 
@@ -250,10 +248,6 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
                     dauer: list[currentIndex].dauer,
                     videoPath: list[currentIndex].videoPath, // Aktualisierter Video-Pfad
                     onBackwardPressed: () {
-                      for(var i in list){
-                        print(i.name);
-                        print(i.videoPath);
-                      }
                       setState(() {
                         if (currentIndex > 0) {
                           currentIndex--;

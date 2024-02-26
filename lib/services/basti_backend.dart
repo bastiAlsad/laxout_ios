@@ -10,8 +10,7 @@ class LaxoutBackend {
   final HiveDatabase _hiveDatabase = HiveDatabase();
 
   Future<bool> authenticateUser(String uid) async {
-    const String apiUrl =
-        'https://dashboardlaxout.eu.pythonanywhere.com/autorise_user';
+    const String apiUrl = 'https://dashboardlaxout.eu.pythonanywhere.com/autorise_user';
 
     final Map<String, String> data = {"user_uid": uid};
 
@@ -40,8 +39,7 @@ class LaxoutBackend {
   Future<String?> getLaxoutCoinsAmount() async {
     String token = _hiveDatabase.getToken();
     String userUid = _hiveDatabase.getUserUid();
-    String apiUrl =
-        "https://dashboardlaxout.eu.pythonanywhere.com/coinsget_laxout";
+    String apiUrl = "https://dashboardlaxout.eu.pythonanywhere.com/coinsget_laxout";
     http.Response response = await http.get(
       Uri.parse(apiUrl),
       headers: {
@@ -67,8 +65,7 @@ class LaxoutBackend {
 
   Future<List<LaxoutExercise>> returnLaxoutExercises() async {
     String token = _hiveDatabase.getToken();
-    String apiUrl =
-        "https://dashboardlaxout.eu.pythonanywhere.com/uebungen_laxout";  
+    String apiUrl = "https://dashboardlaxout.eu.pythonanywhere.com/uebungen_laxout";
     String userUid = _hiveDatabase.getUserUid();
     List<LaxoutExercise> finalList = [];
 
@@ -84,7 +81,7 @@ class LaxoutBackend {
 
       if (response.statusCode == 200) {
         final List<dynamic> exercisesJson = jsonDecode(response.body);
-      
+
         for (int i = 0; i < exercisesJson.length; i++) {
           finalList.add(LaxoutExercise(
               execution: exercisesJson[i]['execution'],
@@ -98,11 +95,8 @@ class LaxoutBackend {
               required: exercisesJson[i]['required'],
               imagePath: exercisesJson[i]['imagePath'],
               id: exercisesJson[i]['id']));
-           
-             
-              
         }
-      
+
         return finalList;
       } else {
         return [];
@@ -114,8 +108,7 @@ class LaxoutBackend {
 
   Future<List<LaxoutExercise>> returnLaxoutExercisesTest() async {
     String token = _hiveDatabase.getToken();
-    String apiUrl =
-        "https://dashboardlaxout.eu.pythonanywhere.com/uebungen_laxout";  
+    String apiUrl = "https://dashboardlaxout.eu.pythonanywhere.com/uebungen_laxout";
     String userUid = _hiveDatabase.getUserUid();
     List<LaxoutExercise> finalList = [];
 
@@ -131,7 +124,7 @@ class LaxoutBackend {
 
       if (response.statusCode == 200) {
         final List<dynamic> exercisesJson = jsonDecode(response.body);
-        
+
         for (int i = 0; i < exercisesJson.length; i++) {
           finalList.add(LaxoutExercise(
               execution: exercisesJson[i]['execution'],
@@ -145,11 +138,8 @@ class LaxoutBackend {
               required: exercisesJson[i]['required'],
               imagePath: exercisesJson[i]['imagePath'],
               id: exercisesJson[i]['appId']));
-              
-             
-              
         }
-        
+
         return finalList;
       } else {
         return [];
@@ -159,13 +149,11 @@ class LaxoutBackend {
     }
   }
 
-
   Future<bool> postLeistungsIndex(int amount) async {
     final Map<String, int> data = {"index": amount};
     String userUid = _hiveDatabase.getUserUid();
     String token = _hiveDatabase.getToken();
-    String apiUrl =
-        "https://dashboardlaxout.eu.pythonanywhere.com/indexpost_laxout";
+    String apiUrl = "https://dashboardlaxout.eu.pythonanywhere.com/indexpost_laxout";
 
     final http.Response response = await http.post(Uri.parse(apiUrl),
         headers: {
@@ -264,8 +252,7 @@ class LaxoutBackend {
   }
 
   Future<bool> deleteCoupon(int couponId) async {
-    String apiUrl =
-        "https://dashboardlaxout.eu.pythonanywhere.com/coupondeleteuser";
+    String apiUrl = "https://dashboardlaxout.eu.pythonanywhere.com/coupondeleteuser";
     String token = _hiveDatabase.getToken();
     String userUid = _hiveDatabase.getUserUid();
     Map<String, dynamic> data = {'coupon_id': couponId};
@@ -286,8 +273,7 @@ class LaxoutBackend {
   }
 
   Future<List<Coupon>> returnCouponsForSpecificUSer() async {
-    String apiUrl =
-        "https://dashboardlaxout.eu.pythonanywhere.com/coupongetuser";
+    String apiUrl = "https://dashboardlaxout.eu.pythonanywhere.com/coupongetuser";
     String token = _hiveDatabase.getToken();
     String userUid = _hiveDatabase.getUserUid();
     final http.Response response = await http.get(Uri.parse(apiUrl), headers: {
@@ -316,8 +302,7 @@ class LaxoutBackend {
   }
 
   Future<bool> finishExercise(int exerciseId) async {
-    String apiUrl =
-        "https://dashboardlaxout.eu.pythonanywhere.com/exercisefinish";
+    String apiUrl = "https://dashboardlaxout.eu.pythonanywhere.com/exercisefinish";
     String token = _hiveDatabase.getToken();
     String userUid = _hiveDatabase.getUserUid();
 
@@ -371,8 +356,7 @@ class LaxoutBackend {
   }
 
   Future<bool> finishWorkout(int workoutId) async {
-    String apiUrl =
-        "https://dashboardlaxout.eu.pythonanywhere.com/workoutfinish";
+    String apiUrl = "https://dashboardlaxout.eu.pythonanywhere.com/workoutfinish";
     String userUid = _hiveDatabase.getUserUid();
     String token = _hiveDatabase.getToken();
     Map<String, dynamic> data = {"workout_id": workoutId};
@@ -395,30 +379,31 @@ class LaxoutBackend {
     }
     return false;
   }
-Future<String?> returnInstruction() async {
-  String apiUrl = 'https://dashboardlaxout.eu.pythonanywhere.com/instructionget/';
-  String token = _hiveDatabase.getToken();
-  String userUid = _hiveDatabase.getUserUid();
 
-  final http.Response response = await http.get(Uri.parse(apiUrl), headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'token $token',
-    'User-Uid': '${Uri.encodeFull(userUid)}'
-  });
+  Future<String?> returnInstruction() async {
+    String apiUrl = 'https://dashboardlaxout.eu.pythonanywhere.com/instructionget/';
+    String token = _hiveDatabase.getToken();
+    String userUid = _hiveDatabase.getUserUid();
 
-  if (response.statusCode == 200) {
-    // Dekodieren Sie die Antwort mit UTF-8
-   // Verwenden Sie utf8.decode für die korrekte Kodierung
-    String decodedResponse = utf8.decode(response.bodyBytes);
-    Map<String, dynamic> decodedData = jsonDecode(decodedResponse);
-    String instruction = decodedData['instruction'];
-    return instruction;
+    final http.Response response = await http.get(Uri.parse(apiUrl), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'token $token',
+      'User-Uid': '${Uri.encodeFull(userUid)}'
+    });
+
+    if (response.statusCode == 200) {
+      // Dekodieren Sie die Antwort mit UTF-8
+      // Verwenden Sie utf8.decode für die korrekte Kodierung
+      String decodedResponse = utf8.decode(response.bodyBytes);
+      Map<String, dynamic> decodedData = jsonDecode(decodedResponse);
+      String instruction = decodedData['instruction'];
+      return instruction;
+    }
+
+    return null;
   }
 
-  return null;
-}
-
-   Future<int?> returnProgressWeek() async {
+  Future<int?> returnProgressWeek() async {
     String apiUrl = 'https://dashboardlaxout.eu.pythonanywhere.com/progressweekget/';
     String token = _hiveDatabase.getToken();
     String userUid = _hiveDatabase.getUserUid();
@@ -436,7 +421,7 @@ Future<String?> returnInstruction() async {
     print("ERROR");
     return null;
   }
-  
+
   Future<List> returnUserIndexList() async {
     String apiUrl = 'https://dashboardlaxout.eu.pythonanywhere.com/getindividualindexes/';
     String token = _hiveDatabase.getToken();
@@ -455,6 +440,99 @@ Future<String?> returnInstruction() async {
       return user_indexes;
     }
     return [];
+  }
+
+  Future<void> pourLaxTree() async {
+    String apiUrl = "https://dashboardlaxout.eu.pythonanywhere.com/pourlaxtree/";
+    String token = _hiveDatabase.getToken();
+    String user_uid = _hiveDatabase.getUserUid();
+    final http.Response response = await http.post(Uri.parse(apiUrl), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'token $token',
+      'User-Uid': '${Uri.encodeFull(user_uid)}'
+    });
+    if (response.statusCode == 200) {
+      print("pouring Proccess worked fine");
+    } else {
+      print("Problem");
+    }
+  }
+
+  Future<int?> getWaterdrops() async {
+    String token = _hiveDatabase.getToken();
+    String userUid = _hiveDatabase.getUserUid();
+    String apiUrl = "https://dashboardlaxout.eu.pythonanywhere.com/getwaterdrops";
+    http.Response response = await http.get(
+      Uri.parse(apiUrl),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'token $token',
+        'User-Uid': '${Uri.encodeFull(userUid)}',
+      },
+    );
+    if (response.statusCode == 200) {
+      Map<String, dynamic> decodedData = jsonDecode(response.body);
+      int waterdrops = decodedData['waterdrops'];
+      return waterdrops;
+    } else {
+      return null;
+    }
+  }
+
+  Future<int?> getCondition() async {
+    String token = _hiveDatabase.getToken();
+    String userUid = _hiveDatabase.getUserUid();
+    String apiUrl = "https://dashboardlaxout.eu.pythonanywhere.com/getcondition";
+    http.Response response = await http.get(
+      Uri.parse(apiUrl),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'token $token',
+        'User-Uid': '${Uri.encodeFull(userUid)}',
+      },
+    );
+    if (response.statusCode == 200) {
+      Map<String, dynamic> decodedData = jsonDecode(response.body);
+      int waterdrops = decodedData['condition'];
+      return waterdrops;
+    } else {
+      return null;
+    }
+  }
+
+  // Future<void> buyWaterDrops()async{
+  //   String apiUrl = "http://192.168.178.41:8000/buywaterdrops/";
+  //   String token = _hiveDatabase.getToken();
+  //   String user_uid = _hiveDatabase.getUserUid();
+  //   final http.Response response = await http.post(Uri.parse(apiUrl), headers: {
+  //     'Content-Type': 'application/json',
+  //     'Authorization': 'token $token',
+  //     'User-Uid': '${Uri.encodeFull(user_uid)}'
+  //   });
+  //   if(response.statusCode == 200){
+  //     print("buying Proccess worked fine");
+  //   }else{
+  //     print("Problem");
+  //   }
+  // }
+
+  Future<void> postSuccessControll(bool better) async {
+    String apiUrl = "https://dashboardlaxout.eu.pythonanywhere.com/postsuccesscontroll/";
+    String token = _hiveDatabase.getToken();
+    String user_uid = _hiveDatabase.getUserUid();
+    Map<String, bool> data = {"better": better};
+    final http.Response response = await http.post(Uri.parse(apiUrl),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'token $token',
+          'User-Uid': '${Uri.encodeFull(user_uid)}'
+        },
+        body: jsonEncode(data));
+    if (response.statusCode == 200) {
+      print("buying Proccess worked fine");
+    } else {
+      print("Problem");
+    }
   }
 }
 

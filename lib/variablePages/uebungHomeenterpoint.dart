@@ -28,6 +28,16 @@ class UebungHomeEnterPoint extends StatefulWidget {
 }
 
 class _UebungHomeEnterPointState extends State<UebungHomeEnterPoint> {
+  int getMinControllTime() {
+    int unnoetig = 0;
+    int toReturn = 0;
+
+    unnoetig = (list.length * 10)
+        .round(); // List.length ist ein float und muss daher gerundet werden.
+    toReturn += unnoetig;
+    return toReturn;
+  } // Ermittelt wie lange der User midestens seine Übugne machen muss
+
   final LaxoutBackend _laxoutBackend = LaxoutBackend();
   List<DateTime> days = [];
   final HiveHeatmap _heatmap = HiveHeatmap();
@@ -107,7 +117,6 @@ class _UebungHomeEnterPointState extends State<UebungHomeEnterPoint> {
     super.initState();
     list = widget.workouts;
     days = _heatmap.getDaysList();
-
     currentVideoPath = list[currentIndex].videoPath;
   }
 
@@ -144,7 +153,7 @@ class _UebungHomeEnterPointState extends State<UebungHomeEnterPoint> {
                     .videoPath; // Aktualisierung des Video-Pfads
               } else {
                 dialogShow();
-                if (_hiveCredit.getControlltime() >= widget.controlltime) {
+                if (_hiveCredit.getControlltime() >= getMinControllTime()) {
                   _hiveCredit.clearControllTime();
                   actuallcredits = _hiveCredit.getCredits();
                   actuallcredits = actuallcredits + credits;
@@ -153,6 +162,7 @@ class _UebungHomeEnterPointState extends State<UebungHomeEnterPoint> {
                   days.add(createDateTimeObject(todaysDateFormatted()));
                   _heatmap.saveToday(days);
                   _heatmap.putDaysinMap(days);
+                  print("succes");
                 }
               }
             });

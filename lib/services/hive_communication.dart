@@ -2925,4 +2925,17 @@ class HiveDatabase {
     String hackenValue = hiveData ?? "Keine Anweisung vorhanden";
     return hackenValue;
   }
+
+
+  //Erfolgskontrolle Logik
+void putSuccesIndex(int value) {
+    _hiveTest.put("SUCCESSINDEX", value);
+  }
+
+  int getSuccesIndex() {
+    var hiveData = _hiveTest.get('SUCCESSINDEX');
+    int value = hiveData ?? 5;
+    return value;
+  }
+
 }

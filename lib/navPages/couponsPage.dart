@@ -71,7 +71,7 @@ class _UsersCouponPageState extends State<UsersCouponPage> {
         centerTitle: true,
         toolbarHeight: 70,
         title: const Text(
-          "Deine Coupons",
+          "Ihre Coupons",
           style: TextStyle(
               color: Colors.black, fontFamily: "Laxout", fontSize: 30),
         ),
