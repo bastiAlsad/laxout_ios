@@ -50,6 +50,7 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
+    _hiveCredit.clearControllTime();
     actualControlltime = widget.dauer;
     _animationController = AnimationController(
       vsync: this,
@@ -70,31 +71,39 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
   bool againpressed = false;
   late AnimationController _animationController;
 
-  void timer() {
+bool isTimerRunning = false;
+
+void timer() {
+  if (!isTimerRunning) {
+    isTimerRunning = true;
     Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
-        if (timeleft > 0 && stoppressed == false) {
+        if (timeleft > 0 && !stoppressed) {
           timeleft--;
         } else {
           timer.cancel();
+          isTimerRunning = false;
+          if (!stoppressed) {
+            actualControlltime = widget.dauer; 
+            _hiveCredit.putControllTime(actualControlltime);
+            _hiveCredit.addGenerallControllTime(actualControlltime);
+            widget.onForwardPressed();
+          }
 
-          actualControlltime = widget
-              .dauer; // Alte version _hiveCredit.getControlltime() + widget.dauer;
-          _hiveCredit.addControllTime(actualControlltime);
-          _hiveCredit.addGenerallControllTime(actualControlltime);
-          widget.onForwardPressed();
-
-          if (timeleft == 0 || againpressed == true) {
+          if (timeleft == 0 || againpressed) {
             againpressed = false;
             stopvisible = false;
             startvisible = true;
             timeleft = widget.dauer;
-            timer;
+            isTimerRunning = false; // Setze den Timer auf nicht gestartet zurück
+            return; // Verlasse die Timer-Funktion, um mehrere Timer-Instanzen zu vermeiden
           }
         }
       });
     });
   }
+}
+
 
   @override
   void dispose() {
@@ -282,10 +291,13 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
                                     visible: startvisible,
                                     child: InkWell(
                                       onTap: () {
-                                        timer();
-                                        startvisible = false;
+                                        setState(() {
+                                          startvisible = false;
                                         stopvisible = true;
                                         stoppressed = false;
+                                        });
+                                        timer();
+                                        
                                       },
                                       child: Container(
                                         width: 100,
@@ -326,9 +338,11 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
                                     child: InkWell(
                                       onTap: () {
                                         timer();
-                                        startvisible = true;
+                                        setState(() {
+                                          startvisible = true;
                                         stopvisible = false;
                                         stoppressed = true;
+                                        });
                                       },
                                       child: Container(
                                         width: 100,
@@ -439,7 +453,7 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
                            Expanded(child: SizedBox(child: IconButton(
                                     onPressed: () {
                                       _hiveCredit
-                                          .addControllTime(actualControlltime);
+                                          .putControllTime(actualControlltime);
                                       _hiveCredit.addGenerallControllTime(
                                           actualControlltime);
                                       widget.onForwardPressed();

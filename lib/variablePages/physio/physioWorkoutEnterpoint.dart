@@ -75,7 +75,7 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
   void vibratePhone() async {
     bool? hasVibrator = await Vibration.hasVibrator();
     if (hasVibrator == true) {
-      for(int i =0; i<3; i++){
+      for (int i = 0; i < 3; i++) {
         Vibration.vibrate();
       }
     } else {
@@ -90,72 +90,75 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-              backgroundColor: Colors.white,
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8.0))),
-              
-              actions: [
-                SizedBox(height: 30,),
-                Text(
-                    "Sind Sie sich sicher, dass Sie diese Übung überspringen möchten? Als Konsequenz wird diese Übung bei Ihrem Therapeuten als übersprungen angezeigt.",
-                    style: TextStyle(fontSize: 16, color: Colors.black, fontFamily: "Laxout"),textAlign: TextAlign.center,
+            backgroundColor: Colors.white,
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8.0))),
+            actions: [
+              SizedBox(
+                height: 30,
+              ),
+              Text(
+                "Sind Sie sich sicher, dass Sie diese Übung überspringen möchten? Als Konsequenz wird diese Übung bei Ihrem Therapeuten als übersprungen angezeigt.",
+                style: TextStyle(
+                    fontSize: 16, color: Colors.black, fontFamily: "Laxout"),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Container(
+                      width: 130,
+                      height: 30,
+                      decoration: BoxDecoration(
+                          color: const Color.fromRGBO(176, 224, 230, 1.0),
+                          borderRadius: BorderRadius.circular(25)),
+                      child: const Center(
+                          child: Text(
+                        "Abbrechen",
+                        style: TextStyle(
+                            color: Colors.white, fontFamily: "Laxout"),
+                      )),
+                    ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  InkWell(
+                    onTap: () {
+                      _laxoutBackend.skipExercise(id);
+                      setState(() {
+                        currentIndex++;
+                        progressIndex++;
+                        currentVideoPath = list[currentIndex]
+                            .videoPath; // Aktualisierung des Video-Pfads
+                      });
+                      Navigator.of(context).pop();
+                    },
+                    child: Container(
+                      width: 130,
+                      height: 30,
+                      decoration: BoxDecoration(
+                          color: const Color.fromRGBO(176, 224, 230, 1.0),
+                          borderRadius: BorderRadius.circular(25)),
+                      child: const Center(
+                          child: Text(
+                        "Überspr.",
+                        style: TextStyle(
+                            color: Colors.white, fontFamily: "Laxout"),
+                      )),
+                    ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Container(
-                          width: 130,
-                          height: 30,
-                          decoration: BoxDecoration(
-                              color: const Color.fromRGBO(176, 224, 230, 1.0),
-                              borderRadius: BorderRadius.circular(25)),
-                          child: const Center(
-                              child: Text(
-                                "Abbrechen",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "Laxout"),
-                              )),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          _laxoutBackend.skipExercise(id);
-                          setState(() {
-                            currentIndex++;
-                            progressIndex++;
-                            currentVideoPath = list[currentIndex]
-                                .videoPath; // Aktualisierung des Video-Pfads
-                          });
-                          Navigator.of(context).pop();
-                        },
-                        child: Container(
-                          width: 130,
-                          height: 30,
-                          decoration: BoxDecoration(
-                              color: const Color.fromRGBO(176, 224, 230, 1.0),
-                              borderRadius: BorderRadius.circular(25)),
-                          child: const Center(
-                              child: Text(
-                                "Überspr.",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "Laxout"),
-                              )),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 30,)
-              ],
-              );
+                ],
+              ),
+              SizedBox(
+                height: 30,
+              )
+            ],
+          );
         });
   }
 
@@ -169,7 +172,8 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
               backgroundColor: Colors.white,
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(8.0))),
-              content: SizedBox(
+              content: Container(
+                color: Colors.white,
                 height: MediaQuery.of(context).size.height - 300,
                 width: MediaQuery.of(context).size.width - 75,
                 child: Column(
@@ -188,8 +192,7 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
                       onTap: () => Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                   const SeeSuccesPage()),
+                              builder: (context) => const SeeSuccesPage()),
                           (route) => false),
                       child: Container(
                         width: 150,
@@ -204,9 +207,10 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
                             Text(
                               "Weiter",
                               style: TextStyle(
-                                  color: Colors.white, fontFamily: "Laxout", fontSize: 20),
+                                  color: Colors.white,
+                                  fontFamily: "Laxout",
+                                  fontSize: 20),
                             ),
-                            
                           ],
                         )),
                       ),
@@ -225,7 +229,7 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
   @override
   void initState() {
     isInternetConnected();
-    if(isConnected == true){}
+    if (isConnected == true) {}
     days = _heatmap.getDaysList();
     super.initState();
   }
@@ -246,7 +250,8 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
                     ausfuehrung: list[currentIndex].execution,
                     nameUebung: list[currentIndex].name,
                     dauer: list[currentIndex].dauer,
-                    videoPath: list[currentIndex].videoPath, // Aktualisierter Video-Pfad
+                    videoPath: list[currentIndex]
+                        .videoPath, // Aktualisierter Video-Pfad
                     onBackwardPressed: () {
                       setState(() {
                         if (currentIndex > 0) {
@@ -259,6 +264,8 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
                     },
 
                     onForwardPressed: () async {
+                      print("C Time");
+                      print(_hiveCredit.getControlltime());
                       if (_hiveCredit.getControlltime() + 1 >
                           list[currentIndex].dauer) {
                         await _laxoutBackend

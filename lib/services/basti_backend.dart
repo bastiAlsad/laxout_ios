@@ -534,6 +534,33 @@ class LaxoutBackend {
       print("Problem");
     }
   }
+
+  
+   Future<List?> getSuccessDataAsList() async {
+    String token = _hiveDatabase.getToken();
+    String userUid = _hiveDatabase.getUserUid();
+    String apiUrl = "https://dashboardlaxout.eu.pythonanywhere.com/getsuccessdata";
+    http.Response response = await http.get(
+      Uri.parse(apiUrl),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'token $token',
+        'User-Uid': '${Uri.encodeFull(userUid)}',
+      },
+    );
+    if (response.statusCode == 200) {
+      Map<String, dynamic> decodedData = jsonDecode(response.body);
+      int better = decodedData['better'];
+      int worse = decodedData['worse'];
+      List data = [];
+      data.add(better);
+      data.add(worse);
+      return data;
+    } else {
+      print("Data error");
+      return [40, 60];
+    }
+  }
 }
 
 class LaxoutUser {

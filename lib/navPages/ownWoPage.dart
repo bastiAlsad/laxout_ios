@@ -208,13 +208,7 @@ class _LaxBaumState extends State<LaxBaum> {
                       );
                     }
                     final condition = snapshot.data ?? 0;
-                    if (snapshot.hasData &&
-                        condition == 100 &&
-                        initanimationvisible) {
-                      return initanimationvisible == true
-                          ? VideoPlayer(_controller)
-                          : VideoPlayer(_controller2);
-                    }
+                   
 
                     if (snapshot.hasData && condition < 100) {
                       return initanimationvisible == true

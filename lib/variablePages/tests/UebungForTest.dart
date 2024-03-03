@@ -65,7 +65,7 @@ class _UebungForTestsState extends State<UebungForTests>
     super.initState();
   }
 
-  int time = 0;
+  int timeleft = 0;
   int toPercent = 1;
   double timerWidth = 200;
   bool startvisible = true;
@@ -76,27 +76,38 @@ class _UebungForTestsState extends State<UebungForTests>
   late AnimationController _animationController;
 
   String getTime() {
-    return time.toString();
+    return timeleft.toString();
   }
 
+  bool isTimerRunning = false;
+
   void timer() {
-    Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        if (stoppressed == false) {
-          time++;
-          toPercent++;
-        } else {
-          timer.cancel();
-          time > 15 ? _hiveCredit.addControllTime(30) : () {};
-          if (time == 0 || againpressed == true) {
-            againpressed = false;
-            stopvisible = false;
-            startvisible = true;
-            timer;
+    if (!isTimerRunning) {
+      isTimerRunning = true;
+      Timer.periodic(const Duration(seconds: 1), (timer) {
+        setState(() {
+          if (!stoppressed) {
+            timeleft++;
+            toPercent++;
+          } else {
+            timer.cancel();
+            isTimerRunning = false;
+            
+              timeleft > 15 ? _hiveCredit.putControllTime(30) : () {};
+              
+           
+            if (timeleft == 0 || againpressed) {
+              againpressed = false;
+              stopvisible = false;
+              startvisible = true;
+              isTimerRunning =
+                  false; // Setze den Timer auf nicht gestartet zurück
+              return; // Verlasse die Timer-Funktion, um mehrere Timer-Instanzen zu vermeiden
+            }
           }
-        }
+        });
       });
-    });
+    }
   }
 
   @override
@@ -201,7 +212,7 @@ class _UebungForTestsState extends State<UebungForTests>
                                         176, 224, 230, 1.0),
                                     backgroundColor: Colors.white,
                                     center: Text(
-                                      time.toString(),
+                                      timeleft.toString(),
                                       style: const TextStyle(
                                           fontSize: 30, color: Colors.black),
                                     ),
@@ -255,10 +266,12 @@ class _UebungForTestsState extends State<UebungForTests>
                                         visible: startvisible,
                                         child: InkWell(
                                           onTap: () {
+                                            setState(() {
+                                              startvisible = false;
+                                              stopvisible = true;
+                                              stoppressed = false;
+                                            });
                                             timer();
-                                            startvisible = false;
-                                            stopvisible = true;
-                                            stoppressed = false;
                                           },
                                           child: Container(
                                             width: 100,
@@ -298,10 +311,12 @@ class _UebungForTestsState extends State<UebungForTests>
                                         visible: stopvisible,
                                         child: InkWell(
                                           onTap: () {
+                                            setState(() {
+                                              stopvisible = false;
+                                              stoppressed = true;
+                                              againvisible = true;
+                                            });
                                             timer();
-                                            stopvisible = false;
-                                            stoppressed = true;
-                                            againvisible = true;
                                           },
                                           child: Container(
                                             width: 100,
@@ -345,14 +360,17 @@ class _UebungForTestsState extends State<UebungForTests>
                                           children: [
                                             InkWell(
                                               onTap: () {
-                                                timer();
-                                                stopvisible = false;
-                                                startvisible = true;
-                                                stoppressed = true;
-                                                againvisible = false;
-                                                time = 0;
+                                                setState(() {
+                                                  stopvisible = false;
+                                                  startvisible = true;
+                                                  stoppressed = true;
+                                                  againvisible = false;
+                                                });
+                                                timeleft = 0;
                                                 toPercent = 1;
-                                                _hiveCredit.addCredits(time);
+                                                _hiveCredit
+                                                    .addCredits(timeleft);
+                                                timer();
                                               },
                                               child: Container(
                                                 width: 110,
@@ -394,14 +412,14 @@ class _UebungForTestsState extends State<UebungForTests>
                                               onPressed: () {
                                                 _hiveCredit.hackenSetzen(true);
                                                 _hiveCredit
-                                                    .addControllTime(time);
+                                                    .putControllTime(timeleft);
                                                 _hiveCredit
                                                     .addGenerallControllTime(
-                                                        time);
+                                                        timeleft);
                                                 _hiveCredit
                                                     .putAnalyseValueToHive(
                                                         widget.nameUebung,
-                                                        time);
+                                                        timeleft);
                                                 widget.onForwardPressed();
                                               },
                                               icon: Icon(
@@ -499,7 +517,7 @@ class _UebungForTestsState extends State<UebungForTests>
                                           _hiveCredit.putAnalyseValueToHive(
                                               widget.nameUebung,
                                               covertWH(controller.text));
-                                          _hiveCredit.addControllTime(
+                                          _hiveCredit.putControllTime(
                                               covertWH(controller.text));
                                           _hiveCredit.addGenerallControllTime(
                                               covertWH(controller.text));

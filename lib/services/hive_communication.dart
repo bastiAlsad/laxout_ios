@@ -2815,7 +2815,7 @@ class HiveDatabase {
     _hiveControlltime.put("GENERALLCT", existingCT);
   }
 
-  void addControllTime(int cTime) {
+  void putControllTime(int cTime) {
     _hiveControlltime.put("CONTROLLTIME", cTime);
   }
 

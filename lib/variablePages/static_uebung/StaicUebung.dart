@@ -87,7 +87,7 @@ class _StaticUebungState extends State<StaticUebung> with SingleTickerProviderSt
 
           actualControlltime = widget
               .dauer; // Alte version _hiveCredit.getControlltime() + widget.dauer;
-          _hiveCredit.addControllTime(actualControlltime);
+          _hiveCredit.putControllTime(actualControlltime);
           _hiveCredit.addGenerallControllTime(actualControlltime);
           widget.onForwardPressed();
 
@@ -479,7 +479,7 @@ class _StaticUebungState extends State<StaticUebung> with SingleTickerProviderSt
                                 IconButton(
                                     onPressed: () {
                                       _hiveCredit
-                                          .addControllTime(actualControlltime);
+                                          .putControllTime(actualControlltime);
                                       _hiveCredit.addGenerallControllTime(
                                           actualControlltime);
                                       widget.onForwardPressed();
