@@ -1,8 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:laxout/models/constans.dart';
-import 'package:laxout/navPages/EnterAcess.dart';
-import 'package:laxout/navigation/Bottom_Navigation_Bar.dart';
+import 'package:new_projekt/models/constans.dart';
+import 'package:new_projekt/navPages/EnterAcess.dart';
+import 'package:new_projekt/navigation/Bottom_Navigation_Bar.dart';
+
 
 // ignore: must_be_immutable
 class Datenschutz extends StatefulWidget {
