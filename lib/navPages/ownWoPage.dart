@@ -17,13 +17,14 @@ class _LaxBaumState extends State<LaxBaum> {
   void vibratePhone() async {
     bool? hasVibrator = await Vibration.hasVibrator();
     if (hasVibrator == true) {
-      for(int i =0; i<3; i++){
+      for (int i = 0; i < 3; i++) {
         Vibration.vibrate();
       }
     } else {
       // Das Gerät unterstützt keine Vibration
     }
   }
+
   late VideoPlayerController _controller;
   late VideoPlayerController _controller2;
   late VideoPlayerController _controller3;
@@ -48,6 +49,7 @@ class _LaxBaumState extends State<LaxBaum> {
 
     try {
       await _controller.initialize();
+      _controller.setVolume(0.0);
       _controller.play();
       _controller.addListener(() {
         if (_controller.value.position == _controller.value.duration) {
@@ -69,8 +71,9 @@ class _LaxBaumState extends State<LaxBaum> {
           ..setLooping(true);
 
     try {
-      await _controller2.initialize();
-    } catch (error) {
+      await _controller2.initialize();    
+      _controller2.setVolume(0.0);
+      } catch (error) {
       print("Fehler beim Initialisieren von Video 2: $error");
     }
   }
@@ -92,6 +95,7 @@ class _LaxBaumState extends State<LaxBaum> {
 
     try {
       await _controller3.initialize();
+      _controller3.setVolume(0.0);      
     } catch (error) {
       print("Fehler beim Initialisieren von Video 3: $error");
     }
@@ -192,6 +196,7 @@ class _LaxBaumState extends State<LaxBaum> {
           Expanded(
             child: InkWell(
               onTap: () async {
+                
                 await _backend.pourLaxTree();
               },
               child: AspectRatio(
@@ -208,26 +213,24 @@ class _LaxBaumState extends State<LaxBaum> {
                       );
                     }
                     final condition = snapshot.data ?? 0;
-                   
 
                     if (snapshot.hasData && condition < 100) {
+                      
                       return initanimationvisible == true
                           ? VideoPlayer(_controller)
                           : VideoPlayer(_controller2);
                     }
 
-                   
-
                     if (snapshot.hasData &&
-                        condition == 100 &&
-                        !confettianimationshown) {
+                        condition == 100 ) {
                       _controller2.pause();
                       _controller3.play();
-                      for(int i = 0; i<3; i++){
+                      for (int i = 0; i < 3; i++) {
                         vibratePhone();
                       }
                       return VideoPlayer(_controller3);
                     }
+
                     if (snapshot.hasData &&
                         condition == 100 &&
                         confettianimationshown) {
