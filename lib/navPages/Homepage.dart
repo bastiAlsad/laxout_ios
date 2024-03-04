@@ -4,18 +4,18 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hive/hive.dart';
-import 'package:new_projekt/heatmap/hive.dart';
-import 'package:new_projekt/models/constans.dart';
-import 'package:new_projekt/models/ownWorkoutList.dart';
-import 'package:new_projekt/navigation/Bottom_Navigation_Bar.dart';
-import 'package:new_projekt/services/basti_backend.dart';
-import 'package:new_projekt/services/hive_communication.dart';
-import 'package:new_projekt/variablePages/physio/physioWorkoutEnterpoint.dart';
-import 'package:new_projekt/variablePages/tests/TestEnterpoint.dart';
-import 'package:new_projekt/variablePages/tests/umfrage.dart';
-import '../navigation/Side_Nav_Bar.dart';
-import 'package:new_projekt/variablePages/DesignerItem1.dart';
-import 'package:new_projekt/variablePages/uebungHomeenterpoint.dart';
+import 'package:laxout/heatmap/hive.dart';
+import 'package:laxout/models/constans.dart';
+import 'package:laxout/models/ownWorkoutList.dart';
+import 'package:laxout/navigation/Bottom_Navigation_Bar.dart';
+import 'package:laxout/navigation/Side_Nav_Bar.dart';
+import 'package:laxout/services/basti_backend.dart';
+import 'package:laxout/services/hive_communication.dart';
+import 'package:laxout/variablePages/DesignerItem1.dart';
+import 'package:laxout/variablePages/physio/physioWorkoutEnterpoint.dart';
+import 'package:laxout/variablePages/tests/TestEnterpoint.dart';
+import 'package:laxout/variablePages/tests/umfrage.dart';
+import 'package:laxout/variablePages/uebungHomeenterpoint.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -145,7 +145,7 @@ class _Homepage extends State<Homepage> {
     listUebungen = await _hive.convertWorkoutsToUebungList(toConvert);
     List<String> requiredStuff = [];
     final workoutList = await workouList();
-    
+
     bool kommtVor = false;
     for (int j = 0; j < listUebungen.length; j++) {
       for (int i = 0; i < requiredStuff.length; i++) {
@@ -157,7 +157,7 @@ class _Homepage extends State<Homepage> {
         requiredStuff.add(listUebungen[j].required);
       }
     }
-    if (workoutList.isNotEmpty&&requiredStuff.isEmpty) {
+    if (workoutList.isNotEmpty && requiredStuff.isEmpty) {
       requiredStuff.add("Nichts außer Sie selbst");
     }
     return requiredStuff;
@@ -170,7 +170,7 @@ class _Homepage extends State<Homepage> {
     listUebungen = await _hive.convertStrenghtWorkoutsToUebungList(toConvert);
     List<String> requiredStuff = [];
     final workoutList = await workouListTest();
-    
+
     bool kommtVor = false;
     for (int j = 0; j < listUebungen.length; j++) {
       for (int i = 0; i < requiredStuff.length; i++) {
@@ -182,147 +182,135 @@ class _Homepage extends State<Homepage> {
         requiredStuff.add(listUebungen[j].required);
       }
     }
-    if (workoutList.isNotEmpty&&requiredStuff.isEmpty) {
+    if (workoutList.isNotEmpty && requiredStuff.isEmpty) {
       requiredStuff.add("Nichts außer Sie selbst");
     }
     return requiredStuff;
   }
 
   void showNeededStuff(bool test, Widget aim) {
-    showDialog<AlertDialog>(
-        barrierColor: Colors.white.withOpacity(0),
+    showDialog(
         context: context,
-        builder: (BuildContext context) {
+        builder: ((context) {
           return AlertDialog(
-              backgroundColor: Colors.white,
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8.0))),
-              actions: [
-                SizedBox(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 420,
-                        width: MediaQuery.of(context).size.width - 50,
-                        child: FutureBuilder(
-                          future: test ? requiredTestStuff() : requiredStuff(),
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return Center(
-                                child:
-                                    SpinKitFadingFour(color: Appcolors.primary),
-                              );
-                            } else if (snapshot.connectionState ==
-                                ConnectionState.done) {
-                              List toDisplay = snapshot.data ?? [];
-                              return Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  toDisplay.isNotEmpty
-                                      ? Text(
-                                          "Folgendes wird für dieses Workout benötigt:",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
+            actions: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 420,
+                    width: MediaQuery.of(context).size.width - 50,
+                    child: FutureBuilder(
+                      future: test ? requiredTestStuff() : requiredStuff(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(
+                            child: SpinKitFadingFour(color: Appcolors.primary),
+                          );
+                        } else if (snapshot.connectionState ==
+                            ConnectionState.done) {
+                          List toDisplay = snapshot.data ?? [];
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              toDisplay.isNotEmpty
+                                  ? Text(
+                                      "Folgendes wird für dieses Workout benötigt:",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontFamily: "Laxout", fontSize: 24),
+                                    )
+                                  : Text(
+                                      "In diesem Workout sind keine Übungen.",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontFamily: "Laxout", fontSize: 24),
+                                    ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              SizedBox(
+                                height: 150,
+                                child: ListView.builder(
+                                    itemCount: toDisplay.length,
+                                    itemBuilder: ((context, index) {
+                                      return Center(
+                                        child: Text(
+                                          // ignore: prefer_interpolation_to_compose_strings
+                                          "-" + toDisplay[index],
+                                          style: const TextStyle(
                                               fontFamily: "Laxout",
-                                              fontSize: 24),
-                                        )
-                                      : Text(
-                                          "In diesem Workout sind keine Übungen.",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily: "Laxout",
-                                              fontSize: 24),
+                                              fontSize: 18),
                                         ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  SizedBox(
-                                    height: 150,
-                                    child: ListView.builder(
-                                        itemCount: toDisplay.length,
-                                        itemBuilder: ((context, index) {
-                                          return Center(
-                                            child: Text(
-                                              // ignore: prefer_interpolation_to_compose_strings
-                                              "-" + toDisplay[index],
-                                              style: const TextStyle(
-                                                  fontFamily: "Laxout",
-                                                  fontSize: 18),
-                                            ),
-                                          );
-                                        })),
-                                  ),
-                                  toDisplay.isNotEmpty
-                                      ? InkWell(
-                                          onTap: () =>
-                                              Navigator.pushAndRemoveUntil(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          aim),
-                                                  (route) => false),
-                                          child: Container(
-                                            height: 60,
-                                            width: 130,
-                                            decoration: BoxDecoration(
-                                                color: Appcolors.primary,
-                                                borderRadius:
-                                                    BorderRadius.circular(14)),
-                                            child: const Center(
-                                              child: Text(
-                                                "Starten",
-                                                style: TextStyle(
-                                                    fontSize: 20,
-                                                    fontFamily: "Laxout",
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      : InkWell(
-                                          onTap: () =>
-                                              Navigator.pushAndRemoveUntil(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          MyBottomNavigationBar(
-                                                              startindex: 0)),
-                                                  (route) => false),
-                                          child: Container(
-                                            height: 60,
-                                            width: 130,
-                                            decoration: BoxDecoration(
-                                                color: Appcolors.primary,
-                                                borderRadius:
-                                                    BorderRadius.circular(14)),
-                                            child: const Center(
-                                              child: Text(
-                                                "Zurück",
-                                                style: TextStyle(
-                                                    fontSize: 20,
-                                                    fontFamily: "Laxout",
-                                                    color: Colors.white),
-                                              ),
-                                            ),
+                                      );
+                                    })),
+                              ),
+                              toDisplay.isNotEmpty
+                                  ? InkWell(
+                                      onTap: () => Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => aim),
+                                          (route) => false),
+                                      child: Container(
+                                        height: 60,
+                                        width: 130,
+                                        decoration: BoxDecoration(
+                                            color: Appcolors.primary,
+                                            borderRadius:
+                                                BorderRadius.circular(14)),
+                                        child: const Center(
+                                          child: Text(
+                                            "Starten",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontFamily: "Laxout",
+                                                color: Colors.white),
                                           ),
                                         ),
-                                ],
-                              );
-                            } else {
-                              return Text(
-                                  "Für dieses Workout wird nichts benötigt");
-                            }
-                          },
-                        ),
-                      ),
-                    ],
+                                      ),
+                                    )
+                                  : InkWell(
+                                      onTap: () => Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  MyBottomNavigationBar(
+                                                      startindex: 0)),
+                                          (route) => false),
+                                      child: Container(
+                                        height: 60,
+                                        width: 130,
+                                        decoration: BoxDecoration(
+                                            color: Appcolors.primary,
+                                            borderRadius:
+                                                BorderRadius.circular(14)),
+                                        child: const Center(
+                                          child: Text(
+                                            "Zurück",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontFamily: "Laxout",
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                            ],
+                          );
+                        } else {
+                          return Text(
+                              "Für dieses Workout wird nichts benötigt");
+                        }
+                      },
+                    ),
                   ),
-                )
-              ]);
-        });
+                ],
+              ),
+            ],
+          );
+        }));
   }
 
   bool neverOpened = false;
