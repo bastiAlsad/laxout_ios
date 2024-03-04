@@ -9,8 +9,8 @@ class DesignerItem1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-         navigate();
+      onTap: () {
+        navigate();
       },
       child: Container(
           width: MediaQuery.of(context).size.width / 2 - 30,
@@ -20,7 +20,9 @@ class DesignerItem1 extends StatelessWidget {
               color: Colors.white,
               boxShadow: [
                 const BoxShadow(
-                    color: Colors.white, offset: Offset(-5, -5), blurRadius: 15),
+                    color: Colors.white,
+                    offset: Offset(-5, -5),
+                    blurRadius: 15),
                 BoxShadow(
                     color: Colors.grey.shade300,
                     offset: const Offset(-5, -5),
@@ -29,13 +31,13 @@ class DesignerItem1 extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(5),
-                child: SizedBox(height: 120, child: picture),
+                padding: const EdgeInsets.all(10),
+                child: SizedBox(height: 110, child: picture),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 0),
                 child: SizedBox(
-                  width: double.infinity,
+                    width: double.infinity,
                     height: 60,
                     child: Center(
                         child: Text(
