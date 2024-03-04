@@ -1,10 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:new_projekt/models/constans.dart';
-import 'package:new_projekt/navPages/EnterAcess.dart';
-import 'package:new_projekt/navigation/Bottom_Navigation_Bar.dart';
-
-
+import 'package:laxout/models/constans.dart';
+import 'package:laxout/navPages/EnterAcess.dart';
+import 'package:laxout/navigation/Bottom_Navigation_Bar.dart';
 
 // ignore: must_be_immutable
 class AGB extends StatefulWidget {
@@ -28,6 +26,25 @@ class _AGBState extends State<AGB> {
         bottomOpacity: 0.0,
         elevation: 0.0,
         toolbarHeight: 70,
+        leading: IconButton(
+          onPressed: () {
+            widget.navigateHome
+                ? Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const MyBottomNavigationBar(
+                              startindex: 0,
+                            )),
+                    (route) => false)
+                : Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => const EnterAcess()),
+                    (route) => false);
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
         centerTitle: true,
         title: const Text(
           "AGBs",
@@ -62,7 +79,9 @@ class _AGBState extends State<AGB> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (BuildContext context) =>
-                                        const MyBottomNavigationBar(startindex: 0,)),
+                                        const MyBottomNavigationBar(
+                                          startindex: 0,
+                                        )),
                                 (route) => false)
                             : Navigator.pushAndRemoveUntil(
                                 context,
@@ -93,7 +112,6 @@ class _AGBState extends State<AGB> {
           ),
         ),
       ),
-      
     );
   }
 }
