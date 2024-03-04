@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:new_projekt/models/constans.dart';
 
 class PieChartSample2 extends StatefulWidget {
-  const PieChartSample2({super.key});
+  final  better;
+  final  worse;
+  const PieChartSample2({Key? key, required this.better, required this.worse})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => PieChart2State();
 }
 
-class PieChart2State extends State {
+class PieChart2State extends State<PieChartSample2> {
   int touchedIndex = -1;
 
   @override
@@ -35,8 +38,8 @@ class PieChart2State extends State {
                           touchedIndex = -1;
                           return;
                         }
-                        touchedIndex = pieTouchResponse
-                            .touchedSection!.touchedSectionIndex;
+                        touchedIndex =
+                            pieTouchResponse.touchedSection!.touchedSectionIndex;
                       });
                     },
                   ),
@@ -50,7 +53,6 @@ class PieChart2State extends State {
               ),
             ),
           ),
-          
           const SizedBox(
             width: 28,
           ),
@@ -60,6 +62,7 @@ class PieChart2State extends State {
   }
 
   List<PieChartSectionData> showingSections() {
+   
     return List.generate(2, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 25.0 : 16.0;
@@ -69,8 +72,8 @@ class PieChart2State extends State {
         case 0:
           return PieChartSectionData(
             color: Color.fromRGBO(227, 225, 225, 0.486),
-            value: 40,
-            title: '40%',
+            value: widget.worse/100, 
+            title: '${widget.worse}%',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -82,8 +85,8 @@ class PieChart2State extends State {
         case 1:
           return PieChartSectionData(
             color: Appcolors.primary,
-            value: 30,
-            title: '30%',
+            value: widget.better/100, 
+            title: '${widget.better}%',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -92,7 +95,6 @@ class PieChart2State extends State {
               shadows: shadows,
             ),
           );
-       
         default:
           throw Error();
       }

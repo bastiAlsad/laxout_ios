@@ -207,7 +207,17 @@ class _HeatmapState extends State<Heatmap> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                PieChartSample2(),
+                FutureBuilder(
+                future: _backend.getSuccessDataAsList(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return SpinKitFadingFour(
+                      color: Appcolors.primary,
+                    );
+                  }
+                  final data = snapshot.data ?? []; //better index 0, worse index 1
+                  return PieChartSample2(better: data[0], worse: data[1],);
+                }),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
