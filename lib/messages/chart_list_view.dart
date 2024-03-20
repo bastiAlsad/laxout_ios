@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:laxout/mesagges/receiver_row_view.dart';
-import 'package:laxout/mesagges/sender_row_view.dart';
+import 'package:new_projekt/messages/receiver_row_view.dart';
+import 'package:new_projekt/messages/sender_row_view.dart';
+
 
 class ChatListView extends StatelessWidget {
   final List messageList;

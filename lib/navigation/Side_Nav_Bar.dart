@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:laxout/extras/AGB.dart';
-import 'package:laxout/navPages/AppWrapper.dart';
-import 'package:laxout/navPages/ChatPage.dart';
-import 'package:laxout/services/hive_communication.dart';
+import 'package:new_projekt/extras/AGB.dart';
+import 'package:new_projekt/navPages/AppWrapper.dart';
+import 'package:new_projekt/navPages/ChatPage.dart';
+import 'package:new_projekt/services/hive_communication.dart';
+
 
 import '../extras/Datenschutz.dart';
 

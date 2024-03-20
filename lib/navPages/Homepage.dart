@@ -4,18 +4,19 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hive/hive.dart';
-import 'package:laxout/heatmap/hive.dart';
-import 'package:laxout/models/constans.dart';
-import 'package:laxout/models/ownWorkoutList.dart';
-import 'package:laxout/navigation/Bottom_Navigation_Bar.dart';
-import 'package:laxout/navigation/Side_Nav_Bar.dart';
-import 'package:laxout/services/basti_backend.dart';
-import 'package:laxout/services/hive_communication.dart';
-import 'package:laxout/variablePages/DesignerItem1.dart';
-import 'package:laxout/variablePages/physio/physioWorkoutEnterpoint.dart';
-import 'package:laxout/variablePages/tests/TestEnterpoint.dart';
-import 'package:laxout/variablePages/tests/umfrage.dart';
-import 'package:laxout/variablePages/uebungHomeenterpoint.dart';
+import 'package:new_projekt/heatmap/hive.dart';
+import 'package:new_projekt/models/constans.dart';
+import 'package:new_projekt/models/ownWorkoutList.dart';
+import 'package:new_projekt/navigation/Bottom_Navigation_Bar.dart';
+import 'package:new_projekt/navigation/Side_Nav_Bar.dart';
+import 'package:new_projekt/services/basti_backend.dart';
+import 'package:new_projekt/services/hive_communication.dart';
+import 'package:new_projekt/variablePages/DesignerItem1.dart';
+import 'package:new_projekt/variablePages/physio/physioWorkoutEnterpoint.dart';
+import 'package:new_projekt/variablePages/tests/TestEnterpoint.dart';
+import 'package:new_projekt/variablePages/tests/umfrage.dart';
+import 'package:new_projekt/variablePages/uebungHomeenterpoint.dart';
+
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);

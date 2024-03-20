@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laxout/models/constans.dart';
+import 'package:new_projekt/models/constans.dart';
+
 
 class SenderRowView extends StatelessWidget {
   const SenderRowView({Key? key, required this.senderMessage})
