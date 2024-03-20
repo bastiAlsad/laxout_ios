@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:new_projekt/extras/AGB.dart';
-import 'package:new_projekt/navPages/AppWrapper.dart';
-import 'package:new_projekt/services/hive_communication.dart';
-
+import 'package:laxout/extras/AGB.dart';
+import 'package:laxout/navPages/AppWrapper.dart';
+import 'package:laxout/navPages/ChatPage.dart';
+import 'package:laxout/services/hive_communication.dart';
 
 import '../extras/Datenschutz.dart';
 
@@ -56,7 +56,9 @@ class _SideNavBarState extends State<SideNavBar> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const MyBottomNavigationBar(startindex: 0,)));
+                      builder: (context) => const MyBottomNavigationBar(
+                            startindex: 0,
+                          )));
             },
           ),
           ListTile(
@@ -97,11 +99,29 @@ class _SideNavBarState extends State<SideNavBar> {
             },
           ),
           ListTile(
+            leading: Badge(
+              label: Text("1"),
+              isLabelVisible: true,
+              child: Icon(
+                Icons.chat,
+                color: Colors.black,
+              ),
+            ),
+            title: Text("Fragen"),
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => ChatPage()),
+                  (route) => false);
+            },
+          ),
+          ListTile(
             leading: const Icon(Icons.logout, color: Colors.black),
             title: const Text('Logout'),
             onTap: () {
               _hive.removeUIDTOKEN();
-               Navigator.pushAndRemoveUntil(
+              Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
                       builder: (BuildContext context) => Wrapper()),
