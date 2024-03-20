@@ -4,7 +4,6 @@ import 'package:new_projekt/messages/message_data_model.dart';
 import 'package:new_projekt/models/constans.dart';
 import 'package:new_projekt/navigation/Bottom_Navigation_Bar.dart';
 
-
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
 
@@ -148,5 +147,4 @@ class _ChatPageState extends State<ChatPage> {
         ],
       ),
     );
-  }
-}
+  }}
