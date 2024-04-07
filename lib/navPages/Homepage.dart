@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hive/hive.dart';
 import 'package:new_projekt/heatmap/hive.dart';
+import 'package:new_projekt/messages/message_data_model.dart';
 import 'package:new_projekt/models/constans.dart';
 import 'package:new_projekt/models/ownWorkoutList.dart';
 import 'package:new_projekt/navigation/Bottom_Navigation_Bar.dart';
@@ -16,7 +17,6 @@ import 'package:new_projekt/variablePages/physio/physioWorkoutEnterpoint.dart';
 import 'package:new_projekt/variablePages/tests/TestEnterpoint.dart';
 import 'package:new_projekt/variablePages/tests/umfrage.dart';
 import 'package:new_projekt/variablePages/uebungHomeenterpoint.dart';
-
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -104,8 +104,16 @@ class _Homepage extends State<Homepage> {
     return await _laxoutBackend.returnProgressWeek();
   }
 
+ 
+  Future<void> inizializeNewMessages() async {
+    new_message = await _laxoutBackend.checkNewMessages();
+    print("VALUE NEW MESSAGES $new_message");
+  }
+
   @override
   void initState() {
+    inizializeNewMessages();
+
     isInternetConnected();
     isConnected ? putConvertedListInHive() : () {};
     isConnected ? putConvertedTestListInHive() : () {};
@@ -345,15 +353,27 @@ class _Homepage extends State<Homepage> {
             SizedBox(
               height: 45,
               width: 45,
-              child: Badge(
+              child: FutureBuilder(
+                future: inizializeNewMessages(),
+                builder: (context, snapshot) {
+                if(snapshot.connectionState == ConnectionState.waiting){
+                 return IconButton(
+                     onPressed: () {
+                       _scaffoldKey.currentState?.openDrawer();
+                     },
+                     icon: Image.asset('assets/images/drawer.png'));
+                }else{
+                  return Badge(
                 label: Text("1"),
-                isLabelVisible: true,
+                isLabelVisible: new_message,
                 child: IconButton(
                     onPressed: () {
                       _scaffoldKey.currentState?.openDrawer();
                     },
                     icon: Image.asset('assets/images/drawer.png')),
-              ),
+              );
+                }
+              },)
             ),
           ],
         ),
@@ -454,8 +474,8 @@ class _Homepage extends State<Homepage> {
                     ),
                     const Positioned(
                         child: Text(
-                      "Physio Workout",
-                      style: TextStyle(fontFamily: "Laxout", fontSize: 35),
+                      "Kursprogramm",
+                      style: TextStyle(fontFamily: "Laxout", fontSize: 30, ),textAlign: TextAlign.left,
                     )),
                     Positioned(
                         left: 0,

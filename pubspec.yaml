@@ -17,7 +17,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 2.0.0+1
+version: 1.4.0+1
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
@@ -31,6 +31,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -53,6 +54,8 @@ dependencies:
   flutter_oss_licenses: ^2.0.1
   fl_chart: ^0.64.0
   http: ^1.1.0
+  wakelock: ^0.6.2
+  audioplayers: ^5.2.1
 
   
   
@@ -88,6 +91,7 @@ flutter:
     - assets/videos/
     - assets/images/
     - assets/fonts/
+    - assets/audio/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

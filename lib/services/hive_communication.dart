@@ -2938,4 +2938,14 @@ void putSuccesIndex(int value) {
     return value;
   }
 
+void putIndexPhysioList(int value) {
+    _hiveTest.put("INDEXLIST", value);
+  }
+
+  int getIndexPhysioList() {
+    var hiveData = _hiveTest.get('INDEXLIST');
+    int value = hiveData ?? 0;
+    return value;
+  }
+
 }

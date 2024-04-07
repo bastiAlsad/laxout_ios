@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:new_projekt/extras/AGB.dart';
+import 'package:new_projekt/messages/message_data_model.dart';
 import 'package:new_projekt/navPages/AppWrapper.dart';
 import 'package:new_projekt/navPages/ChatPage.dart';
 import 'package:new_projekt/services/hive_communication.dart';
@@ -102,7 +103,7 @@ class _SideNavBarState extends State<SideNavBar> {
           ListTile(
             leading: Badge(
               label: Text("1"),
-              isLabelVisible: true,
+              isLabelVisible: new_message,
               child: Icon(
                 Icons.chat,
                 color: Colors.black,

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:new_projekt/heatmap/funktions.dart';
@@ -7,7 +8,7 @@ import 'package:new_projekt/heatmap/hive.dart';
 import 'package:new_projekt/models/constans.dart';
 import 'package:new_projekt/services/basti_backend.dart';
 import 'package:new_projekt/services/hive_communication.dart';
-
+import 'package:wakelock/wakelock.dart';
 import 'package:new_projekt/variablePages/Uebung.dart';
 import 'package:new_projekt/variablePages/tests/Erfolgskontrolle.dart';
 import 'package:vibration/vibration.dart';
@@ -136,6 +137,13 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
                         currentVideoPath = list[currentIndex]
                             .videoPath; // Aktualisierung des Video-Pfads
                       });
+                      _hive.putIndexPhysioList(currentIndex);
+                            print("####################################################################################################");
+                            print("####################################################################################################");
+                            print("####################################################################################################");
+                            print("####################################################################################################");
+                            print("After forward pressed:${_hive.getIndexPhysioList()}");
+                            print("Current index: $currentIndex");
                       Navigator.of(context).pop();
                     },
                     child: Container(
@@ -222,16 +230,33 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
   }
 
   final HiveDatabase _hive = HiveDatabase();
+  AudioPlayer player = AudioPlayer();
   int currentIndex = 0;
   int progressIndex = 0;
   String currentVideoPath = "";
 
+  Future<void> _play() async {
+    await player.resume();
+  }
+
   @override
   void initState() {
+    Wakelock.enable();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await player.setSource(AssetSource('assets/audio/exercisefinished.mp3'));
+    });
     isInternetConnected();
     if (isConnected == true) {}
     days = _heatmap.getDaysList();
     super.initState();
+    currentIndex = _hive.getIndexPhysioList();
+    progressIndex = currentIndex;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    Wakelock.disable();
   }
 
   @override
@@ -255,8 +280,10 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
                     onBackwardPressed: () {
                       setState(() {
                         if (currentIndex > 0) {
+                          
                           currentIndex--;
                           progressIndex--;
+                          _hive.putIndexPhysioList(currentIndex);
                           currentVideoPath = list[currentIndex]
                               .videoPath; // Aktualisierung des Video-Pfads
                         }
@@ -265,6 +292,7 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
 
                     onForwardPressed: () async {
                       print("C Time");
+                       _play();
                       print(_hiveCredit.getControlltime());
                       if (_hiveCredit.getControlltime() + 1 >
                           list[currentIndex].dauer) {
@@ -279,13 +307,22 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
                         setState(() {
                           if (currentIndex < list.length - 1) {
                             currentIndex++;
+                            _play();
                             vibratePhone();
                             progressIndex++;
+                            _hive.putIndexPhysioList(currentIndex);
+                            print("####################################################################################################");
+                            print("####################################################################################################");
+                            print("####################################################################################################");
+                            print("####################################################################################################");
+                            print("After forward pressed:${_hive.getIndexPhysioList()}");
+                            print("Current index: $currentIndex");
                             currentVideoPath = list[currentIndex]
                                 .videoPath; // Aktualisierung des Video-Pfads
                           } else {
                             progressIndex++;
                             dialogShow();
+                            _hive.putIndexPhysioList(0);
                             if (_hiveCredit.getGenerallControlltime() >
                                 getMinControllTime()) {
                               finishWorkout();

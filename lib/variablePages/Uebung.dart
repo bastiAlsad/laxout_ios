@@ -146,8 +146,7 @@ void timer() {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20)),
-                child: VideoWidget(
-                    looping: widget.looping, videoData: widget.videoPath ?? "Error",)),
+                child: OnlineVideoPlayer(videoPath: widget.videoPath!, looping: widget.looping,)),
           ),
           Expanded(
             child: Align(
@@ -628,6 +627,7 @@ class _VideoWidgetState extends State<VideoWidget> {
   }
 }
 
+//
 
 class LoopingVideo extends StatefulWidget {
   final bool looping;
@@ -696,5 +696,60 @@ class _LoopingVideoState extends State<LoopingVideo> {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+}
+
+
+class OnlineVideoPlayer extends StatefulWidget {
+  final bool looping;
+  final String videoPath;
+
+  const OnlineVideoPlayer({super.key, required this.looping, required this.videoPath});
+
+  @override
+  _OnlineVideoPlayerState createState() => _OnlineVideoPlayerState();
+}
+
+class _OnlineVideoPlayerState extends State<OnlineVideoPlayer> {
+  late VideoPlayerController _controller;
+
+ 
+
+  @override
+  void initState() {
+    super.initState();
+    print("URL: ${'https://dashboardlaxout.eu.pythonanywhere.com/static/${widget.videoPath}'}");
+    _controller = VideoPlayerController.networkUrl(
+      Uri.parse(
+          'https://dashboardlaxout.eu.pythonanywhere.com/static/${widget.videoPath}'),
+      
+      videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
+    );
+
+    _controller.addListener(() {
+      setState(() {});
+    });
+    _controller.setLooping(widget.looping);
+    _controller.initialize();
+    _controller.play();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+     decoration: BoxDecoration(
+      borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20))
+     ),
+      child: AspectRatio(
+        aspectRatio: _controller.value.aspectRatio,
+        child: VideoPlayer(_controller),
+      ),
+    );
   }
 }

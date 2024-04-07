@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:new_projekt/extras/AGB.dart';
 import 'package:new_projekt/extras/Datenschutz.dart';
 import 'package:new_projekt/models/constans.dart';
-import 'package:new_projekt/models/textfield.dart';
+// import 'package:new_projekt/models/textfield.dart';
 import 'package:new_projekt/navigation/Bottom_Navigation_Bar.dart';
 import 'package:new_projekt/services/basti_backend.dart';
 import 'package:new_projekt/services/hive_communication.dart';
@@ -26,7 +26,7 @@ class _EnterAcessState extends State<EnterAcess> {
     });
   }
 
-  final TextEditingController _controller = TextEditingController();
+
   bool neverOpened = false;
   final HiveDatabase _hive = HiveDatabase();
   bool registert = false;
@@ -38,19 +38,6 @@ class _EnterAcessState extends State<EnterAcess> {
       return true;
     } else {
       return false;
-    }
-  }
-
-  void pasteFromClipboard() async {
-    print("aufgerufen");
-    ClipboardData? clipboardData =
-        await Clipboard.getData(Clipboard.kTextPlain);
-    // Wenn Daten vorhanden sind, setze sie in das Textfeld ein
-    if (clipboardData != null && clipboardData.text != null) {
-      setState(() {
-        print("text zugewiesen");
-        _controller.text = clipboardData.text!;
-      });
     }
   }
 
@@ -104,14 +91,49 @@ class _EnterAcessState extends State<EnterAcess> {
             );
           }));
     }
+     Future<void> authenticateAfterError() async {
+      print("autehntication");
+      bool check = await _bastiBackend.authenticateUser("3a3d824d-917e-47b7-a4e1-d4fa84429418");
+      if (check == true) {
+        navigate();
+      } else {
+        print("error");
+      }
+    }
 
-    void initialize(String code) async {
+    Future<void> authenticate(String code) async {
+      print("autehntication");
       bool check = await _bastiBackend.authenticateUser(code);
       if (check == true) {
         navigate();
       } else {
-        showErrorMessage("Bitte geben Sie einen korrekten Code ein oder nutzen Sie die App ohne Code.");
+        authenticateAfterError();//   3a3d824d-917e-47b7-a4e1-d4fa84429418
       }
+    }
+
+    Future<String> pasteFromClipboard() async {
+      print("aufgerufen");
+      String text = "";
+      ClipboardData? clipboardData =
+          await Clipboard.getData(Clipboard.kTextPlain);
+      // Wenn Daten vorhanden sind, setze sie in das Textfeld ein
+      if (clipboardData != null && clipboardData.text != null) {
+        setState(() {
+          print("text zugewiesen:");
+          text = clipboardData.text!;
+          print(text);
+        });
+
+        return text;
+      } else {
+        return text;
+      }
+    }
+
+    Future<void> inizialize()async{
+      print("aufgerufen inizialize");
+      String code = await pasteFromClipboard();
+      await authenticate(code);
     }
 
     return Scaffold(
@@ -120,12 +142,18 @@ class _EnterAcessState extends State<EnterAcess> {
         backgroundColor: Colors.white,
         elevation: 0,
         toolbarHeight: 80,
-        title: const Padding(
+        title:  Padding(
           padding: EdgeInsets.only(top: 20, bottom: 20),
-          child: Text(
-            "Willkommen",
-            style: TextStyle(
-                color: Colors.black, fontSize: 45, fontFamily: "Laxout"),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                "Willkommen",
+                style: TextStyle(
+                    color: Colors.black, fontSize: 45, fontFamily: "Laxout"),
+              ),
+              SizedBox(height: 77, width: 77, child: Image.asset("assets/images/Logoohneschrift.png"),),
+            ],
           ),
         ),
         centerTitle: true,
@@ -135,38 +163,39 @@ class _EnterAcessState extends State<EnterAcess> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 17),
-              child: Container(
-                height: 50,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Appcolors.primary, width: 4),
-                    borderRadius: BorderRadius.circular(24)),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                          child: MyTextField(
-                              controller: _controller,
-                              text: "Bitte Praxiscode eingeben",
-                              obscureText: false,
-                              fontSize: 14)),
-                      IconButton(
-                          onPressed: () {
-                            pasteFromClipboard();
-                          },
-                          icon:
-                              Image.asset("assets/images/Logoohneschrift.png")),
-                      const SizedBox(
-                        width: 10,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 17),
+            //   child: Container(
+            //     height: 50,
+            //     decoration: BoxDecoration(
+            //         color: Colors.white,
+            //         border: Border.all(color: Appcolors.primary, width: 4),
+            //         borderRadius: BorderRadius.circular(24)),
+            //     child: Center(
+            //       child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         children: [
+            //           Expanded(
+            //               child: MyTextField(
+            //                   controller: _controller,
+            //                   text: "Bitte Praxiscode eingeben",
+            //                   obscureText: false,
+            //                   fontSize: 14)),
+            //           IconButton(
+            //               onPressed: () {
+            //                 pasteFromClipboard();
+            //               },
+            //               icon:
+            //                   Image.asset("assets/images/Logoohneschrift.png")),
+            //           const SizedBox(
+            //             width: 10,
+            //           )
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
             Expanded(child: Image.asset("assets/images/enterAccesilu.png")),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -270,7 +299,7 @@ class _EnterAcessState extends State<EnterAcess> {
                     InkWell(
                       onTap: () {
                         if (checkboxValue == true) {
-                          initialize(_controller.text);
+                          inizialize();
                         } else {
                           showErrorMessage(
                               "Bitte Stimmen Sie den AGBs und der Datenschutzerklärung zu.");
@@ -293,22 +322,22 @@ class _EnterAcessState extends State<EnterAcess> {
                         ),
                       ),
                     ),
-                    TextButton(
-                        onPressed: () {
-                          if (checkboxValue == true) {
-                            initialize("3a3d824d-917e-47b7-a4e1-d4fa84429418");
-                          } else {
-                            showErrorMessage(
-                                "Bitte Stimmen Sie den AGBs und der Datenschutzerklärung zu.");
-                          }
-                        },
-                        child: Text(
-                          "App ohne Code nutzen",
-                          style: TextStyle(
-                              fontFamily: "Laxout",
-                              color: Colors.grey.shade400,
-                              fontSize: 13),
-                        ))
+                    // TextButton(
+                    //     onPressed: () {
+                    //       if (checkboxValue == true) {
+                    //         authenticate("3a3d824d-917e-47b7-a4e1-d4fa84429418");
+                    //       } else {
+                    //         showErrorMessage(
+                    //             "Bitte Stimmen Sie den AGBs und der Datenschutzerklärung zu.");
+                    //       }
+                    //     },
+                    //     child: Text(
+                    //       "App ohne Code nutzen",
+                    //       style: TextStyle(
+                    //           fontFamily: "Laxout",
+                    //           color: Colors.grey.shade400,
+                    //           fontSize: 13),
+                    //     ))
                   ],
                 ),
               ],
