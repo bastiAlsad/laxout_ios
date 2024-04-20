@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:new_projekt/extras/AGB.dart';
 import 'package:new_projekt/messages/message_data_model.dart';
+import 'package:new_projekt/models/constans.dart';
 import 'package:new_projekt/navPages/AppWrapper.dart';
 import 'package:new_projekt/navPages/ChatPage.dart';
 import 'package:new_projekt/services/hive_communication.dart';
-
 
 import '../extras/Datenschutz.dart';
 
@@ -41,8 +41,8 @@ class _SideNavBarState extends State<SideNavBar> {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(176, 224, 230, 1.0),
+            decoration: BoxDecoration(
+              color: Appcolors.primary,
             ),
             child: CircleAvatar(
                 backgroundColor: Colors.white,
@@ -122,12 +122,110 @@ class _SideNavBarState extends State<SideNavBar> {
             leading: const Icon(Icons.logout, color: Colors.black),
             title: const Text('Logout'),
             onTap: () {
-              _hive.removeUIDTOKEN();
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => Wrapper()),
-                  (route) => false);
+              showDialog(
+                  context: context,
+                  builder: ((context) => AlertDialog(
+                        title: Text(
+                          "Ausloggen bestätigen",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 22,
+                              fontFamily: "Laxout"),
+                        ),
+                        actions: [
+                          Column(
+                            children: [
+                              Text(
+                                  "Sind Sie sich sicher, dass Sie sich ausloggen möchten? Ihre Daten gehen möglicherweise verloren.",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontFamily: "Laxout")),
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 15),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Container(
+                                    width: 150,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                        color: Appcolors.primary,
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: Center(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text("Abbruch",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 15,
+                                                  fontFamily: "Laxout")),
+                                          Icon(
+                                            Icons.cancel,
+                                            size: 15,
+                                            color: Colors.white,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 15),
+                                child: InkWell(
+                                  onTap: () {
+                                    _hive.putIndexPhysioList(0);
+                                    _hive.clearControllTime();
+                                    _hive.clearGenerallControllTime();
+                                    _hive.removeUIDTOKEN();
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                Wrapper()),
+                                        (route) => false);
+                                  },
+                                  child: Container(
+                                    width: 150,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                        color: Appcolors.primary,
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: Center(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text("Loggout",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 15,
+                                                  fontFamily: "Laxout")),
+                                          Icon(
+                                            Icons.logout,
+                                            size: 15,
+                                            color: Colors.white,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      )));
             },
           ),
         ],

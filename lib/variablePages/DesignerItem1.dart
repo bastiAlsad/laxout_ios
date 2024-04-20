@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_projekt/models/constans.dart';
 
 class DesignerItem1 extends StatelessWidget {
   final Widget picture;
@@ -58,7 +59,7 @@ class DesignerItem1 extends StatelessWidget {
                   width: double.infinity,
                   height: 35,
                   decoration: BoxDecoration(
-                      color: const Color.fromRGBO(176, 224, 230, 1.0),
+                      color: Appcolors.primary,
                       borderRadius: BorderRadius.circular(25)),
                   child: const Center(
                       child: Text(

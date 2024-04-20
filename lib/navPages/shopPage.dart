@@ -346,7 +346,7 @@ class _InternetShopPageState extends State<InternetShopPage> {
                                     width: 140,
                                     decoration: BoxDecoration(
                                       color:
-                                          const Color.fromRGBO(176, 224, 230, 1.0),
+                                          Appcolors.primary,
                                       borderRadius: BorderRadius.circular(25),
                                     ),
                                     child: const Center(
@@ -374,7 +374,7 @@ class _InternetShopPageState extends State<InternetShopPage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromRGBO(176, 224, 230, 1.0),
+        backgroundColor: Appcolors.primary,
         onPressed: () {
           Navigator.pushAndRemoveUntil(
               context,

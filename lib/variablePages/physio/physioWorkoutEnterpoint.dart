@@ -239,8 +239,87 @@ class _PhysioEnterPointState extends State<PhysioEnterPoint> {
     await player.resume();
   }
 
+
+
+
+  int tutorialCount = 0;
+String text1 = "Nun können wir endlich mit Ihrem Workout loslegen!";//Title text
+String text2 = "Sie sehen nun immer eine passende Videoanleitung, die die Übung vormacht. Außerdem haben Sie einen Timer/Anzahl der Wiederholungen, die Ihnen verrät wie oft bzw. wie lange Sie eine Übung machen sollen. Ist dieser Timer abgelaufen, oder haben Sie die Anzahl an auszuführenden Wiederhohlungen gemacht, springt die App automatisch zur nächsten Übung.";//Body text
+String text3 = "Weiter"; //Button text
+  void showWelcomeDialog(){
+    showDialog(
+        context: context,
+        builder: ((context) {
+          return AlertDialog(
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+            title: Text(text1,textAlign: TextAlign.center, style: TextStyle(fontFamily: "Laxout", fontSize: 22, color: Colors.black),),
+            actions: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(text2,textAlign: TextAlign.center, style: TextStyle(fontFamily: "Laxout", fontSize: 14,color: Colors.black),),
+                  SizedBox(height: 20,),
+                  InkWell(
+                    onTap: (){
+                      tutorialCount ++;
+                      if(tutorialCount == 1){
+                        setState(() {
+                          text1 = "Was wenn ich eine Übung unpassend finde ?";
+                          text2 = "Kein Problem! Mit den Pfeiltasten, die nach links und rechts zeigen, können Sie zwischen den einzelnen Übungen hin und her springen. Möchten Sie allerdings eine Übung überspringen, wird das vermerkt.";
+                          text3 = "Weiter";
+                        });
+                        Navigator.of(context).pop();
+                        showWelcomeDialog();
+                      }
+                      if(tutorialCount == 2){
+                        setState(() {
+                          text1 = "Tipp";
+                          text2 = "Wenn Sie Ihr Handy während der Übung nicht in der Hand halten wollen, können Sie Ihr Handy auf laut stellen und die App vibriert sobald der Timer abgelaufen ist.";
+                          text3 = "Weiter";
+                        });
+                        Navigator.of(context).pop();
+                        showWelcomeDialog();
+                      }
+
+                      
+                      if(tutorialCount == 3){
+                        setState(() {
+                          text1 = "Und eins noch:";
+                          text2 = "Wenn Sie wissen möchten, ob es bei einer Übung etwas zu beachten gibt, können Sie auf die Glühbirne links unten tippen, um sich einen detailierten Ausführungstext anzeigen zu lassen. Jetzt lassen Sie uns aber mit den Übungen starten!";
+                          text3 = "Starten";
+                        });
+                        Navigator.of(context).pop();
+                        showWelcomeDialog();
+                      }
+                      if(tutorialCount == 4){
+                        Navigator.of(context).pop();
+                      }
+                    },
+                    child: Container(
+                      height: 55,
+                      width: 120,
+                      decoration: BoxDecoration(color: Appcolors.primary, borderRadius: BorderRadius.circular(20),),
+                      child: Center(child: Text(text3, style: TextStyle(color: Colors.white, fontSize: 16),),),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          );
+        }));
+  }
+
+bool showTutorial = false;
   @override
   void initState() {
+    showTutorial = !_hive.getphysioEnterPointWasOpened();
+    _hive.physioEnterPointWasOpened();
+    showTutorial? WidgetsBinding.instance.addPostFrameCallback((_) {
+      showWelcomeDialog();
+    }):(){};
     Wakelock.enable();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await player.setSource(AssetSource('assets/audio/exercisefinished.mp3'));

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:new_projekt/models/constans.dart';
 import 'package:new_projekt/services/basti_backend.dart';
+import 'package:new_projekt/services/hive_communication.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:vibration/vibration.dart';
 import 'package:video_player/video_player.dart';
@@ -101,8 +102,77 @@ class _LaxBaumState extends State<LaxBaum> {
     }
   }
 
+    int tutorialCount = 0;
+String text1 = "Der LaxBaum";//Title text
+String text2 = "Neben den 100 LaxCoins haben Sie zusätzlich ein paar Wassertropfen für den LaxBaum bekommen. Laxout hat Ihnen diesen Baum anvertraut und hofft das Sie ihm stets genügend Wasser geben und sein Zustand nie bei 0% ist.";//Body text
+String text3 = "Fortfahren"; //Button text
+  void showWelcomeDialog(){
+    showDialog(
+        context: context,
+        builder: ((context) {
+          return AlertDialog(
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+            title: Text(text1,textAlign: TextAlign.center, style: TextStyle(fontFamily: "Laxout", fontSize: 22, color: Colors.black),),
+            actions: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(text2,textAlign: TextAlign.center, style: TextStyle(fontFamily: "Laxout", fontSize: 14,color: Colors.black),),
+                  SizedBox(height: 20,),
+                  InkWell(
+                    onTap: (){
+                      tutorialCount ++;
+                      if(tutorialCount == 1){
+                        setState(() {
+                          text1 = "Warum soll ich mich um den Baum kümmern?";
+                          text2 = "Der LaxBaum ist nicht nur als Spiegel Ihrer persönlichen Gesundheit angedacht, sondern produziert Ihnen zusätzlich LaxCoins, mit denen Sie sich echte Coupons aus dem Shop kaufen können. Die derzeitige tägliche Produktion an LaxCoins wird rechts unten neben dem Zustand des Baumes angezeigt.";
+                          text3 = "Weiter";
+                        });
+                        Navigator.of(context).pop();
+                        showWelcomeDialog();
+                      }
+                      if(tutorialCount == 2){
+                        setState(() {
+                          text1 = "Lassen Sie uns den Baum gießen!";
+                          text2 = "Sie können den Baum durch Tippen auf die Pflanze gießen. Vorraussetzung ist jedoch, dass Sie mehr als 10 Wassertropfen haben.";
+                          text3 = "Los";
+                        });
+                        Navigator.of(context).pop();
+                        showWelcomeDialog();
+                      }
+                      if(tutorialCount == 3){
+                        Navigator.of(context).pop();
+                      }
+                    },
+                    child: Container(
+                      height: 55,
+                      width: 120,
+                      decoration: BoxDecoration(color: Appcolors.primary, borderRadius: BorderRadius.circular(20),),
+                      child: Center(child: Text(text3, style: TextStyle(color: Colors.white, fontSize: 16),),),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          );
+        }));
+  }
+
+
+ bool showTutorial = false;
+final HiveDatabase _hive = HiveDatabase();
+
+
   @override
   void initState() {
+    showTutorial = !_hive.getlaxbaumWasOpened();
+    _hive.laxbaumWasOpened();
+    showTutorial? WidgetsBinding.instance.addPostFrameCallback((_) {
+      showWelcomeDialog();
+    }):(){};
     super.initState();
     _initializeVideoPlayer();
     _initializeVideoPlayer2();
@@ -277,12 +347,12 @@ class _LaxBaumState extends State<LaxBaum> {
                               animateFromLastPercent: true,
                               lineWidth: 10,
                               progressColor:
-                                  const Color.fromRGBO(176, 224, 230, 1.0),
+                                  Appcolors.primary,
                               backgroundColor: Colors.white,
                               center: Text(
                                 "$data%",
                                 style: TextStyle(
-                                    fontFamily: "Laxout", fontSize: 20),
+                                    fontFamily: "Laxout", fontSize: 18),
                               ),
                             );
                           } else {
@@ -322,12 +392,12 @@ class _LaxBaumState extends State<LaxBaum> {
                               animateFromLastPercent: true,
                               lineWidth: 10,
                               progressColor:
-                                  const Color.fromRGBO(176, 224, 230, 1.0),
+                                  Appcolors.primary,
                               backgroundColor: Colors.white,
                               center: Text(
                                 "${data * 1.5}/T",
                                 style: TextStyle(
-                                    fontFamily: "Laxout", fontSize: 20),
+                                    fontFamily: "Laxout", fontSize: 18),
                               ),
                             );
                           } else {

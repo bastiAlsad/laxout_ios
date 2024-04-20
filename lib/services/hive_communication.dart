@@ -2948,4 +2948,55 @@ void putIndexPhysioList(int value) {
     return value;
   }
 
+  //Tutorial Logik
+  void appWasOpened() {
+    _hiveTest.put("EVEROPENED", true);
+  }
+
+  bool checkEverOpened() {
+    var hiveData = _hiveTest.get('EVEROPENED');
+    bool value = hiveData ?? false;
+    return value;
+  }
+
+  void umfrageWasOpened() {
+    _hiveTest.put("UMFRAGEOPENED", true);
+  }
+
+  bool getUmfrageWasOpened() {
+    var hiveData = _hiveTest.get('UMFRAGEOPENED');
+    bool value = hiveData ?? false;
+    return value;
+  }
+
+    void physioEnterPointWasOpened() {
+    _hiveTest.put("PHYSIOWASOPENED", true);
+  }
+
+  bool getphysioEnterPointWasOpened() {
+    var hiveData = _hiveTest.get('PHYSIOWASOPENED');
+    bool value = hiveData ?? false;
+    return value;
+  }
+
+  void erfolgskontrolleWasOpened() {
+    _hiveTest.put("ERFOLGWASOPENED", true);
+  }
+
+  bool geterfolgskontrolleWasOpened() {
+    var hiveData = _hiveTest.get('ERFOLGWASOPENED');
+    bool value = hiveData ?? false;
+    return value;
+  }
+
+  void laxbaumWasOpened() {
+    _hiveTest.put("LAXBAUMWASOPENED", true);
+  }
+
+  bool getlaxbaumWasOpened() {
+    var hiveData = _hiveTest.get('LAXBAUMWASOPENED');
+    bool value = hiveData ?? false;
+    return value;
+  }
+
 }

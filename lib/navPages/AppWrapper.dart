@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:new_projekt/navPages/EnterAcess.dart';
+import 'package:new_projekt/navPages/PreEnterAcess.dart';
 import 'package:new_projekt/navigation/Bottom_Navigation_Bar.dart';
 import 'package:new_projekt/services/basti_backend.dart';
 import 'package:new_projekt/services/hive_communication.dart';
@@ -53,6 +53,6 @@ class _WrapperState extends State<Wrapper> {
 
   @override
   Widget build(BuildContext context) {
-    return registert ? const MyBottomNavigationBar(startindex: 0,) : const EnterAcess();
+    return registert ? const MyBottomNavigationBar(startindex: 0,) : const Question();
   }
 }

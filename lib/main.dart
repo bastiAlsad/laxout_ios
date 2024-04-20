@@ -20,6 +20,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: const Wrapper(), // ändern Wrapper(),
       theme: ThemeData(
         textTheme: const TextTheme(

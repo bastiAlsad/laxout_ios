@@ -104,9 +104,9 @@ class _HeatmapState extends State<Heatmap> {
               showText: true,
               scrollable: true,
               size: 45,
-              colorsets: const {
+              colorsets:  {
                 0: Colors.transparent,
-                1: Color.fromRGBO(176, 224, 230, 1.0),
+                1: Appcolors.primary,
               },
               onClick: (value) {
                 ScaffoldMessenger.of(context)

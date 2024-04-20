@@ -8,8 +8,8 @@ import 'hive_communication.dart';
 
 class LaxoutBackend {
   String serverAddress = "http://192.168.178.41:8000";
-  String urlproduction = "https://dashboardlaxout.eu.pythonanywhere.com/";
-  String url = "http://192.168.178.41:8000";
+  String urlproduction = "https://dashboardlaxout.eu.pythonanywhere.com";
+  String url = "https://dashboardlaxout.eu.pythonanywhere.com";
   final HiveDatabase _hiveDatabase = HiveDatabase();
 
   Future<bool> authenticateUser(String uid) async {
@@ -635,6 +635,30 @@ class LaxoutBackend {
     }
     return false;
   }
+
+Future<bool> authenticateUserThroughApp()async{
+   String apiUrl = '$url/createuserapp';
+    final http.Response response = await http.post(
+      Uri.parse(apiUrl),
+      headers: {'Content-Type': 'application/json'},
+    );
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseData = jsonDecode(response.body);
+      final String? token = responseData['token'];
+      final String? uid = responseData['user_uid'];
+      if (token != null&&uid != null) {
+        _hiveDatabase.putTokenInHive(token);
+        _hiveDatabase.putUserUidinHive(uid);
+        return true;
+      } else {
+        return false;
+      }
+      // Verwenden Sie das Token für zukünftige Anfragen
+    } else {
+      return false;
+    }
+}
+
 
   
 }

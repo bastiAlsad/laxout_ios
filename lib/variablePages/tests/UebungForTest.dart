@@ -11,6 +11,7 @@ import 'package:new_projekt/models/constans.dart';
 import 'package:new_projekt/navigation/Bottom_Navigation_Bar.dart';
 import 'package:new_projekt/navigation/Side_Nav_Bar.dart';
 import 'package:new_projekt/services/hive_communication.dart';
+import 'package:video_player/video_player.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 // ignore: must_be_immutable
@@ -153,10 +154,7 @@ class _UebungForTestsState extends State<UebungForTests>
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   ),
-                  child: VideoWidgetTest(
-                    looping: widget.looping,
-                    videoData: widget.videoPath ?? "Error",
-                  ),
+                  child: OnlineVideoPlayer(looping: widget.looping, videoPath: widget.videoPath!)
                 ),
               ),
               Expanded(
@@ -715,5 +713,59 @@ class _VideoWidgetTestState extends State<VideoWidgetTest> {
               ),
             ],
           );
+  }
+}
+
+class OnlineVideoPlayer extends StatefulWidget {
+  final bool looping;
+  final String videoPath;
+
+  const OnlineVideoPlayer({super.key, required this.looping, required this.videoPath});
+
+  @override
+  _OnlineVideoPlayerState createState() => _OnlineVideoPlayerState();
+}
+
+class _OnlineVideoPlayerState extends State<OnlineVideoPlayer> {
+  late VideoPlayerController _controller;
+
+ 
+
+  @override
+  void initState() {
+    super.initState();
+    print("URL: ${'https://dashboardlaxout.eu.pythonanywhere.com/static/${widget.videoPath}'}");
+    _controller = VideoPlayerController.networkUrl(
+      Uri.parse(
+          'https://dashboardlaxout.eu.pythonanywhere.com/static/${widget.videoPath}'),
+      
+      videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
+    );
+
+    _controller.addListener(() {
+      setState(() {});
+    });
+    _controller.setLooping(widget.looping);
+    _controller.initialize();
+    _controller.play();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+     decoration: BoxDecoration(
+      borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20))
+     ),
+      child: AspectRatio(
+        aspectRatio: _controller.value.aspectRatio,
+        child: VideoPlayer(_controller),
+      ),
+    );
   }
 }

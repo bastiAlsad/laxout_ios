@@ -14,7 +14,6 @@ import 'package:new_projekt/services/basti_backend.dart';
 import 'package:new_projekt/services/hive_communication.dart';
 import 'package:new_projekt/variablePages/DesignerItem1.dart';
 import 'package:new_projekt/variablePages/physio/physioWorkoutEnterpoint.dart';
-import 'package:new_projekt/variablePages/tests/TestEnterpoint.dart';
 import 'package:new_projekt/variablePages/tests/umfrage.dart';
 import 'package:new_projekt/variablePages/uebungHomeenterpoint.dart';
 
@@ -42,6 +41,8 @@ class _Homepage extends State<Homepage> {
   int test = 0;
   bool isConnected = true;
   int week = 1;
+  double widthStartButton = 145; //Widht Physio workout start button
+  double heightStartButton=  50; //Height Physio workout start button
 
   String nameWorkout = "";
   List<DateTime> days = [];
@@ -104,16 +105,19 @@ class _Homepage extends State<Homepage> {
     return await _laxoutBackend.returnProgressWeek();
   }
 
- 
   Future<void> inizializeNewMessages() async {
     new_message = await _laxoutBackend.checkNewMessages();
     print("VALUE NEW MESSAGES $new_message");
   }
-
+  bool showTutorial = false;
   @override
   void initState() {
     inizializeNewMessages();
-
+    showTutorial = !_hive.checkEverOpened();
+    showTutorial? WidgetsBinding.instance.addPostFrameCallback((_) {
+      showWelcomeDialog();
+    }):(){};
+    _hive.appWasOpened();
     isInternetConnected();
     isConnected ? putConvertedListInHive() : () {};
     isConnected ? putConvertedTestListInHive() : () {};
@@ -167,7 +171,7 @@ class _Homepage extends State<Homepage> {
       }
     }
     if (workoutList.isNotEmpty && requiredStuff.isEmpty) {
-      requiredStuff.add("Nichts außer Sie selbst");
+      requiredStuff.add("Keine Materialien benötigt");
     }
     return requiredStuff;
   }
@@ -321,6 +325,88 @@ class _Homepage extends State<Homepage> {
           );
         }));
   }
+int tutorialCount = 0;
+String text1 = "Schön, dass Sie da sind!";//Title text
+String text2 = "Lassen Sie uns mit einem kurzen Tutorial zur App beginnen.";//Body text
+String text3 = "Los geht's"; //Button text
+  void showWelcomeDialog(){
+    showDialog(
+        context: context,
+        builder: ((context) {
+          return AlertDialog(
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+            title: Text(text1,textAlign: TextAlign.center, style: TextStyle(fontFamily: "Laxout", fontSize: 22, color: Colors.black),),
+            actions: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(text2,textAlign: TextAlign.center, style: TextStyle(fontFamily: "Laxout", fontSize: 14,color: Colors.black),),
+                  SizedBox(height: 20,),
+                  InkWell(
+                    onTap: (){
+                      tutorialCount ++;
+                      if(tutorialCount == 1){
+                        setState(() {
+                          text1 = "Was ist das Kursprogramm?";
+                          text2 = "Das Kursprogramm beinhaltet die Übungen von Ihrem Physiotherapeuten. Sie können die hinterlegten Übungen machen, indem Sie auf 'Starten' drücken.";
+                          text3 = "Weiter";
+                        });
+                        Navigator.of(context).pop();
+                        showWelcomeDialog();
+                      }
+                      if(tutorialCount == 2){
+                        setState(() {
+                          text1 = "Was sind 'LaxCoins'?";
+                          text2 = "Jedes mal wenn Sie Ihr Kursprogramm machen, bekommen Sie LaxCoins geschenkt. Mit diesen Coins können Sie sich echte Rabattcodes aus dem Shop kaufen.";
+                          text3 = "Weiter";
+                        });
+                        Navigator.of(context).pop();
+                        showWelcomeDialog();
+                      }
+                      if(tutorialCount == 3){
+                        setState(() {
+                          text1 = "Probieren wir es aus!";
+                          text2 = "Lassen Sie uns testen, ob Sie Ihr persönliches Kursprogramm starten können. Wir sehen uns gleich wieder :)";
+                          text3 = "Los geht's";
+                        });
+                        Navigator.of(context).pop();
+                        showWelcomeDialog();
+                      }
+                      if(tutorialCount == 4){
+                        Navigator.of(context).pop();
+                        showStartButtonAnimation();
+                      }
+                    },
+                    child: Container(
+                      height: 55,
+                      width: 120,
+                      decoration: BoxDecoration(color: Appcolors.primary, borderRadius: BorderRadius.circular(20),),
+                      child: Center(child: Text(text3, style: TextStyle(color: Colors.white, fontSize: 16),),),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          );
+        }));
+  }
+  void showStartButtonAnimation(){
+    Future.delayed(Duration(milliseconds: 500), () {
+      setState(() {
+        widthStartButton = 170;
+        heightStartButton = 70;
+      });
+      Future.delayed(Duration(milliseconds: 900), () {
+        setState(() {
+          widthStartButton = 145;
+          heightStartButton = 50;
+        });
+      });
+    });
+  }
 
   bool neverOpened = false;
 // Hive struktur anpassen
@@ -351,42 +437,34 @@ class _Homepage extends State<Homepage> {
               width: 8,
             ),
             SizedBox(
-              height: 45,
-              width: 45,
-              child: FutureBuilder(
-                future: inizializeNewMessages(),
-                builder: (context, snapshot) {
-                if(snapshot.connectionState == ConnectionState.waiting){
-                 return IconButton(
-                     onPressed: () {
-                       _scaffoldKey.currentState?.openDrawer();
-                     },
-                     icon: Image.asset('assets/images/drawer.png'));
-                }else{
-                  return Badge(
-                label: Text("1"),
-                isLabelVisible: new_message,
-                child: IconButton(
-                    onPressed: () {
-                      _scaffoldKey.currentState?.openDrawer();
-                    },
-                    icon: Image.asset('assets/images/drawer.png')),
-              );
-                }
-              },)
-            ),
+                height: 45,
+                width: 45,
+                child: FutureBuilder(
+                  future: inizializeNewMessages(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return IconButton(
+                          onPressed: () {
+                            _scaffoldKey.currentState?.openDrawer();
+                          },
+                          icon: Icon(Icons.menu));
+                    } else {
+                      return Badge(
+                        label: Text("1"),
+                        isLabelVisible: new_message,
+                        child: IconButton(
+                            onPressed: () {
+                              _scaffoldKey.currentState?.openDrawer();
+                            },
+                            icon: Icon(Icons.menu)),
+                      );
+                    }
+                  },
+                )),
           ],
         ),
         centerTitle: true,
-        actions: [
-          SizedBox(
-              height: 60,
-              width: 60,
-              child: Image.asset("assets/images/Logoohneschrift.png")),
-          const SizedBox(
-            width: 8,
-          ),
-        ],
+        actions: [],
       ),
       body: ListView(
         children: [
@@ -406,29 +484,11 @@ class _Homepage extends State<Homepage> {
                         fontFamily: "Laxout",
                         height: 0),
                   ),
-                  InkWell(
-                    onTap: () {
-                      showNeededStuff(
-                          true,
-                          const UmfragePage(
-                            toDelegate: TestsEnterPoint(),
-                          ));
-                    },
-                    child: Container(
-                        height: 30,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Appcolors.primary,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            "Test",
-                            style: TextStyle(
-                                color: Colors.white, fontFamily: "Laxout"),
-                          ),
-                        )),
-                  ),
+                  SizedBox(
+                      height: 60,
+                      width: 60,
+                      child: Image.asset("assets/images/Logoohneschrift.png")),
+                  
                 ],
               ),
             ),
@@ -475,16 +535,21 @@ class _Homepage extends State<Homepage> {
                     const Positioned(
                         child: Text(
                       "Kursprogramm",
-                      style: TextStyle(fontFamily: "Laxout", fontSize: 30, ),textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: "Laxout",
+                        fontSize: 30,
+                      ),
+                      textAlign: TextAlign.left,
                     )),
                     Positioned(
                         left: 0,
                         bottom: 0,
                         child: Container(
-                          height: 50,
-                          width: 145,
+                          height: heightStartButton,
+                          width: widthStartButton,
                           decoration: BoxDecoration(
                               color: Appcolors.primary,
+                              border: showTutorial?Border.all(color: Colors.black, width: 5):Border(),
                               borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(25),
                                   bottomRight: Radius.circular(25))),
@@ -667,7 +732,7 @@ class _Homepage extends State<Homepage> {
                 children: [
                   DesignerItem1(
                       Image.asset("assets/images/Nacken_illustration.jpg"),
-                      "Nacken-\nschmerzen",
+                      "Nacken",
                       () => Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -758,7 +823,7 @@ class _Homepage extends State<Homepage> {
                       Image.asset(
                         'assets/images/mittlerer_Ruecken_illustartion.jpg',
                       ),
-                      'Mittlerer \n Rücken',
+                      'Mittlerer\nRücken',
                       () => Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
@@ -862,7 +927,7 @@ class _Homepage extends State<Homepage> {
                         'assets/images/Unterer_ruecken_illustration.png',
                         height: 100.0,
                         width: 100.0),
-                    'Unterer Rücken',
+                    'Unterer\nRücken',
                     () => Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(

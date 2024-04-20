@@ -700,11 +700,14 @@ class _LoopingVideoState extends State<LoopingVideo> {
 }
 
 
+
+
 class OnlineVideoPlayer extends StatefulWidget {
   final bool looping;
   final String videoPath;
 
-  const OnlineVideoPlayer({super.key, required this.looping, required this.videoPath});
+  const OnlineVideoPlayer({Key? key, required this.looping, required this.videoPath})
+      : super(key: key);
 
   @override
   _OnlineVideoPlayerState createState() => _OnlineVideoPlayerState();
@@ -712,13 +715,11 @@ class OnlineVideoPlayer extends StatefulWidget {
 
 class _OnlineVideoPlayerState extends State<OnlineVideoPlayer> {
   late VideoPlayerController _controller;
-
- 
+  bool showRepeatButton = false;
 
   @override
   void initState() {
     super.initState();
-    print("URL: ${'https://dashboardlaxout.eu.pythonanywhere.com/static/${widget.videoPath}'}");
     _controller = VideoPlayerController.networkUrl(
       Uri.parse(
           'https://dashboardlaxout.eu.pythonanywhere.com/static/${widget.videoPath}'),
@@ -726,30 +727,60 @@ class _OnlineVideoPlayerState extends State<OnlineVideoPlayer> {
       videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
     );
 
-    _controller.addListener(() {
-      setState(() {});
-    });
+    _controller.addListener(_videoListener);
+    _controller.setVolume(0);
     _controller.setLooping(widget.looping);
-    _controller.initialize();
-    _controller.play();
+    _controller.initialize().then((_) {
+      _controller.play();
+    });
+  }
+
+  void _videoListener() {
+    if (!mounted) return;
+    if (_controller.value.isPlaying && showRepeatButton) {
+      setState(() {
+        showRepeatButton = false;
+      });
+    } else if (!_controller.value.isPlaying && !showRepeatButton && !widget.looping) {
+      setState(() {
+        _controller.seekTo(Duration.zero);
+        showRepeatButton = true;
+      });
+    }
   }
 
   @override
   void dispose() {
+    _controller.removeListener(_videoListener);
     _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-     decoration: BoxDecoration(
-      borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20))
-     ),
-      child: AspectRatio(
-        aspectRatio: _controller.value.aspectRatio,
-        child: VideoPlayer(_controller),
-      ),
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        VideoPlayer(_controller),
+        if (showRepeatButton)
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                showRepeatButton = false;
+                _controller.seekTo(Duration.zero);
+                _controller.play();
+              });
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              padding: EdgeInsets.all(16),
+              child: Icon(Icons.repeat, size: 40, color: Colors.black),
+            ),
+          ),
+      ],
     );
   }
 }
