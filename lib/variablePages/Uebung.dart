@@ -135,7 +135,7 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2.5,
+                height: MediaQuery.of(context).size.height / 2.2,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
@@ -729,68 +729,45 @@ class OnlineVideoPlayer extends StatefulWidget {
   final bool looping;
   final String videoPath;
 
-  const OnlineVideoPlayer({
-    Key? key,
-    required this.looping,
-    required this.videoPath,
-  }) : super(key: key);
+  const OnlineVideoPlayer(
+      {Key? key, required this.looping, required this.videoPath})
+      : super(key: key);
 
   @override
   _OnlineVideoPlayerState createState() => _OnlineVideoPlayerState();
 }
 
-class _OnlineVideoPlayerState extends State<OnlineVideoPlayer> {
+class _OnlineVideoPlayerState extends State<OnlineVideoPlayer>
+    with TickerProviderStateMixin {
   late VideoPlayerController _controller;
   bool showRepeatButton = false;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.networkUrl(
-      Uri.parse('https://www.youtube.com/watch?v=tXlfK-457yQ'),
-      videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
-    );
-
-    _controller.addListener(() {
-      setState(() {});
-    });
-    _controller.setLooping(true);
-    _controller.initialize();
+    initialize();
   }
 
-  void _initializeVideoPlayer() async {
+  void initialize() async {
     _controller = VideoPlayerController.networkUrl(
       Uri.parse(
-          'https://github.com/bastiAlsad/laxout_development/blob/master/static/${widget.videoPath}'),
+          'https://bastialsad.github.io/laxout_development/static/${widget.videoPath}'),
       videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
     );
 
-    try {
-      await _controller.initialize();
-      _controller.setVolume(0);
-      _controller.setLooping(widget.looping);
-      _controller.play();
-    } catch (e) {
-      print('Failed to load video: $e');
-      // Handle error
-    }
-
     _controller.addListener(_videoListener);
+    _controller.setVolume(0);
+    _controller.setLooping(widget.looping);
+    await _controller.initialize();
+    _controller.play();
   }
 
   void _videoListener() {
-    if (!mounted) return;
-    if (_controller.value.isPlaying && showRepeatButton) {
+    if (_controller.value.isCompleted && !widget.looping) {
       setState(() {
-        showRepeatButton = false;
-      });
-    } else if (!_controller.value.isPlaying &&
-        !showRepeatButton &&
-        !widget.looping) {
-      setState(() {
-        _controller.seekTo(Duration.zero);
         showRepeatButton = true;
       });
+      _controller.seekTo(Duration.zero);
     }
   }
 
@@ -807,14 +784,14 @@ class _OnlineVideoPlayerState extends State<OnlineVideoPlayer> {
       alignment: Alignment.center,
       children: [
         VideoPlayer(_controller),
-        if (showRepeatButton)
-          GestureDetector(
+        Visibility(
+          visible: showRepeatButton,
+          child: InkWell(
             onTap: () {
               setState(() {
                 showRepeatButton = false;
-                _controller.seekTo(Duration.zero);
-                _controller.play();
               });
+              _controller.play();
             },
             child: Container(
               decoration: BoxDecoration(
@@ -825,6 +802,7 @@ class _OnlineVideoPlayerState extends State<OnlineVideoPlayer> {
               child: Icon(Icons.repeat, size: 40, color: Colors.black),
             ),
           ),
+        ),
       ],
     );
   }
