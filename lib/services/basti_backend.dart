@@ -9,7 +9,7 @@ import 'hive_communication.dart';
 class LaxoutBackend {
   String serverAddress = "http://192.168.178.41:8000";
   String urlproduction = "https://dashboardlaxout.eu.pythonanywhere.com";
-  String url = "http://192.168.178.41:8000";
+  String url = "https://dashboardlaxout.eu.pythonanywhere.com";
   final HiveDatabase _hiveDatabase = HiveDatabase();
 
   Future<bool> authenticateUser(String uid) async {
