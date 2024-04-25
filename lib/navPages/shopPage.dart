@@ -121,7 +121,7 @@ class _InternetShopPageState extends State<InternetShopPage> {
           builder: ((context) {
             return AlertDialog(
               title: const Text(
-                "Sie haben leider nicht genügend Laxout Credits. Diese können sie sich 1 mal täglich durch einen Test verdienen, oder durch das vollenden des Physio Workouts",
+                "Sie haben leider nicht genügend Laxout Credits. Diese können sie sich 1 mal täglich durch das vollenden Ihres Kursprogramms verdienen. Hinweis: Wenn Sie zu viele Übungen im Kursprogramm überspringen, erkennt die Software das als Schummeln an und Sie bekommen keine LaxCoins.",
                 style: TextStyle(fontFamily: "Laxout", fontSize: 14),
               ),
               actions: [
@@ -301,7 +301,7 @@ class _InternetShopPageState extends State<InternetShopPage> {
             );
           } else {
             List shopList = snapshot.data ?? [];
-            // shopList.add(Coupon(id: 0, couponName: "Wunschcoupon", couponText: "Als Belohnung für das fleißige Durchführen Ihres Workouts erhalten Sie von unserem Partner Sovendus einen Gutschein Ihrer Wahl. Kaufen Sie diesen Coupon und Sie erhalten anschließend Zugang zu über 1000 Rabattcodes von Firmen wie Otto, S.Oliver, ShopAphoteke und vielen weiteren Partnern, von denen Sie sich einen aussuchen dürfen!", couponImageUrl: "https://laxoutapp.com/wp-content/uploads/elementor/thumbs/Original-on-Transparent-2-Kopie-qdvaef4t4wosp4blnwuth1860qdc3tupxko88fkwvo.png", couponPrice: 300, couponOffer: "Einen Rabattcode Ihrer Wahl", rabatCode: ""));
+            // shopList.add(Coupon(id: 0, couponName: "Wunschcoupon", couponText: "Als Belohnung für das fleißige Durchführen Ihres Workouts erhalten Sie von unserem Partner Sovendus einen Gutschein Ihrer Wahl. Kaufen Sie diesen Coupon und Sie erhalten anschließend Zugang zu über 1000 Rabattcodes von Firmen wie Otto, S.Oliver, ShopAphoteke und vielen weiteren Partnern, von denen Sie sich einen aussuchen dürfen!", couponImageUrl: "https://laxoutapp.com/wp-content/uploads/elementor/thumbs/Original-on-Transparent-2-Kopie-qdvaef4t4wosp4blnwuth1860qdc3tupxko88fkwvo.png", couponPrice: 300, couponOffer: "Suchen Sie sich einen Gutschein Ihrer Wahl aus", rabatCode: ""));
             // List laxList = snapshot.data ?? [];
             // for(var item in laxList){
             //   shopList.add(item);
@@ -436,8 +436,12 @@ class _InternetShopPageState extends State<InternetShopPage> {
                                     }
                                     }else{
                                       if(index == 0){
-                                        _laxoutBackend.buySovendusCoupon(shopList[index].id);
-                                        showSovendusCoupon();
+                                        bool response = await _laxoutBackend.buySovendusCoupon(shopList[index].id);
+                                        if(response== true){
+                                          showSovendusCoupon();
+                                        }else{
+                                          showErrorMessage();
+                                        }
                                       }
                                     }
                                   },
