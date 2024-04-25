@@ -174,6 +174,7 @@ class _ChatPageState extends State<ChatPage> {
                                           const Duration(milliseconds: 300),
                                       curve: Curves.easeOut,
                                     );
+                                    await inizializeMesages();
                                   },
                                   child: const Icon(
                                     Icons.send,

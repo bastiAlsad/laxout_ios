@@ -9,7 +9,7 @@ import 'hive_communication.dart';
 class LaxoutBackend {
   String serverAddress = "http://192.168.178.41:8000";
   String urlproduction = "https://dashboardlaxout.eu.pythonanywhere.com";
-  String url = "https://dashboardlaxout.eu.pythonanywhere.com";
+  String url = "http://192.168.178.41:8000";
   final HiveDatabase _hiveDatabase = HiveDatabase();
 
   Future<bool> authenticateUser(String uid) async {
@@ -260,6 +260,27 @@ class LaxoutBackend {
     return false;
   }
 
+  Future<bool> buySovendusCoupon(int couponId) async {
+    String apiUrl = "$url/couponbuysovendus";
+    String token = _hiveDatabase.getToken();
+    String userUid = _hiveDatabase.getUserUid();
+    Map<String, dynamic> data = {'coupon_id': couponId};
+    final http.Response response = await http.post(Uri.parse(apiUrl),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'token $token',
+          'User-Uid': '${Uri.encodeFull(userUid)}'
+        },
+        body: jsonEncode(data));
+    if (response.statusCode == 200) {
+      return true;
+    }
+    if (response.statusCode == 406) {
+      return false;
+    }
+    return false;
+  }
+
   Future<bool> deleteCoupon(int couponId) async {
     String apiUrl = "$url/coupondeleteuser";
     String token = _hiveDatabase.getToken();
@@ -279,6 +300,29 @@ class LaxoutBackend {
       return false;
     }
     return false;
+  }
+
+  Future<String> getUniqueUserUid()async{
+    //uniqueuidsovendus
+    String apiUrl = "$url/uniqueuidsovendus";
+    String token = _hiveDatabase.getToken();
+    String userUid = _hiveDatabase.getUserUid();
+    
+    final http.Response response = await http.get(Uri.parse(apiUrl),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'token $token',
+          'User-Uid': '${Uri.encodeFull(userUid)}'
+        },
+    );
+    if(response.statusCode == 200){
+      Map<String, dynamic> data = jsonDecode(response.body);
+      return data['customer_uid'];
+    }
+    else{
+      print("Error in getUniqueUserUid");
+      return"";
+    }
   }
 
   Future<List<Coupon>> returnCouponsForSpecificUSer() async {

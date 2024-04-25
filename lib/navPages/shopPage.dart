@@ -5,6 +5,35 @@ import 'package:new_projekt/models/constans.dart';
 import 'package:new_projekt/navPages/couponsPage.dart';
 import 'package:new_projekt/navigation/Side_Nav_Bar.dart';
 import 'package:new_projekt/services/basti_backend.dart';
+import 'package:new_projekt/sovendus/sovendus_voucher.dart';
+
+class SovendusPersonalData {
+  String? salutation;
+  String? firstName;
+  String? lastName;
+  String? email;
+  String? phone;
+  int? yearOfBirth;
+  String? street;
+  String? streetNumber;
+  String? zipcode;
+  String? city;
+  String? country;
+
+  SovendusPersonalData({
+    this.salutation,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.phone,
+    this.yearOfBirth,
+    this.street,
+    this.streetNumber,
+    this.zipcode,
+    this.city,
+    this.country,
+  });
+}
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -15,6 +44,7 @@ class ShopPage extends StatefulWidget {
 
 class _ShopPageState extends State<ShopPage> {
   bool isConnected = false;
+
 
   Future<bool> isInternetConnected() async {
     try {
@@ -34,6 +64,7 @@ class _ShopPageState extends State<ShopPage> {
   @override
   void initState() {
     isInternetConnected();
+    
     super.initState();
   }
 
@@ -58,8 +89,16 @@ class _InternetShopPageState extends State<InternetShopPage> {
     yield laxCoins;
   }
 
+  String uniqueCustomerUid = "";
+
+   void initializeCustomerUid()async{
+    uniqueCustomerUid = await _laxoutBackend.getUniqueUserUid();
+    print((uniqueCustomerUid));
+  }
+
   @override
   void initState() {
+    initializeCustomerUid();
     clearCouponList();
     super.initState();
   }
@@ -112,6 +151,56 @@ class _InternetShopPageState extends State<InternetShopPage> {
           }));
     }
 
+    showSovendusCoupon() {
+      DateTime now = DateTime.now();
+      int purchaseSecond = now.millisecondsSinceEpoch ~/ 1000;
+      showDialog(
+          context: context,
+          builder: ((context) {
+            return AlertDialog(
+              title: const Text(
+                "Hier können Sie sich einen Rabattcode Ihrer Wahl aussuchen:",
+                style: TextStyle(fontFamily: "Laxout", fontSize: 14),
+              ),
+              content: SovendusVoucherBanner(
+                trafficSourceNumber: 7495,
+                trafficMediumNumberVoucherNetwork: 1,
+                orderUnixTime: purchaseSecond,
+                sessionId: uniqueCustomerUid,
+                orderId: uniqueCustomerUid,
+                netOrderValue: 120.5,
+                currencyCode: "EUR",
+                usedCouponCode: "CouponCodeFromThePurchase",
+                customerData: SovendusPersonalData(
+                  salutation: "Mr.",
+                  firstName: "Vorname",
+                  lastName: "Nachname",
+                  email: "example@example.com",
+                  phone: "+4915546456456",
+                  yearOfBirth: 1990,
+                  street: "Street",
+                  streetNumber: "99",
+                  zipcode: "76135",
+                  city: "Karlsruhe",
+                  country: "DE",
+                ),
+                // Until the banner is loaded we're showing a loading indicator,
+                // optionally you can pass a custom loading spinner with the type Widget
+                customProgressIndicator: RefreshProgressIndicator(),
+                ),
+              
+              actions: [
+                Center(child: TextButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  child: Text("Coupon Später einlösen",textAlign: TextAlign.center, style: TextStyle(fontFamily: "Laxout", fontSize: 18, color: Colors.black, decoration: TextDecoration.underline)),))
+               
+              ],
+            );
+          }));
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -120,7 +209,7 @@ class _InternetShopPageState extends State<InternetShopPage> {
         bottomOpacity: 0.0,
         elevation: 0.0,
         toolbarHeight: 70,
-       leading: IconButton(
+        leading: IconButton(
           onPressed: () {
             showDialog(
               context: context,
@@ -212,6 +301,11 @@ class _InternetShopPageState extends State<InternetShopPage> {
             );
           } else {
             List shopList = snapshot.data ?? [];
+            // shopList.add(Coupon(id: 0, couponName: "Wunschcoupon", couponText: "Als Belohnung für das fleißige Durchführen Ihres Workouts erhalten Sie von unserem Partner Sovendus einen Gutschein Ihrer Wahl. Kaufen Sie diesen Coupon und Sie erhalten anschließend Zugang zu über 1000 Rabattcodes von Firmen wie Otto, S.Oliver, ShopAphoteke und vielen weiteren Partnern, von denen Sie sich einen aussuchen dürfen!", couponImageUrl: "https://laxoutapp.com/wp-content/uploads/elementor/thumbs/Original-on-Transparent-2-Kopie-qdvaef4t4wosp4blnwuth1860qdc3tupxko88fkwvo.png", couponPrice: 300, couponOffer: "Einen Rabattcode Ihrer Wahl", rabatCode: ""));
+            // List laxList = snapshot.data ?? [];
+            // for(var item in laxList){
+            //   shopList.add(item);
+            // }
             return ListView.builder(
               itemCount: shopList.length,
               itemBuilder: (context, index) {
@@ -306,8 +400,7 @@ class _InternetShopPageState extends State<InternetShopPage> {
                                       height: 40,
                                       width: 40,
                                       decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(20),
+                                        borderRadius: BorderRadius.circular(20),
                                         image: const DecorationImage(
                                           image: AssetImage(
                                             "assets/images/laxCoin.png",
@@ -333,25 +426,31 @@ class _InternetShopPageState extends State<InternetShopPage> {
                                 padding: const EdgeInsets.only(right: 20),
                                 child: InkWell(
                                   onTap: () async {
-                                    bool response = await _laxoutBackend
+                                    if(index > 0){
+                                      bool response = await _laxoutBackend
                                         .buyCoupon(shopList[index].id);
                                     if (response == false) {
                                       showErrorMessage();
                                     } else {
                                       setState(() {});
                                     }
+                                    }else{
+                                      if(index == 0){
+                                        _laxoutBackend.buySovendusCoupon(shopList[index].id);
+                                        showSovendusCoupon();
+                                      }
+                                    }
                                   },
                                   child: Container(
                                     height: 40,
                                     width: 140,
                                     decoration: BoxDecoration(
-                                      color:
-                                          Appcolors.primary,
+                                      color: Appcolors.primary,
                                       borderRadius: BorderRadius.circular(25),
                                     ),
                                     child: const Center(
                                       child: Text(
-                                        "Rabattcode kaufen",
+                                        "Kaufen",
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
@@ -378,7 +477,7 @@ class _InternetShopPageState extends State<InternetShopPage> {
         onPressed: () {
           Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => const UsersCouponPage()),
+              MaterialPageRoute(builder: (context) =>  UsersCouponPage(uniqueCustomerUid: uniqueCustomerUid,)),
               (route) => false);
         },
         child: const Icon(Icons.card_giftcard_outlined),
@@ -417,5 +516,3 @@ class NoInternetShopPage extends StatelessWidget {
     );
   }
 }
-
-
