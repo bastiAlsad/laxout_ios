@@ -703,6 +703,25 @@ Future<bool> authenticateUserThroughApp()async{
     }
 }
 
+Future<String> getWebCode() async{
+  String token = _hiveDatabase.getToken();
+    String user_uid = _hiveDatabase.getUserUid();
+  String apiUrl = "$url/createwebcode";
+  final http.Response response = await http.post(Uri.parse(apiUrl), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'token $token',
+      'User-Uid': '${Uri.encodeFull(user_uid)}',
+    });
+    if(response.statusCode == 200){
+      final Map<String, dynamic> responseData = jsonDecode(response.body);
+      final String webCode = responseData['web_code'];
+      return webCode;
+    }else{
+      print("Ein Fehler ist aufgetreten");
+      return "";
+    }
+}
+
 
   
 }

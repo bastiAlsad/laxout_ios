@@ -155,6 +155,7 @@ class _Homepage extends State<Homepage> {
   Future<List<String>> requiredStuff() async {
     List listUebungen = [];
     final toConvert = await _laxoutBackend.returnLaxoutExercises();
+    print("was bei anfrage rauskam: $toConvert");
     listUebungen = await _hive.convertWorkoutsToUebungList(toConvert);
     List<String> requiredStuff = [];
     final workoutList = await workouList();

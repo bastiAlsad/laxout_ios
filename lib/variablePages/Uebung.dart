@@ -221,8 +221,7 @@ class _UebungState extends State<Uebung> with SingleTickerProviderStateMixin {
                                     animationDuration: 1000,
                                     animateFromLastPercent: true,
                                     lineWidth: 10,
-                                    progressColor: const Color.fromRGBO(
-                                        176, 224, 230, 1.0),
+                                    progressColor: Appcolors.primary,
                                     backgroundColor: Colors.white,
                                     center: Text(
                                       timeleft.toString(),

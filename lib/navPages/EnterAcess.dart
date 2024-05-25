@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:new_projekt/extras/AGB.dart';
-import 'package:new_projekt/extras/Datenschutz.dart';
 import 'package:new_projekt/models/constans.dart';
 // import 'package:new_projekt/models/textfield.dart';
 import 'package:new_projekt/navigation/Bottom_Navigation_Bar.dart';
 import 'package:new_projekt/services/basti_backend.dart';
 import 'package:new_projekt/services/hive_communication.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class EnterAcess extends StatefulWidget {
   const EnterAcess({super.key});
@@ -32,6 +31,16 @@ class _EnterAcessState extends State<EnterAcess> {
   bool registert = false;
   bool checkboxValue = false;
   bool authenticationError = false;
+  final Uri _datapolicyUrl = Uri.parse('https://laxoutapp.com/privacy-policy/');
+  final Uri _agbyUrl = Uri.parse('https://laxoutapp.com/allgemeine-geschaeftsbedingungen-agb/');
+  Future<void> _launchInBrowser(Uri url) async {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $url');
+    }
+  }
 
   bool _registriert() {
     if (_hive.neverOpened() != true) {
@@ -228,16 +237,7 @@ class _EnterAcessState extends State<EnterAcess> {
                               ),
                               TextButton(
                                   onPressed: () {
-                                    getText('assets/fonts/daten.txt');
-                                    Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                Datenschutz(
-                                                  navigateHome: false,
-                                                  textFromFile: textFromFile,
-                                                )),
-                                        (route) => false);
+                                    _launchInBrowser(_datapolicyUrl);
                                   },
                                   child: const Text("Datenschutzerklärung",
                                       style: TextStyle(
@@ -261,17 +261,7 @@ class _EnterAcessState extends State<EnterAcess> {
                               ),
                               TextButton(
                                   onPressed: () {
-                                    getText(
-                                        'assets/fonts/Nutzungsbedingungen.txt');
-                                    Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                AGB(
-                                                  navigateHome: false,
-                                                  textFromFile: textFromFile,
-                                                )),
-                                        (route) => false);
+                                    _launchInBrowser(_agbyUrl);
                                   },
                                   child: const Text("AGBs",
                                       style: TextStyle(

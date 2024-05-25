@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:new_projekt/extras/AGB.dart';
 import 'package:new_projekt/messages/message_data_model.dart';
 import 'package:new_projekt/models/constans.dart';
 import 'package:new_projekt/navPages/AppWrapper.dart';
 import 'package:new_projekt/navPages/ChatPage.dart';
+import 'package:new_projekt/services/basti_backend.dart';
 import 'package:new_projekt/services/hive_communication.dart';
 
 import '../extras/Datenschutz.dart';
@@ -19,6 +21,7 @@ class SideNavBar extends StatefulWidget {
 }
 
 class _SideNavBarState extends State<SideNavBar> {
+  final LaxoutBackend _backend = LaxoutBackend();
   final HiveDatabase _hive = HiveDatabase();
   bool showvisible = true;
   bool hidevisible = false;
@@ -31,6 +34,11 @@ class _SideNavBarState extends State<SideNavBar> {
       showvisible = false;
       hidevisible = true;
     });
+  }
+
+  Future<String> getWorkoutCode() async {
+    String code = await _backend.getWebCode();
+    return code;
   }
 
   @override
@@ -102,20 +110,95 @@ class _SideNavBarState extends State<SideNavBar> {
           ),
           ListTile(
             leading: Badge(
-              label: Text("1"),
+              label: const Text("1"),
               isLabelVisible: new_message,
-              child: Icon(
+              child: const Icon(
                 Icons.chat,
                 color: Colors.black,
               ),
             ),
-            title: Text("Fragen"),
+            title: const Text("Fragen"),
             onTap: () {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => ChatPage()),
+                      builder: (BuildContext context) => const ChatPage()),
                   (route) => false);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.computer, color: Colors.black),
+            title: const Text('Laxout PC Version'),
+            onTap: () {
+              showDialog(
+                  context: context,
+                  builder: ((context) => AlertDialog(
+                        title: const Text(
+                          "Laxout Web Version:",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 22,
+                              fontFamily: "Laxout"),
+                        ),
+                        actions: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                "Rufen Sie diese Seite auf dem PC auf:",
+                                style: TextStyle(
+                                    fontFamily: "Laxout", fontSize: 17, fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              const Text(
+                                "https://laxout.live/",
+                                style: TextStyle(
+                                    fontFamily: "Laxout", fontSize: 15, decoration: TextDecoration.underline),
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              const Text(
+                                "Geben Sie Ihren WebCode ein:",
+                                style: TextStyle(
+                                    fontFamily: "Laxout", fontSize: 17, fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              FutureBuilder(
+                                  future: getWorkoutCode(),
+                                  builder: ((context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.done) {
+                                      String code = snapshot.data ?? "";
+                                      return Container(
+                                          height: 50,
+                                          width: 140,
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              border: Border.all(
+                                                  color: Appcolors.primary,
+                                                  width: 2),
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: Center(
+                                              child: Text(
+                                            code,
+                                            style:  TextStyle(fontSize: 16, color: Appcolors.primary),
+                                          )));
+                                    }
+                                    return SpinKitFadingFour(
+                                      color: Appcolors.primary,
+                                    );
+                                  }))
+                            ],
+                          )
+                        ],
+                      )));
             },
           ),
           ListTile(
@@ -125,7 +208,7 @@ class _SideNavBarState extends State<SideNavBar> {
               showDialog(
                   context: context,
                   builder: ((context) => AlertDialog(
-                        title: Text(
+                        title: const Text(
                           "Ausloggen bestätigen",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -136,7 +219,7 @@ class _SideNavBarState extends State<SideNavBar> {
                         actions: [
                           Column(
                             children: [
-                              Text(
+                              const Text(
                                   "Sind Sie sich sicher, dass Sie sich ausloggen möchten? Ihre Daten gehen möglicherweise verloren.",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -144,7 +227,7 @@ class _SideNavBarState extends State<SideNavBar> {
                                       fontSize: 14,
                                       fontFamily: "Laxout")),
                               Padding(
-                                padding: EdgeInsets.symmetric(vertical: 15),
+                                padding: const EdgeInsets.symmetric(vertical: 15),
                                 child: InkWell(
                                   onTap: () {
                                     Navigator.pop(context);
@@ -156,7 +239,7 @@ class _SideNavBarState extends State<SideNavBar> {
                                         color: Appcolors.primary,
                                         borderRadius:
                                             BorderRadius.circular(20)),
-                                    child: Center(
+                                    child: const Center(
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
@@ -179,7 +262,7 @@ class _SideNavBarState extends State<SideNavBar> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.symmetric(vertical: 15),
+                                padding: const EdgeInsets.symmetric(vertical: 15),
                                 child: InkWell(
                                   onTap: () {
                                     _hive.putIndexPhysioList(0);
@@ -190,7 +273,7 @@ class _SideNavBarState extends State<SideNavBar> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                Wrapper()),
+                                                const Wrapper()),
                                         (route) => false);
                                   },
                                   child: Container(
@@ -200,7 +283,7 @@ class _SideNavBarState extends State<SideNavBar> {
                                         color: Appcolors.primary,
                                         borderRadius:
                                             BorderRadius.circular(20)),
-                                    child: Center(
+                                    child: const Center(
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,

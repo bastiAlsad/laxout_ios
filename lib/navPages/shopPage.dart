@@ -163,12 +163,12 @@ class _InternetShopPageState extends State<InternetShopPage> {
                 style: TextStyle(fontFamily: "Laxout", fontSize: 14),
               ),
               content: SovendusVoucherBanner(
-                trafficSourceNumber: 7495,
-                trafficMediumNumberVoucherNetwork: 1,
+                trafficSourceNumber: 4704,
+                trafficMediumNumberVoucherNetwork: 2,
                 orderUnixTime: purchaseSecond,
                 sessionId: uniqueCustomerUid,
                 orderId: uniqueCustomerUid,
-                netOrderValue: 120.5,
+                netOrderValue: 499,
                 currencyCode: "EUR",
                 usedCouponCode: "CouponCodeFromThePurchase",
                 customerData: SovendusPersonalData(

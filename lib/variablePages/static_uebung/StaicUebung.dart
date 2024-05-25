@@ -218,7 +218,7 @@ class _StaticUebungState extends State<StaticUebung> with SingleTickerProviderSt
                                 animateFromLastPercent: true,
                                 lineWidth: 10,
                                 progressColor:
-                                    const Color.fromRGBO(176, 224, 230, 1.0),
+                                    Appcolors.primary,
                                 backgroundColor: Colors.white,
                                 center: Text(
                                   timeleft.toString(),
