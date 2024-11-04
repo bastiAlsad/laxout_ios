@@ -60,6 +60,10 @@ class _SideNavBarState extends State<SideNavBar> {
                     child: Image.asset('assets/images/Logo.png'))),
           ),
           ListTile(
+            leading: Icon(Icons.person, color: Colors.black),
+            title: Text(_hive.getUserUid()),
+          ),
+          ListTile(
             leading: const Icon(Icons.home_rounded, color: Colors.black),
             title: const Text('Home'),
             onTap: () {

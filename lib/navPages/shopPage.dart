@@ -45,7 +45,6 @@ class ShopPage extends StatefulWidget {
 class _ShopPageState extends State<ShopPage> {
   bool isConnected = false;
 
-
   Future<bool> isInternetConnected() async {
     try {
       final result = await InternetAddress.lookup('google.com');
@@ -64,7 +63,7 @@ class _ShopPageState extends State<ShopPage> {
   @override
   void initState() {
     isInternetConnected();
-    
+
     super.initState();
   }
 
@@ -91,7 +90,7 @@ class _InternetShopPageState extends State<InternetShopPage> {
 
   String uniqueCustomerUid = "";
 
-   void initializeCustomerUid()async{
+  void initializeCustomerUid() async {
     uniqueCustomerUid = await _laxoutBackend.getUniqueUserUid();
     print((uniqueCustomerUid));
   }
@@ -187,15 +186,21 @@ class _InternetShopPageState extends State<InternetShopPage> {
                 // Until the banner is loaded we're showing a loading indicator,
                 // optionally you can pass a custom loading spinner with the type Widget
                 customProgressIndicator: RefreshProgressIndicator(),
-                ),
-              
+              ),
               actions: [
-                Center(child: TextButton(
-                  onPressed: (){
+                Center(
+                    child: TextButton(
+                  onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text("Coupon Später einlösen",textAlign: TextAlign.center, style: TextStyle(fontFamily: "Laxout", fontSize: 18, color: Colors.black, decoration: TextDecoration.underline)),))
-               
+                  child: Text("Coupon Später einlösen",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontFamily: "Laxout",
+                          fontSize: 18,
+                          color: Colors.black,
+                          decoration: TextDecoration.underline)),
+                ))
               ],
             );
           }));
@@ -426,20 +431,22 @@ class _InternetShopPageState extends State<InternetShopPage> {
                                 padding: const EdgeInsets.only(right: 20),
                                 child: InkWell(
                                   onTap: () async {
-                                    if(index > 0){
+                                    if (index > 0) {
                                       bool response = await _laxoutBackend
-                                        .buyCoupon(shopList[index].id);
-                                    if (response == false) {
-                                      showErrorMessage();
+                                          .buyCoupon(shopList[index].id);
+                                      if (response == false) {
+                                        showErrorMessage();
+                                      } else {
+                                        setState(() {});
+                                      }
                                     } else {
-                                      setState(() {});
-                                    }
-                                    }else{
-                                      if(index == 0){
-                                        bool response = await _laxoutBackend.buySovendusCoupon(shopList[index].id);
-                                        if(response== true){
+                                      if (index == 0) {
+                                        bool response = await _laxoutBackend
+                                            .buySovendusCoupon(
+                                                shopList[index].id);
+                                        if (response == true) {
                                           showSovendusCoupon();
-                                        }else{
+                                        } else {
                                           showErrorMessage();
                                         }
                                       }
@@ -481,7 +488,10 @@ class _InternetShopPageState extends State<InternetShopPage> {
         onPressed: () {
           Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) =>  UsersCouponPage(uniqueCustomerUid: uniqueCustomerUid,)),
+              MaterialPageRoute(
+                  builder: (context) => UsersCouponPage(
+                        uniqueCustomerUid: uniqueCustomerUid,
+                      )),
               (route) => false);
         },
         child: const Icon(Icons.card_giftcard_outlined),
